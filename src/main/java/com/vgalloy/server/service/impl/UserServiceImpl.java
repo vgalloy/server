@@ -12,7 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by Vincent Galloy on 09/12/15.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 09/12/15.
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,12 +29,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void create(User user) {
+    public User create(User user) {
         Errors errors = userServiceValidator.checkUserOkForCreate(user);
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        personDao.create(user);
+        return personDao.create(user);
     }
 
     @Override
@@ -46,12 +47,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User user) {
+    public User update(User user) {
         Errors errors = userServiceValidator.checkUserOkForUpdate(user);
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        personDao.update(user);
+        return personDao.update(user);
     }
 
     @Override

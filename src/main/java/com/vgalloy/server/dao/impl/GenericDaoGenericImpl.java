@@ -8,7 +8,8 @@ import org.mongojack.WriteResult;
 import java.util.List;
 
 /**
- * Created by Vincent Galloy on 09/12/15.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 09/12/15.
  */
 public abstract class GenericDaoGenericImpl<T extends Referenceable> implements GenericDao<T> {
 
@@ -20,9 +21,10 @@ public abstract class GenericDaoGenericImpl<T extends Referenceable> implements 
     }
 
     @Override
-    public void create(T t) {
+    public T create(T t) {
         WriteResult writeResult = collection.insert(t);
         t.setId(writeResult.getSavedId().toString());
+        return t;
     }
 
     @Override
@@ -31,8 +33,9 @@ public abstract class GenericDaoGenericImpl<T extends Referenceable> implements 
     }
 
     @Override
-    public void update(T o) {
-        collection.save(o);
+    public T update(T t) {
+        collection.save(t);
+        return t;
     }
 
     @Override

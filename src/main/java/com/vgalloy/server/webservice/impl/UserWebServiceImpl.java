@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Created by Vincent Galloy on 09/12/15.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 09/12/15.
  */
 @RestController
 @RequestMapping("/person")
@@ -34,9 +35,7 @@ public class UserWebServiceImpl implements UserWebService {
     @Override
     @RequestMapping(method = RequestMethod.PUT)
     public User create(@RequestBody User user) {
-        System.out.println(user);
-        userService.create(user);
-        return user;
+        return userService.create(user);
     }
 
     @Override
@@ -48,8 +47,7 @@ public class UserWebServiceImpl implements UserWebService {
     @Override
     @RequestMapping(method = RequestMethod.POST)
     public User update(@RequestBody User user) {
-        userService.update(user);
-        return user;
+        return userService.update(user);
     }
 
     @Override

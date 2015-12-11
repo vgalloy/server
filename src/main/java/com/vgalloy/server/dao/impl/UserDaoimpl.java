@@ -8,13 +8,17 @@ import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by Vincent Galloy on 09/12/15.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 09/12/15.
  */
 @Repository
-public class UserDaoimpl extends GenericDaoGenericImpl <User> {
+public class UserDaoimpl extends GenericDaoGenericImpl<User> {
     public static final String DATABASE = "Example";
     public static final String COLLECTION = "person";
 
+    /**
+     * Constructor
+     */
     public UserDaoimpl() {
         super();
         DB database = DBFactory.getDatabase(DATABASE);

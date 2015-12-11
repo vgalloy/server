@@ -4,7 +4,8 @@ import org.mongojack.Id;
 import org.mongojack.ObjectId;
 
 /**
- * Created by Vincent Galloy on 09/12/15.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 09/12/15.
  */
 public abstract class Referenceable {
 

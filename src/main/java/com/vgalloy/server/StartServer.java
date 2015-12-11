@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * @author Vincent Galloy
  * Created by Vincent Galloy on 09/12/15.
  */
 

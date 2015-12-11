@@ -1,11 +1,26 @@
 package com.vgalloy.server.entity;
 
 /**
- * Created by Vincent Galloy on 02/12/15.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 02/12/15.
  */
 public class User extends Referenceable {
     private String username;
     private String password;
+
+    public User() {
+    }
+
+    public User(String id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;

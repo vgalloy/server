@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Vincent Galloy on 11/12/15.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 11/12/15.
  */
 public class Errors {
     private List<Error> errors;
@@ -13,12 +14,12 @@ public class Errors {
         this.errors = new ArrayList<>();
     }
 
-    public Errors addError(Error error){
+    public Errors addError(Error error) {
         errors.add(error);
         return this;
     }
 
-    public boolean hasError(){
+    public boolean hasError() {
         return !errors.isEmpty();
     }
 

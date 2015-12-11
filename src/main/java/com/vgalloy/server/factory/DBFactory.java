@@ -6,9 +6,11 @@ import com.mongodb.MongoClient;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
- * Created by Vincent Galloy on 09/12/15.
- * This class keep the different databases into a map. This permit to not recreate a database for each request.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 09/12/15.
+ *         This class keep the different databases into a map. This permit to not recreate a database for each request.
  */
 
 public enum DBFactory {
@@ -18,7 +20,7 @@ public enum DBFactory {
     private Map<String, DB> databases;
 
     /**
-     * Constructor
+     * Constructor.
      */
     DBFactory() {
         try {
