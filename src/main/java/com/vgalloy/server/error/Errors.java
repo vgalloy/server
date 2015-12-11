@@ -19,6 +19,10 @@ public class Errors {
         return this;
     }
 
+    public List<Error> getErrorList() {
+        return errors;
+    }
+
     public boolean hasError() {
         return !errors.isEmpty();
     }
@@ -29,4 +33,5 @@ public class Errors {
                 "errors=" + errors +
                 '}';
     }
+
 }
