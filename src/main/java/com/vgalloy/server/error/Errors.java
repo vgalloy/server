@@ -8,29 +8,29 @@ import java.util.List;
  *         Created by Vincent Galloy on 11/12/15.
  */
 public class Errors {
-    private List<Error> errors;
+    private List<Error> errorList;
 
     public Errors() {
-        this.errors = new ArrayList<>();
+        this.errorList = new ArrayList<>();
     }
 
     public Errors addError(Error error) {
-        errors.add(error);
+        errorList.add(error);
         return this;
     }
 
     public List<Error> getErrorList() {
-        return errors;
+        return errorList;
     }
 
     public boolean hasError() {
-        return !errors.isEmpty();
+        return !errorList.isEmpty();
     }
 
     @Override
     public String toString() {
         return "Errors{" +
-                "errors=" + errors +
+                "errorList=" + errorList +
                 '}';
     }
 

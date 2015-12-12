@@ -1,7 +1,8 @@
-package com.vgalloy.server.factory;
+package com.vgalloy.server.dao.factory;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import com.vgalloy.server.dao.exception.DaoException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public enum DBFactory {
         try {
             mongoClient = new MongoClient();
         } catch (Exception e) {
-            throw new RuntimeException("Can not create MongoClient", e);
+            throw new DaoException("Can not create MongoClient", e);
         }
         databases = new HashMap<>();
     }

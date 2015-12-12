@@ -8,6 +8,9 @@ public class User extends Referenceable {
     private String username;
     private String password;
 
+    /**
+     * Constructor for Spring
+     */
     public User() {
     }
 

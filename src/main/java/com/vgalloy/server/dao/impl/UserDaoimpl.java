@@ -3,7 +3,7 @@ package com.vgalloy.server.dao.impl;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.vgalloy.server.entity.User;
-import com.vgalloy.server.factory.DBFactory;
+import com.vgalloy.server.dao.factory.DBFactory;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
