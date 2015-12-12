@@ -1,5 +1,7 @@
 package com.vgalloy.server.entity;
 
+import java.util.Objects;
+
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 02/12/15.
@@ -9,9 +11,12 @@ public class User extends Referenceable {
     private String password;
 
     /**
-     * Constructor for Spring
+     * Constructor
      */
     public User() {
+    /**
+     * Allow Spring to instanciate User
+     */
     }
 
     public User(String id, String username, String password) {
@@ -48,7 +53,6 @@ public class User extends Referenceable {
 
         User user = (User) o;
 
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         return !(password != null ? !password.equals(user.password) : user.password != null);
 
@@ -56,8 +60,7 @@ public class User extends Referenceable {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
+        int result = username != null ? username.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
@@ -67,7 +70,6 @@ public class User extends Referenceable {
         return "User{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
-                ", password='" + "********" + '\'' +
                 '}';
     }
 }

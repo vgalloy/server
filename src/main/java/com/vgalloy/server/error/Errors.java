@@ -8,7 +8,7 @@ import java.util.List;
  *         Created by Vincent Galloy on 11/12/15.
  */
 public class Errors {
-    private List<Error> errorList;
+    private transient List<Error> errorList;
 
     public Errors() {
         this.errorList = new ArrayList<>();

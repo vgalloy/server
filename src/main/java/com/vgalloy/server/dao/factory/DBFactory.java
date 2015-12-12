@@ -17,8 +17,8 @@ import java.util.Map;
 public enum DBFactory {
     INSTANCE;
 
-    private MongoClient mongoClient;
-    private Map<String, DB> databases;
+    private transient MongoClient mongoClient;
+    private transient Map<String, DB> databases;
 
     /**
      * Constructor.
