@@ -51,10 +51,16 @@ public class TestServiceUserServiceImpl {
         userList.add(new User("11", "n", "p"));
         Mockito.when(personDao.getAll()).thenReturn(userList);
         Mockito.when(personDao.create(any())).thenReturn(new User("23", "n", "p"));
+        Mockito.when(personDao.getById("1")).thenReturn(new User("232", "n", "p"));
+
 
 
         Mockito.when(userServiceValidator.checkUserOkForCreate(any())).thenReturn(new Errors());
         Mockito.when(userServiceValidator.checkUserOkForCreate(null)).thenReturn(new Errors().addError(new Error("user : null")));
+
+        Mockito.when(userServiceValidator.checkIdOkForGet("1")).thenReturn(new Errors());
+        Mockito.when(userServiceValidator.checkIdOkForGet(null)).thenReturn(new Errors().addError(new Error("id : null")));
+        Mockito.when(userServiceValidator.checkIdOkForGet(" ")).thenReturn(new Errors().addError(new Error("id : empty")));
 
         Mockito.when(userServiceValidator.checkUserOkForUpdate(new User("1", "n", "p"))).thenReturn(new Errors());
         Mockito.when(userServiceValidator.checkUserOkForUpdate(new User())).thenReturn(new Errors().addError(new Error("id : null")));
@@ -74,14 +80,30 @@ public class TestServiceUserServiceImpl {
     }
 
     @Test
-    public void testCreationOk() {
+    public void testCreateOk() {
         User user = userService.create(new User("n", "p"));
         assertEquals(new User("23", "n", "p"), user);
     }
 
     @Test(expected = ServiceException.class)
-    public void testCreationWithNullUser() {
+    public void testCreateWithNullUser() {
         userService.create(null);
+    }
+
+    @Test
+    public void testGetByIdOk() {
+        User user = userService.getById("1");
+        assertEquals(new User("232", "n", "p"), user);
+    }
+
+    @Test(expected = ServiceException.class)
+    public void testGetByWithNullId() {
+        userService.getById(null);
+    }
+
+    @Test(expected = ServiceException.class)
+    public void testGetByWithEmptyId() {
+        userService.getById(" ");
     }
 
     @Test
@@ -113,6 +135,7 @@ public class TestServiceUserServiceImpl {
     public void testDeleteWithNullId() {
         userService.delete(null);
     }
+
     @Test(expected = ServiceException.class)
     public void testDeleteWithEmptyId() {
         userService.delete(" ");

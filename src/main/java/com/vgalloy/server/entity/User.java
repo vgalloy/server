@@ -13,7 +13,7 @@ public class User implements Referenceable {
 
     @Id
     @ObjectId
-    protected String id;
+    private String id;
     private String username;
     private String password;
 

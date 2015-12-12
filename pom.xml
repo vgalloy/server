@@ -25,6 +25,7 @@
 
         <!-- Test -->
         <junit.version>4.12</junit.version>
+        <mockito.version>1.9.5</mockito.version>
     </properties>
 
 
@@ -47,7 +48,7 @@
             <version>${mongojack-version}</version>
         </dependency>
 
-        <!-- TEST -->
+        <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -61,7 +62,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
+            <version>${mockito.version}</version>
         </dependency>
     </dependencies>
 
