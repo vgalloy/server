@@ -56,9 +56,9 @@ public class TestServiceUserServiceImpl {
         Mockito.when(userServiceValidator.checkUserOkForCreate(any())).thenReturn(new Errors());
         Mockito.when(userServiceValidator.checkUserOkForCreate(null)).thenReturn(new Errors().addError(new Error("user : null")));
 
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(any())).thenReturn(new Errors());
+        Mockito.when(userServiceValidator.checkUserOkForUpdate(new User("1", "n", "p"))).thenReturn(new Errors());
         Mockito.when(userServiceValidator.checkUserOkForUpdate(new User())).thenReturn(new Errors().addError(new Error("id : null")));
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(new User("", "n", "p"))).thenReturn(new Errors().addError(new Error("id : empty")));
+        Mockito.when(userServiceValidator.checkUserOkForUpdate(new User("", "n", "p"))).thenReturn(new Errors().addError(new Error("id : emptys")));
         Mockito.when(userServiceValidator.checkUserOkForUpdate(null)).thenReturn(new Errors().addError(new Error("user : null")));
 
         Mockito.when(userServiceValidator.checkIdOkForDelete(any())).thenReturn(new Errors());

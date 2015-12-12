@@ -1,12 +1,19 @@
 package com.vgalloy.server.entity;
 
+import org.mongojack.Id;
+import org.mongojack.ObjectId;
+
 import java.util.Objects;
 
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 02/12/15.
  */
-public class User extends Referenceable {
+public class User implements Referenceable {
+
+    @Id
+    @ObjectId
+    protected String id;
     private String username;
     private String password;
 
@@ -30,6 +37,15 @@ public class User extends Referenceable {
         this.password = password;
     }
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -50,19 +66,15 @@ public class User extends Referenceable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        return !(password != null ? !password.equals(user.password) : user.password != null);
-
+        return Objects.equals(id, user.id) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        return result;
+        return Objects.hash(id, username, password);
     }
 
     @Override
