@@ -14,7 +14,7 @@ public class Event implements Versionable, Referenceable {
     @ObjectId
     private String id;
     private Long version;
-    private String event;
+    private String desciption;
 
     @Override
     public String getId() {
@@ -36,12 +36,12 @@ public class Event implements Versionable, Referenceable {
         this.version = version;
     }
 
-    public String getEvent() {
-        return event;
+    public String getDesciption() {
+        return desciption;
     }
 
-    public void setEvent(String event) {
-        this.event = event;
+    public void setDesciption(String event) {
+        this.desciption = event;
     }
 
     @Override
@@ -51,12 +51,12 @@ public class Event implements Versionable, Referenceable {
         Event event1 = (Event) o;
         return Objects.equals(id, event1.id) &&
                 Objects.equals(version, event1.version) &&
-                Objects.equals(event, event1.event);
+                Objects.equals(desciption, event1.desciption);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, version, event);
+        return Objects.hash(id, version, desciption);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class Event implements Versionable, Referenceable {
         return "Event{" +
                 "id='" + id + '\'' +
                 ", version=" + version +
-                ", event='" + event + '\'' +
+                ", event='" + desciption + '\'' +
                 '}';
     }
 }
