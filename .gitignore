@@ -1,3 +1,5 @@
 /target/
 /.idea/
 *.iml
+keystore.p12
+application.yml
