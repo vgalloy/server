@@ -3,6 +3,8 @@ package com.vgalloy.server.service.impl;
 import com.vgalloy.server.dao.GenericDao;
 import com.vgalloy.server.entity.User;
 import com.vgalloy.server.error.Errors;
+import com.vgalloy.server.logger.Log;
+import com.vgalloy.server.logger.LogLevel;
 import com.vgalloy.server.service.UserService;
 import com.vgalloy.server.service.exception.ServiceException;
 import com.vgalloy.server.service.validator.UserServiceValidator;
@@ -23,11 +25,13 @@ public class UserServiceImpl implements UserService {
     private UserServiceValidator userServiceValidator;
 
     @Override
+    @Log(LogLevel.INFO)
     public List<User> getAll() {
         return personDao.getAll();
     }
 
     @Override
+    @Log(LogLevel.INFO)
     public User create(User user) {
         Errors errors = userServiceValidator.checkUserOkForCreate(user);
         if (errors.hasError()) {
@@ -37,6 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Log(LogLevel.INFO)
     public User getById(String id) {
         Errors errors = userServiceValidator.checkIdOkForGet(id);
         if (errors.hasError()) {
@@ -46,6 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Log(LogLevel.INFO)
     public User update(User user) {
         Errors errors = userServiceValidator.checkUserOkForUpdate(user);
         if (errors.hasError()) {
@@ -55,6 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Log(LogLevel.INFO)
     public void delete(String id) {
         Errors errors = userServiceValidator.checkIdOkForDelete(id);
         if (errors.hasError()) {

@@ -20,6 +20,10 @@
         <slf4j-api.version>1.7.13</slf4j-api.version>
         <logback-classic.version>1.1.3</logback-classic.version>
 
+        <!-- Aspect -->
+        <aspectjrt.version>1.5.4</aspectjrt.version>
+        <aspectjweaver.version>1.8.7</aspectjweaver.version>
+
         <!-- Mongo -->
         <mongo-java-driver-version>2.12.3</mongo-java-driver-version>
         <mongojack-version>2.3.0</mongojack-version>
@@ -45,6 +49,23 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback-classic.version}</version>
+        </dependency>
+
+        <!-- Aspect -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectjrt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectjweaver.version}</version>
         </dependency>
 
         <!-- Spring -->
