@@ -12,7 +12,6 @@ import java.util.List;
  *         Created by Vincent Galloy on 09/12/15.
  */
 public abstract class GenericDaoGenericImpl<T extends Referenceable> implements GenericDao<T> {
-
     protected JacksonDBCollection<T, String> collection;
 
     @Override

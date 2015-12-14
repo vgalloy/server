@@ -17,7 +17,6 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
-
     @Autowired
     private GenericDao<User> personDao;
     @Autowired
