@@ -18,6 +18,7 @@ import java.util.List;
  *         Created by Vincent Galloy on 09/12/15.
  */
 @Service
+@Log(LogLevel.INFO)
 public class UserServiceImpl implements UserService {
     @Autowired
     private GenericDao<User> personDao;
@@ -25,13 +26,11 @@ public class UserServiceImpl implements UserService {
     private UserServiceValidator userServiceValidator;
 
     @Override
-    @Log(LogLevel.INFO)
     public List<User> getAll() {
         return personDao.getAll();
     }
 
     @Override
-    @Log(LogLevel.INFO)
     public User create(User user) {
         Errors errors = userServiceValidator.checkUserOkForCreate(user);
         if (errors.hasError()) {
@@ -41,7 +40,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Log(LogLevel.INFO)
     public User getById(String id) {
         Errors errors = userServiceValidator.checkIdOkForGet(id);
         if (errors.hasError()) {
@@ -51,7 +49,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Log(LogLevel.INFO)
     public User update(User user) {
         Errors errors = userServiceValidator.checkUserOkForUpdate(user);
         if (errors.hasError()) {
@@ -61,7 +58,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Log(LogLevel.INFO)
     public void delete(String id) {
         Errors errors = userServiceValidator.checkIdOkForDelete(id);
         if (errors.hasError()) {

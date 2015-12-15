@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  *         Created by Vincent Galloy on 14/12/15.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.TYPE})
 public @interface Log {
     LogLevel value() default LogLevel.TRACE;
 }
