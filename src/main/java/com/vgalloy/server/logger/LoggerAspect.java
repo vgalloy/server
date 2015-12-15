@@ -23,8 +23,8 @@ import java.lang.annotation.Annotation;
 @Component
 public class LoggerAspect {
     /**
-     * On crée un pointCut pour injecter l'aspect aux bons endroits.
      * /!\ ATTENTION : Cette methode est codé n'importe comment ! Mais elle à l'air de faire ce que je veux ...
+     * On crée un pointCut pour injecter l'aspect aux bons endroits.
      * 1. L'annotation @within permet de trouver les méthodes dont la classe est annoté par @Log
      * 2. L'annotation @annotation permet de trouver les méthodes directement annoté par @Log
      * <p>
