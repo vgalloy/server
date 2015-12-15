@@ -1,6 +1,6 @@
 package com.vgalloy.server.service;
 
-import com.vgalloy.server.entity.User;
+import com.vgalloy.server.dao.model.entity.User;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public interface UserService {
 
     User create(User user);
 
-    User getById(String id);
+    User getByUsername(String id);
 
     User update(User user);
 
-    void delete(String id);
+    void deleteByUsername(String id);
 }

@@ -1,5 +1,7 @@
-package com.vgalloy.server.entity;
+package com.vgalloy.server.dao.model.entity;
 
+import com.vgalloy.server.dao.model.Referenceable;
+import com.vgalloy.server.dao.model.Versionable;
 import org.mongojack.Id;
 import org.mongojack.ObjectId;
 

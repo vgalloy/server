@@ -1,10 +1,10 @@
 package com.vgalloy.server.service.impl;
 
-import com.vgalloy.server.dao.GenericDao;
-import com.vgalloy.server.entity.User;
+import com.vgalloy.server.aspect.logger.Log;
+import com.vgalloy.server.aspect.logger.LogLevel;
+import com.vgalloy.server.dao.UserDao;
+import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.error.Errors;
-import com.vgalloy.server.logger.Log;
-import com.vgalloy.server.logger.LogLevel;
 import com.vgalloy.server.service.UserService;
 import com.vgalloy.server.service.exception.ServiceException;
 import com.vgalloy.server.service.validator.UserServiceValidator;
@@ -21,7 +21,7 @@ import java.util.List;
 @Log(LogLevel.INFO)
 public class UserServiceImpl implements UserService {
     @Autowired
-    private GenericDao<User> personDao;
+    private UserDao personDao;
     @Autowired
     private UserServiceValidator userServiceValidator;
 
@@ -40,12 +40,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(String id) {
+    public User getByUsername(String id) {
         Errors errors = userServiceValidator.checkIdOkForGet(id);
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        return personDao.getById(id);
+        return personDao.getByUsername(id);
     }
 
     @Override
@@ -58,11 +58,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteByUsername(String id) {
         Errors errors = userServiceValidator.checkIdOkForDelete(id);
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        personDao.delete(id);
+        personDao.deleteByUsername(id);
     }
 }

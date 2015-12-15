@@ -1,4 +1,4 @@
-package com.vgalloy.server.entity;
+package com.vgalloy.server.dao.model;
 
 /**
  * @author Vincent Galloy

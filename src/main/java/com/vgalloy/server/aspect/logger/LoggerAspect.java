@@ -1,4 +1,4 @@
-package com.vgalloy.server.logger;
+package com.vgalloy.server.aspect.logger;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

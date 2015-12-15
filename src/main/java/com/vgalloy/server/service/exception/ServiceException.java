@@ -7,7 +7,7 @@ import com.vgalloy.server.error.Errors;
  *         Created by Vincent Galloy on 10/12/15.
  */
 public class ServiceException extends RuntimeException {
-    private final transient Errors errors;
+    private final Errors errors;
 
     public ServiceException(Errors errors) {
         super();

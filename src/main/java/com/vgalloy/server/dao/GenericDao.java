@@ -1,6 +1,6 @@
 package com.vgalloy.server.dao;
 
-import com.vgalloy.server.entity.Referenceable;
+import com.vgalloy.server.dao.model.Referenceable;
 
 import java.util.List;
 
@@ -42,6 +42,6 @@ public interface GenericDao<T extends Referenceable> {
      *
      * @param id The id
      */
-    void delete(String id);
+    void deleteById(String id);
 
 }

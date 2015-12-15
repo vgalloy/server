@@ -1,7 +1,7 @@
 package com.vgalloy.server.service.validator;
 
 import com.vgalloy.server.StartServer;
-import com.vgalloy.server.entity.User;
+import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.error.Errors;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ public class TestUserServiceValidator {
 
     @Test
     public void testCreationOk() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User(null, "test", "test"));
+        Errors errors = userServiceValidator.checkUserOkForCreate(new User("test", "test"));
         assertFalse(errors.hasError());
     }
 
@@ -37,14 +37,35 @@ public class TestUserServiceValidator {
     }
 
     @Test
+    public void testCreationWithEmptyUsername() {
+        Errors errors = userServiceValidator.checkUserOkForCreate(new User("  ", "password"));
+        assertTrue(errors.hasError());
+        assertEquals(errors.getErrorList().size(), 1);
+    }
+
+    @Test
+    public void testCreationWithNullUsername() {
+        Errors errors = userServiceValidator.checkUserOkForCreate(new User("1", null, "password"));
+        assertTrue(errors.hasError());
+        assertEquals(errors.getErrorList().size(), 1);
+    }
+
+    @Test
     public void testUpdateOk() {
         Errors errors = userServiceValidator.checkUserOkForCreate(new User("1", "test", "test"));
         assertFalse(errors.hasError());
     }
 
     @Test
+    public void testUpdateWithEmptyUsername() {
+        Errors errors = userServiceValidator.checkUserOkForUpdate(new User("1", "  ", "test"));
+        assertTrue(errors.hasError());
+        assertEquals(errors.getErrorList().size(), 1);
+    }
+
+    @Test
     public void testUpdateWithNullId() {
-        Errors errors = userServiceValidator.checkUserOkForUpdate(new User(null, "test", "test"));
+        Errors errors = userServiceValidator.checkUserOkForUpdate(new User("1", null, "test"));
         assertTrue(errors.hasError());
         assertEquals(errors.getErrorList().size(), 1);
     }

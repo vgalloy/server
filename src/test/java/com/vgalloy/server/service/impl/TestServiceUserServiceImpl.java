@@ -1,10 +1,8 @@
 package com.vgalloy.server.service.impl;
 
 import com.vgalloy.server.StartServer;
-import com.vgalloy.server.dao.GenericDao;
-import com.vgalloy.server.entity.User;
-import com.vgalloy.server.error.Error;
-import com.vgalloy.server.error.Errors;
+import com.vgalloy.server.dao.UserDao;
+import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.service.exception.ServiceException;
 import com.vgalloy.server.service.validator.UserServiceValidator;
 import org.junit.Before;
@@ -39,21 +37,21 @@ public class TestServiceUserServiceImpl {
     private UserServiceImpl userService;
 
     @Mock
-    private GenericDao<User> personDao;
+    private UserDao personDao;
 
-    @Mock
+    @Spy
     private UserServiceValidator userServiceValidator;
 
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
         List<User> userList = new ArrayList<>();
-        userList.add(new User("11", "n", "p"));
+        userList.add(new User("1", "n", "p"));
         Mockito.when(personDao.getAll()).thenReturn(userList);
-        Mockito.when(personDao.create(any())).thenReturn(new User("23", "n", "p"));
-        Mockito.when(personDao.getById("1")).thenReturn(new User("232", "n", "p"));
+        Mockito.when(personDao.create(any())).thenReturn(new User("1", "n", "p"));
+        Mockito.when(personDao.getByUsername("n")).thenReturn(new User("n", "p"));
 
-
+/*
         Mockito.when(userServiceValidator.checkUserOkForCreate(any())).thenReturn(new Errors());
         Mockito.when(userServiceValidator.checkUserOkForCreate(null)).thenReturn(new Errors().addError(new Error("user : null")));
 
@@ -61,27 +59,38 @@ public class TestServiceUserServiceImpl {
         Mockito.when(userServiceValidator.checkIdOkForGet(null)).thenReturn(new Errors().addError(new Error("id : null")));
         Mockito.when(userServiceValidator.checkIdOkForGet(" ")).thenReturn(new Errors().addError(new Error("id : empty")));
 
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(new User("1", "n", "p"))).thenReturn(new Errors());
+        Mockito.when(userServiceValidator.checkUserOkForUpdate(new User("n", "p"))).thenReturn(new Errors());
         Mockito.when(userServiceValidator.checkUserOkForUpdate(new User())).thenReturn(new Errors().addError(new Error("id : null")));
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(new User("", "n", "p"))).thenReturn(new Errors().addError(new Error("id : emptys")));
+        Mockito.when(userServiceValidator.checkUserOkForUpdate(new User("  ", "p"))).thenReturn(new Errors().addError(new Error("id : empty")));
         Mockito.when(userServiceValidator.checkUserOkForUpdate(null)).thenReturn(new Errors().addError(new Error("user : null")));
 
         Mockito.when(userServiceValidator.checkIdOkForDelete(any())).thenReturn(new Errors());
         Mockito.when(userServiceValidator.checkIdOkForDelete(null)).thenReturn(new Errors().addError(new Error("id : null")));
         Mockito.when(userServiceValidator.checkIdOkForDelete(" ")).thenReturn(new Errors().addError(new Error("id : empty")));
+        */
     }
 
     @Test
     public void testGetAll() {
         List<User> userList = new ArrayList<>();
-        userList.add(new User("11", "n", "p"));
+        userList.add(new User("1", "n", "p"));
         assertThat(userService.getAll(), is(userList));
     }
 
     @Test
     public void testCreateOk() {
         User user = userService.create(new User("n", "p"));
-        assertEquals(new User("23", "n", "p"), user);
+        assertEquals(new User("1", "n", "p"), user);
+    }
+
+    @Test(expected = ServiceException.class)
+    public void testCreateWithNullId() {
+        userService.create(new User(null, "pass"));
+    }
+
+    @Test(expected = ServiceException.class)
+    public void testCreateWithEmptyId() {
+        userService.create(new User(" ", "pass"));
     }
 
     @Test(expected = ServiceException.class)
@@ -91,18 +100,18 @@ public class TestServiceUserServiceImpl {
 
     @Test
     public void testGetByIdOk() {
-        User user = userService.getById("1");
-        assertEquals(new User("232", "n", "p"), user);
+        User user = userService.getByUsername("n");
+        assertEquals(new User("n", "p"), user);
     }
 
     @Test(expected = ServiceException.class)
     public void testGetByWithNullId() {
-        userService.getById(null);
+        userService.getByUsername(null);
     }
 
     @Test(expected = ServiceException.class)
     public void testGetByWithEmptyId() {
-        userService.getById(" ");
+        userService.getByUsername(" ");
     }
 
     @Test
@@ -122,21 +131,21 @@ public class TestServiceUserServiceImpl {
 
     @Test(expected = ServiceException.class)
     public void testUpdateWithEmptyId() {
-        userService.update(new User("", "n", "p"));
+        userService.update(new User("   ", "p"));
     }
 
     @Test
     public void testDeleteOk() {
-        userService.delete("AZERTYH");
+        userService.deleteByUsername("AZERTYH");
     }
 
     @Test(expected = ServiceException.class)
     public void testDeleteWithNullId() {
-        userService.delete(null);
+        userService.deleteByUsername(null);
     }
 
     @Test(expected = ServiceException.class)
     public void testDeleteWithEmptyId() {
-        userService.delete(" ");
+        userService.deleteByUsername(" ");
     }
 }

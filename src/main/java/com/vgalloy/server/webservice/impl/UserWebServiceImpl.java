@@ -1,8 +1,8 @@
 package com.vgalloy.server.webservice.impl;
 
-import com.vgalloy.server.entity.User;
-import com.vgalloy.server.webservice.UserWebService;
+import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.service.UserService;
+import com.vgalloy.server.webservice.UserWebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +21,6 @@ public class UserWebServiceImpl implements UserWebService {
     @Autowired
     private UserService userService;
 
-    @RequestMapping
-    public String home() {
-        return "Hello World";
-    }
-
     @Override
     @RequestMapping("/getAll")
     public List<User> getAll() {
@@ -41,7 +36,7 @@ public class UserWebServiceImpl implements UserWebService {
     @Override
     @RequestMapping(method = RequestMethod.GET)
     public User getById(@RequestBody String id) {
-        return userService.getById(id);
+        return userService.getByUsername(id);
     }
 
     @Override
@@ -53,6 +48,6 @@ public class UserWebServiceImpl implements UserWebService {
     @Override
     @RequestMapping(method = RequestMethod.DELETE)
     public void delete(@RequestBody String id) {
-        userService.delete(id);
+        userService.deleteByUsername(id);
     }
 }

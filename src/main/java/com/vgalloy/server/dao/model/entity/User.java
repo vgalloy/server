@@ -1,5 +1,7 @@
-package com.vgalloy.server.entity;
+package com.vgalloy.server.dao.model.entity;
 
+import com.vgalloy.server.aspect.security.SecurityLevel;
+import com.vgalloy.server.dao.model.Referenceable;
 import org.mongojack.Id;
 import org.mongojack.ObjectId;
 
@@ -10,20 +12,18 @@ import java.util.Objects;
  *         Created by Vincent Galloy on 02/12/15.
  */
 public class User implements Referenceable {
-
     @Id
     @ObjectId
     private String id;
     private String username;
     private String password;
+    private SecurityLevel role;
 
     /**
      * Constructor
      */
     public User() {
-    /**
-     * Allow Spring to instanciate User
-     */
+     // Allow Spring to instanciate User
     }
 
     public User(String id, String username, String password) {
@@ -60,6 +60,14 @@ public class User implements Referenceable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public SecurityLevel getRole() {
+        return role;
+    }
+
+    public void setRole(SecurityLevel role) {
+        this.role = role;
     }
 
     @Override

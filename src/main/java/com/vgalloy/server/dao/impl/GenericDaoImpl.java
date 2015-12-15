@@ -1,7 +1,7 @@
 package com.vgalloy.server.dao.impl;
 
 import com.vgalloy.server.dao.GenericDao;
-import com.vgalloy.server.entity.Referenceable;
+import com.vgalloy.server.dao.model.Referenceable;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 09/12/15.
  */
-public abstract class GenericDaoGenericImpl<T extends Referenceable> implements GenericDao<T> {
+public class GenericDaoImpl<T extends Referenceable> implements GenericDao<T> {
     protected JacksonDBCollection<T, String> collection;
 
     @Override
@@ -38,8 +38,7 @@ public abstract class GenericDaoGenericImpl<T extends Referenceable> implements 
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteById(String id) {
         collection.removeById(id);
     }
-
 }

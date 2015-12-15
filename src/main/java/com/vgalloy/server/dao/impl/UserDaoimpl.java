@@ -2,8 +2,11 @@ package com.vgalloy.server.dao.impl;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
-import com.vgalloy.server.entity.User;
+import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.factory.DBFactory;
+import com.vgalloy.server.dao.model.entity.User;
+import org.mongojack.DBCursor;
+import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
@@ -12,9 +15,9 @@ import org.springframework.stereotype.Repository;
  *         Created by Vincent Galloy on 09/12/15.
  */
 @Repository
-public class UserDaoimpl extends GenericDaoGenericImpl<User> {
-    public static final String DATABASE = "Example";
-    public static final String COLLECTION = "person";
+public class UserDaoimpl extends GenericDaoImpl<User> implements UserDao {
+    private static final String DATABASE = "Example";
+    private static final String COLLECTION = "person";
 
     /**
      * Constructor
@@ -25,4 +28,16 @@ public class UserDaoimpl extends GenericDaoGenericImpl<User> {
         DBCollection dbCollection = database.getCollection(COLLECTION);
         this.collection = JacksonDBCollection.wrap(dbCollection, User.class, String.class);
     }
+
+    @Override
+    public User getByUsername(String username) {
+        DBCursor<User> cursor = this.collection.find(DBQuery.is("username", username));
+        return cursor.next();
+    }
+
+    @Override
+    public void deleteByUsername(String username) {
+        this.collection.remove(DBQuery.is("username", username));
+    }
+
 }

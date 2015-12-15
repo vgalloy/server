@@ -1,7 +1,6 @@
-package com.vgalloy.server.entity;
+package com.vgalloy.server.dao.model.entity;
 
-import org.mongojack.Id;
-import org.mongojack.ObjectId;
+import com.vgalloy.server.dao.model.Versionable;
 
 import java.util.Objects;
 
@@ -9,22 +8,9 @@ import java.util.Objects;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 12/12/15.
  */
-public class Event implements Versionable, Referenceable {
-    @Id
-    @ObjectId
-    private String id;
+public class Event implements Versionable {
     private Long version;
     private String desciption;
-
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
 
     @Override
     public Long getVersion() {
@@ -49,20 +35,18 @@ public class Event implements Versionable, Referenceable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event1 = (Event) o;
-        return Objects.equals(id, event1.id) &&
-                Objects.equals(version, event1.version) &&
+        return Objects.equals(version, event1.version) &&
                 Objects.equals(desciption, event1.desciption);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, version, desciption);
+        return Objects.hash(version, desciption);
     }
 
     @Override
     public String toString() {
         return "Event{" +
-                "id='" + id + '\'' +
                 ", version=" + version +
                 ", event='" + desciption + '\'' +
                 '}';

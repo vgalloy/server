@@ -1,5 +1,6 @@
 package com.vgalloy.server.error;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 11/12/15.
  */
-public class Errors {
+public class Errors implements Serializable {
     private List<Error> errorList;
 
     public Errors() {

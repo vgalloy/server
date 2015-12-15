@@ -1,4 +1,4 @@
-package com.vgalloy.server.logger;
+package com.vgalloy.server.aspect.security;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,10 +7,10 @@ import java.lang.annotation.Target;
 
 /**
  * @author Vincent Galloy
- *         Created by Vincent Galloy on 14/12/15.
+ *         Created by Vincent Galloy on 15/12/15.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE})
-public @interface Log {
-    LogLevel value() default LogLevel.TRACE;
+@Target(ElementType.METHOD)
+public @interface Security {
+    SecurityLevel value() default SecurityLevel.ANONYMOUS;
 }

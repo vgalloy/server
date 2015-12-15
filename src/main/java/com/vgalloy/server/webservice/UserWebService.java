@@ -1,6 +1,6 @@
 package com.vgalloy.server.webservice;
 
-import com.vgalloy.server.entity.User;
+import com.vgalloy.server.dao.model.entity.User;
 
 import java.util.List;
 
