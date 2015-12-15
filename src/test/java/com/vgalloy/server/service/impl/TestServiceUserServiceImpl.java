@@ -33,7 +33,7 @@ public class TestServiceUserServiceImpl {
 
     /**
      * /!\ @InjectMocks cherche à remplir TOUT les champs de l'objet ciblé avec des mocks ou des spys. Si certains
-     * champs n'ont pas de spy/mock associé ils seront setté à null. Mockito n'ira pas chercher les beans de Spring.
+     * champs n'ont pas de spy/mock associé ils seront settés à null. Mockito n'ira pas chercher les beans de Spring.
      */
     @InjectMocks
     private UserServiceImpl userService;
@@ -52,7 +52,6 @@ public class TestServiceUserServiceImpl {
         Mockito.when(personDao.getAll()).thenReturn(userList);
         Mockito.when(personDao.create(any())).thenReturn(new User("23", "n", "p"));
         Mockito.when(personDao.getById("1")).thenReturn(new User("232", "n", "p"));
-
 
 
         Mockito.when(userServiceValidator.checkUserOkForCreate(any())).thenReturn(new Errors());
