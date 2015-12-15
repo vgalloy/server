@@ -16,7 +16,7 @@ import java.util.List;
  *         Created by Vincent Galloy on 09/12/15.
  */
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/user")
 public class UserWebServiceImpl implements UserWebService {
     @Autowired
     private UserService userService;
