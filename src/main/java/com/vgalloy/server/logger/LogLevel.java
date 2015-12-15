@@ -28,6 +28,8 @@ public enum LogLevel {
             case ERROR:
                 logger.error(message);
                 break;
+            default:
+                break;
         }
     }
 }
