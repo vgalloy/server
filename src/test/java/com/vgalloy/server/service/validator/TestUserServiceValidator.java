@@ -25,7 +25,7 @@ public class TestUserServiceValidator {
 
     @Test
     public void testCreationOk() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User("test", "test"));
+        Errors errors = userServiceValidator.checkUserOkForCreate(new User(null, "test", "test"));
         assertFalse(errors.hasError());
     }
 
@@ -38,7 +38,7 @@ public class TestUserServiceValidator {
 
     @Test
     public void testCreationWithEmptyUsername() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User("  ", "password"));
+        Errors errors = userServiceValidator.checkUserOkForCreate(new User(null, "  ", "password"));
         assertTrue(errors.hasError());
         assertEquals(errors.getErrorList().size(), 1);
     }

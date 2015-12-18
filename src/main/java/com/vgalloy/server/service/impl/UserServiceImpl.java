@@ -40,12 +40,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByUsername(String id) {
+    public User getById(String id) {
         Errors errors = userServiceValidator.checkIdOkForGet(id);
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        return personDao.getByUsername(id);
+        return personDao.getById(id);
     }
 
     @Override
@@ -58,11 +58,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteByUsername(String id) {
+    public void deleteById(String id) {
         Errors errors = userServiceValidator.checkIdOkForDelete(id);
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        personDao.deleteByUsername(id);
+        personDao.deleteById(id);
     }
 }

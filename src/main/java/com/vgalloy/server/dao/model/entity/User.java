@@ -32,12 +32,6 @@ public class User implements Referenceable {
         this.password = password;
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-
     public String getId() {
         return id;
     }

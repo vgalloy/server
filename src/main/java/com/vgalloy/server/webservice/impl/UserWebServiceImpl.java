@@ -36,7 +36,7 @@ public class UserWebServiceImpl implements UserWebService {
     @Override
     @RequestMapping(method = RequestMethod.GET)
     public User getById(@RequestBody String id) {
-        return userService.getByUsername(id);
+        return userService.getById(id);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class UserWebServiceImpl implements UserWebService {
     @Override
     @RequestMapping(method = RequestMethod.DELETE)
     public void delete(@RequestBody String id) {
-        userService.deleteByUsername(id);
+        userService.deleteById(id);
     }
 }

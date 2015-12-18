@@ -32,7 +32,10 @@ public class UserDaoimpl extends GenericDaoImpl<User> implements UserDao {
     @Override
     public User getByUsername(String username) {
         DBCursor<User> cursor = this.collection.find(DBQuery.is("username", username));
-        return cursor.next();
+        if(cursor.hasNext()) {
+            return cursor.next();
+        }
+        return null;
     }
 
     @Override
