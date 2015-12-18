@@ -12,8 +12,8 @@ import java.lang.annotation.Annotation;
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 14/12/15.
- *         Le but de cette classe est de creer des pointsCuts et d'injecter les fonctions aux bons endroits. Toute
- *         methode annotée @Log doit être logger (par defaut en trace). Afin de soulager son utilisation, l'annotation
+ *         Le but de cette classe est de creer des pointsCuts et d'injecter les fonctions de log aux bons endroits. Toute
+ *         methode annotée @Log doit être loggées (par defaut en trace). Afin de soulager son utilisation, l'annotation
  *         s'utilise aussi sur des classes. Au quel cas toute les methodes publics de la classe sont annotées au même
  *         niveau. En cas de double annotation (l'une venant de la méthode et l'autre de la classe) c'est la plus proche
  *         (celle de la methode) qui doit prendre le pas.
