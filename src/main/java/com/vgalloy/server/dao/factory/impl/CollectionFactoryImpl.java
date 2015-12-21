@@ -6,10 +6,12 @@ import com.mongodb.MongoClient;
 import com.vgalloy.server.dao.exception.DaoException;
 import com.vgalloy.server.dao.factory.CollectionFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 
 /**
@@ -19,7 +21,6 @@ import java.util.Map;
  */
 @Component
 public class CollectionFactoryImpl implements CollectionFactory {
-    private static final String DATABASE_NAME = "Test";
     private DB database;
     private Map<String, DBCollection> collections;
 
@@ -27,11 +28,23 @@ public class CollectionFactoryImpl implements CollectionFactory {
      * Constructor.
      */
     public CollectionFactoryImpl() {
+        Properties prop = new Properties();
+        InputStream intputStream = null;
         try {
+            intputStream = CollectionFactoryImpl.class.getClassLoader().getResourceAsStream("config.properties");
+            prop.load(intputStream);
             MongoClient mongoClient = new MongoClient();
-            database = mongoClient.getDB(DATABASE_NAME);
-        } catch (Exception e) {
-            throw new DaoException("Can not create MongoClient", e);
+            database = mongoClient.getDB(prop.getProperty("database.name"));
+        } catch (IOException e) {
+            throw new DaoException("Can not create database", e);
+        } finally {
+            if (intputStream != null) {
+                try {
+                    intputStream.close();
+                } catch (IOException e) {
+                    throw new DaoException("Can not close properties output stream", e);
+                }
+            }
         }
         collections = new HashMap<>();
     }

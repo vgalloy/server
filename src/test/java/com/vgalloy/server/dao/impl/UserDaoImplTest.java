@@ -3,8 +3,8 @@ package com.vgalloy.server.dao.impl;
 import com.vgalloy.server.StartServer;
 import com.vgalloy.server.dao.exception.DaoException;
 import com.vgalloy.server.dao.model.entity.User;
-import junit.framework.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import static junit.framework.TestCase.assertEquals;
 @ContextConfiguration(classes = StartServer.class, loader = SpringApplicationContextLoader.class)
 public class UserDaoImplTest {
 
-    @Autowired //TODO:Mocker la bdd
+    @Autowired
     private UserDaoImpl userDao;
 
     @Before
