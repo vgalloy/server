@@ -3,8 +3,8 @@ package com.vgalloy.server.service.impl;
 import com.vgalloy.server.StartServer;
 import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.model.entity.User;
-import com.vgalloy.server.error.Errors;
 import com.vgalloy.server.error.Error;
+import com.vgalloy.server.error.Errors;
 import com.vgalloy.server.service.exception.ServiceException;
 import com.vgalloy.server.service.validator.UserServiceValidator;
 import org.junit.Before;
@@ -14,7 +14,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -30,6 +33,7 @@ import static org.mockito.Matchers.any;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 11/12/15.
  */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = StartServer.class, loader = SpringApplicationContextLoader.class)
 public class TestServiceUserServiceImpl {
@@ -38,57 +42,32 @@ public class TestServiceUserServiceImpl {
      * /!\ @InjectMocks cherche à remplir TOUT les champs de l'objet ciblé avec des mocks ou des spys. Si certains
      * champs n'ont pas de spy/mock associé ils seront settés à null. Mockito n'ira pas chercher les beans de Spring.
      */
+
     @InjectMocks
     private UserServiceImpl userService;
-    @Mock
-    private UserDao personDao;
-    @Mock
+
+    @Spy
     private UserServiceValidator userServiceValidator;
+
+    @Mock
+    private UserDao userDao;
+
     private static final String ID = "1";
     private static final String PASSWORD = "password";
     private static final String USERNAME = "username";
-    private User correctUser;
-    private User nullIdUser;
-    private User emptyIdUser;
-    private User nullUsernameUser;
-    private User emptyUsernameUser;
+    private User correctUser = new User(USERNAME, PASSWORD);
+    private User nullUsernameUser = new User(" ", PASSWORD);
+    private User emptyUsernameUser = new User(" ", PASSWORD);
 
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
         List<User> userList = new ArrayList<>();
-        correctUser = new User(ID, USERNAME, PASSWORD);
-        nullIdUser = new User(null, USERNAME, PASSWORD);
-        emptyIdUser = new User(" ", USERNAME, PASSWORD);
-        nullUsernameUser = new User(ID, " ", PASSWORD);
-        emptyUsernameUser = new User(ID, " ", PASSWORD);
-
-
         userList.add(correctUser);
-        Mockito.when(personDao.getAll()).thenReturn(userList);
-        Mockito.when(personDao.create(nullIdUser)).thenReturn(correctUser);
-        Mockito.when(personDao.getById(ID)).thenReturn(correctUser);
-
-        Mockito.when(userServiceValidator.checkUserOkForCreate(nullIdUser)).thenReturn(new Errors());
-        Mockito.when(userServiceValidator.checkUserOkForCreate(null)).thenReturn(new Errors().addError(new Error("user : null")));
-        Mockito.when(userServiceValidator.checkUserOkForCreate(emptyIdUser)).thenReturn(new Errors().addError(new Error("id : empty")));
-        Mockito.when(userServiceValidator.checkUserOkForCreate(nullUsernameUser)).thenReturn(new Errors().addError(new Error("username : null")));
-        Mockito.when(userServiceValidator.checkUserOkForCreate(emptyUsernameUser)).thenReturn(new Errors().addError(new Error("username : empty")));
-
-        Mockito.when(userServiceValidator.checkIdOkForGet(ID)).thenReturn(new Errors());
-        Mockito.when(userServiceValidator.checkIdOkForGet(null)).thenReturn(new Errors().addError(new Error("id : null")));
-        Mockito.when(userServiceValidator.checkIdOkForGet(" ")).thenReturn(new Errors().addError(new Error("id : empty")));
-
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(correctUser)).thenReturn(new Errors());
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(nullIdUser)).thenReturn(new Errors().addError(new Error("id : null")));
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(emptyIdUser)).thenReturn(new Errors().addError(new Error("id : empty")));
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(nullUsernameUser)).thenReturn(new Errors().addError(new Error("username : null")));
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(emptyUsernameUser)).thenReturn(new Errors().addError(new Error("username : empty")));
-        Mockito.when(userServiceValidator.checkUserOkForUpdate(null)).thenReturn(new Errors().addError(new Error("user : null")));
-
-        Mockito.when(userServiceValidator.checkIdOkForDelete(ID)).thenReturn(new Errors());
-        Mockito.when(userServiceValidator.checkIdOkForDelete(null)).thenReturn(new Errors().addError(new Error("id : null")));
-        Mockito.when(userServiceValidator.checkIdOkForDelete(" ")).thenReturn(new Errors().addError(new Error("id : empty")));
+        Mockito.when(userDao.getAll()).thenReturn(userList);
+        Mockito.when(userDao.create(correctUser)).thenReturn(correctUser);
+        Mockito.when(userDao.update(correctUser)).thenReturn(correctUser);
+        Mockito.when(userDao.getById(USERNAME)).thenReturn(correctUser);
     }
 
     @Test
@@ -100,14 +79,10 @@ public class TestServiceUserServiceImpl {
 
     @Test
     public void testCreateOk() {
-        User user = userService.create(nullIdUser);
+        User user = userService.create(correctUser);
         assertEquals(correctUser, user);
     }
 
-    @Test(expected = ServiceException.class)
-    public void testCreateWithEmptyId() {
-        userService.create(emptyIdUser);
-    }
 
     @Test(expected = ServiceException.class)
     public void testCreateWithNullUsername() {
@@ -126,18 +101,18 @@ public class TestServiceUserServiceImpl {
 
     @Test
     public void testGetByIdOk() {
-        User user = userService.getById(ID);
+        User user = userService.getByUsername(USERNAME);
         assertEquals(correctUser, user);
     }
 
     @Test(expected = ServiceException.class)
-    public void testGetByWithNullId() {
-        userService.getById(null);
+    public void testGetByWithNullUsername() {
+        userService.getByUsername(null);
     }
 
     @Test(expected = ServiceException.class)
-    public void testGetByWithEmptyId() {
-        userService.getById(" ");
+    public void testGetByWithEmptyUsername() {
+        userService.getByUsername(" ");
     }
 
     @Test
@@ -151,13 +126,13 @@ public class TestServiceUserServiceImpl {
     }
 
     @Test(expected = ServiceException.class)
-    public void testUpdateWithNullId() {
-        userService.update(nullIdUser);
+    public void testUpdateWithNullUsername() {
+        userService.update(nullUsernameUser);
     }
 
     @Test(expected = ServiceException.class)
-    public void testUpdateWithEmptyId() {
-        userService.update(emptyIdUser);
+    public void testUpdateWithEmptyUsername() {
+        userService.update(emptyUsernameUser);
     }
 
     @Test

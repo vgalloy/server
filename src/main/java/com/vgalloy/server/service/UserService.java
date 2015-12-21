@@ -13,7 +13,7 @@ public interface UserService {
 
     User create(User user);
 
-    User getById(String id);
+    User getByUsername(String id);
 
     User update(User user);
 

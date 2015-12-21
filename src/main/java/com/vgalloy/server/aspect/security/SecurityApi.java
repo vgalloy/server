@@ -32,7 +32,7 @@ public class SecurityApi {
         if (username == null || username.trim().isEmpty()) {
             logger.info("Un utilisateur anonyme vient de ce connecter");
         } else {
-            user = userService.getById(username);
+            user = userService.getByUsername(username);
             if(user == null) {
                 logger.info("Aucun utilisateur avec le nom d'utilisateur '{}'", username);
             } else if (user.getPassword().equals(password)) {

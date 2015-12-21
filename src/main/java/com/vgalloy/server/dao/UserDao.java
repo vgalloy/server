@@ -8,7 +8,4 @@ import com.vgalloy.server.dao.model.entity.User;
  */
 public interface UserDao extends GenericDao<User>{
 
-    User getByUsername(String username);
-
-    void deleteByUsername(String username);
 }

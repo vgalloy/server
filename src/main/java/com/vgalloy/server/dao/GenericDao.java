@@ -44,4 +44,9 @@ public interface GenericDao<T extends Referenceable> {
      */
     void deleteById(String id);
 
+    /**
+     * Remove all element of the collection.
+     */
+    void removeAll();
+
 }

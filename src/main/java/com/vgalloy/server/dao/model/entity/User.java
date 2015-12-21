@@ -13,8 +13,6 @@ import java.util.Objects;
  */
 public class User implements Referenceable {
     @Id
-    @ObjectId
-    private String id;
     private String username;
     private String password;
     private SecurityLevel role;
@@ -23,21 +21,20 @@ public class User implements Referenceable {
      * Constructor
      */
     public User() {
-     // Allow Spring to instanciate User
+        // Allow Spring to instanciate User
     }
 
-    public User(String id, String username, String password) {
-        this.id = id;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
     public String getId() {
-        return id;
+        return username;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.password = id;
     }
 
     public String getUsername() {
@@ -69,21 +66,21 @@ public class User implements Referenceable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(username, user.username) &&
+        return Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(username, password);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

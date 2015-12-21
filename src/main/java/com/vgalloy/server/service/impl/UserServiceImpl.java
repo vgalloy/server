@@ -21,13 +21,13 @@ import java.util.List;
 @Log(LogLevel.DEBUG)
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDao personDao;
+    private UserDao userDao;
     @Autowired
     private UserServiceValidator userServiceValidator;
 
     @Override
     public List<User> getAll() {
-        return personDao.getAll();
+        return userDao.getAll();
     }
 
     @Override
@@ -36,16 +36,16 @@ public class UserServiceImpl implements UserService {
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        return personDao.create(user);
+        return userDao.create(user);
     }
 
     @Override
-    public User getById(String id) {
+    public User getByUsername(String id) {
         Errors errors = userServiceValidator.checkIdOkForGet(id);
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        return personDao.getById(id);
+        return userDao.getById(id);
     }
 
     @Override
@@ -54,15 +54,15 @@ public class UserServiceImpl implements UserService {
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        return personDao.update(user);
+        return userDao.update(user);
     }
 
     @Override
     public void deleteById(String id) {
-        Errors errors = userServiceValidator.checkIdOkForDelete(id);
+        Errors errors = userServiceValidator.checkUsernameOkForDelete(id);
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        personDao.deleteById(id);
+        userDao.deleteById(id);
     }
 }

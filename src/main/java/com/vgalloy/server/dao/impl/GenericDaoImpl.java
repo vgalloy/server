@@ -1,9 +1,13 @@
 package com.vgalloy.server.dao.impl;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.vgalloy.server.dao.GenericDao;
 import com.vgalloy.server.dao.model.Referenceable;
+import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -12,7 +16,11 @@ import java.util.List;
  *         Created by Vincent Galloy on 09/12/15.
  */
 public class GenericDaoImpl<T extends Referenceable> implements GenericDao<T> {
-    protected JacksonDBCollection<T, String> collection;
+    private JacksonDBCollection<T, String> collection;
+
+    public GenericDaoImpl(JacksonDBCollection<T, String> collection) {
+        this.collection = collection;
+    }
 
     @Override
     public List<T> getAll() {
@@ -40,5 +48,10 @@ public class GenericDaoImpl<T extends Referenceable> implements GenericDao<T> {
     @Override
     public void deleteById(String id) {
         collection.removeById(id);
+    }
+
+    @Override
+    public void removeAll() {
+        collection.getDbCollection().remove(new BasicDBObject());
     }
 }

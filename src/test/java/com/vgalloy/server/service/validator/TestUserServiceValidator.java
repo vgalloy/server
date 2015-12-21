@@ -25,7 +25,7 @@ public class TestUserServiceValidator {
 
     @Test
     public void testCreationOk() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User(null, "test", "test"));
+        Errors errors = userServiceValidator.checkUserOkForCreate(new User("test", "test"));
         assertFalse(errors.hasError());
     }
 
@@ -33,47 +33,47 @@ public class TestUserServiceValidator {
     public void testCreationWithNullUser() {
         Errors errors = userServiceValidator.checkUserOkForCreate(null);
         assertTrue(errors.hasError());
-        assertEquals(errors.getErrorList().size(), 1);
+        assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
     public void testCreationWithEmptyUsername() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User(null, "  ", "password"));
+        Errors errors = userServiceValidator.checkUserOkForCreate(new User("  ", "password"));
         assertTrue(errors.hasError());
-        assertEquals(errors.getErrorList().size(), 1);
+        assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
     public void testCreationWithNullUsername() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User("1", null, "password"));
+        Errors errors = userServiceValidator.checkUserOkForCreate(new User(null, "password"));
         assertTrue(errors.hasError());
-        assertEquals(errors.getErrorList().size(), 1);
+        assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
     public void testUpdateOk() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User("1", "test", "test"));
+        Errors errors = userServiceValidator.checkUserOkForCreate(new User("test", "test"));
         assertFalse(errors.hasError());
     }
 
     @Test
     public void testUpdateWithEmptyUsername() {
-        Errors errors = userServiceValidator.checkUserOkForUpdate(new User("1", "  ", "test"));
+        Errors errors = userServiceValidator.checkUserOkForUpdate(new User("  ", "test"));
         assertTrue(errors.hasError());
-        assertEquals(errors.getErrorList().size(), 1);
+        assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
-    public void testUpdateWithNullId() {
-        Errors errors = userServiceValidator.checkUserOkForUpdate(new User("1", null, "test"));
+    public void testUpdateWithNullUsername() {
+        Errors errors = userServiceValidator.checkUserOkForUpdate(new User(null, "test"));
         assertTrue(errors.hasError());
-        assertEquals(errors.getErrorList().size(), 1);
+        assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
     public void testUpdateWithNullUser() {
         Errors errors = userServiceValidator.checkUserOkForUpdate(null);
         assertTrue(errors.hasError());
-        assertEquals(errors.getErrorList().size(), 1);
+        assertEquals(1, errors.getErrorList().size());
     }
 }

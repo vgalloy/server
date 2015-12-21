@@ -22,10 +22,10 @@ public class UserServiceValidator {
         return errors;
     }
 
-    public Errors checkIdOkForGet(String id) {
+    public Errors checkIdOkForGet(String username) {
         Errors errors = new Errors();
 
-        isIdNotNullAndNotEmpty(errors, id);
+        isUsernameNotNullAndNotEmpty(errors, username);
 
         return errors;
     }
@@ -35,17 +35,16 @@ public class UserServiceValidator {
 
         isUserNotNull(errors, user);
         if (!errors.hasError()) {
-            isIdNotNullAndNotEmpty(errors, user.getId());
             isUsernameNotNullAndNotEmpty(errors, user.getUsername());
         }
 
         return errors;
     }
 
-    public Errors checkIdOkForDelete(String id) {
+    public Errors checkUsernameOkForDelete(String username) {
         Errors errors = new Errors();
 
-        isIdNotNullAndNotEmpty(errors, id);
+        isUsernameNotNullAndNotEmpty(errors, username);
 
         return errors;
     }
@@ -53,14 +52,6 @@ public class UserServiceValidator {
     private void isUserNotNull(Errors errors, User user) {
         if (user == null) {
             errors.addError(new Error("user : null"));
-        }
-    }
-
-    private void isIdNotNullAndNotEmpty(Errors errors, String id) {
-        if (id == null) {
-            errors.addError(new Error("id : null"));
-        } else if (id.trim().isEmpty()) {
-            errors.addError(new Error("id : empty"));
         }
     }
 

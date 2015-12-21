@@ -36,7 +36,7 @@ public class UserWebServiceImpl implements UserWebService {
     @Override
     @RequestMapping(method = RequestMethod.GET)
     public User getById(@RequestBody String id) {
-        return userService.getById(id);
+        return userService.getByUsername(id);
     }
 
     @Override
