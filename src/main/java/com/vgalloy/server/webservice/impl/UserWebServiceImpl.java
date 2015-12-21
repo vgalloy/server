@@ -1,5 +1,7 @@
 package com.vgalloy.server.webservice.impl;
 
+import com.vgalloy.server.aspect.security.Security;
+import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.service.UserService;
 import com.vgalloy.server.webservice.UserWebService;
@@ -25,12 +27,14 @@ public class UserWebServiceImpl implements UserWebService {
     private UserService userService;
 
     @Override
+    @Security(SecurityLevel.ADMIN)
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getAll() {
         return userService.getAll();
     }
 
     @Override
+    @Security(SecurityLevel.ADMIN)
     @RequestMapping(value="/{username}", method = RequestMethod.POST)
     public User create(@PathVariable String username, @RequestBody UserDto userDto) {
         User user = UserMapper.map(userDto);
@@ -39,12 +43,14 @@ public class UserWebServiceImpl implements UserWebService {
     }
 
     @Override
+    @Security(SecurityLevel.USER)
     @RequestMapping(value="/{username}", method = RequestMethod.GET)
     public User getByUsername(@PathVariable String username) {
         return userService.getByUsername(username);
     }
 
     @Override
+    @Security(SecurityLevel.USER)
     @RequestMapping(value="/{username}", method = RequestMethod.PUT)
     public User update(@PathVariable String username, @RequestBody UserDto userDto) {
         User user = UserMapper.map(userDto);
@@ -53,6 +59,7 @@ public class UserWebServiceImpl implements UserWebService {
     }
 
     @Override
+    @Security(SecurityLevel.ADMIN)
     @RequestMapping(value="/{username}", method = RequestMethod.DELETE)
     public void delete(@PathVariable String username) {
         userService.deleteByUsername(username);
