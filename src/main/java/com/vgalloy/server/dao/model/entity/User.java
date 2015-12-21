@@ -34,7 +34,7 @@ public class User implements Referenceable {
     }
 
     public void setId(String id) {
-        this.password = id;
+        this.username = id;
     }
 
     public String getUsername() {

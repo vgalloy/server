@@ -3,6 +3,7 @@ package com.vgalloy.server.dao.impl;
 import com.vgalloy.server.StartServer;
 import com.vgalloy.server.dao.exception.DaoException;
 import com.vgalloy.server.dao.model.entity.User;
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +34,7 @@ public class UserDaoImplTest {
     @Test
     public void testCreateOk() {
         userDao.create(new User("user", "pass"));
+        assertEquals(userDao.getById("user"), new User("user", "pass"));
     }
 
     @Test(expected = DaoException.class)
@@ -47,7 +49,11 @@ public class UserDaoImplTest {
 
     @Test
     public void testUpdateOk() {
-        userDao.update(new User("user", "pass"));
+        User user = new User("user", "pass");
+        userDao.create(user);
+        user.setPassword("password");
+        userDao.update(user);
+        assertEquals(user, userDao.getById("user"));
     }
 
     @Test(expected = DaoException.class)
