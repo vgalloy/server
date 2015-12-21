@@ -1,6 +1,9 @@
 package com.vgalloy.server.webservice;
 
 import com.vgalloy.server.dao.model.entity.User;
+import com.vgalloy.server.webservice.dto.UserDto;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -10,11 +13,11 @@ import java.util.List;
 public interface UserWebService {
     List<User> getAll();
 
-    User create(User user);
+    User create(String username, UserDto userDto);
 
-    User getById(String id);
+    User getByUsername(String username);
 
-    User update(User user);
+    User update(String username, UserDto userDto);
 
-    void delete(String id);
+    void delete(String username);
 }

@@ -5,6 +5,7 @@ import com.vgalloy.server.dao.model.Referenceable;
 import org.mongojack.Id;
 import org.mongojack.ObjectId;
 
+import javax.persistence.Transient;
 import java.util.Objects;
 
 /**
@@ -41,6 +42,7 @@ public class User implements Referenceable {
         return username;
     }
 
+    @Transient
     public void setUsername(String username) {
         this.username = username;
     }
@@ -83,4 +85,5 @@ public class User implements Referenceable {
                 ", role=" + role +
                 '}';
     }
+
 }

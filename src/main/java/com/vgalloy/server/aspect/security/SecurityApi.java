@@ -35,7 +35,7 @@ public class SecurityApi {
             user = userService.getByUsername(username);
             if(user == null) {
                 logger.info("Aucun utilisateur avec le nom d'utilisateur '{}'", username);
-            } else if (user.getPassword().equals(password)) {
+            } else if ((user.getPassword() != null && user.getPassword().equals(password)) || (user.getPassword() == null && password == null)) {
                 logger.info("L'utilisateur '{}' vient de ce connecter", username);
             } else {
                 logger.info("L'utilisateur '{}' vient d'échouer dans sa tentative de connection", username);
