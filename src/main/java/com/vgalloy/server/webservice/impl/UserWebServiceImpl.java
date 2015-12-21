@@ -48,6 +48,6 @@ public class UserWebServiceImpl implements UserWebService {
     @Override
     @RequestMapping(method = RequestMethod.DELETE)
     public void delete(@RequestBody String id) {
-        userService.deleteById(id);
+        userService.deleteByUsername(id);
     }
 }

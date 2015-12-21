@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(String id) {
+    public void deleteByUsername(String id) {
         Errors errors = userServiceValidator.checkUsernameOkForDelete(id);
         if (errors.hasError()) {
             throw new ServiceException(errors);

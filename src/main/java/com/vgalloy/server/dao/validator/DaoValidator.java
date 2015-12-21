@@ -12,6 +12,5 @@ public class DaoValidator {
     public boolean isUserOkForCreateOrUpdate(User user) {
         return user != null && user.getUsername() != null && !user.getUsername().trim().isEmpty();
     }
-
 }
 

@@ -3,8 +3,6 @@ package com.vgalloy.server.service.impl;
 import com.vgalloy.server.StartServer;
 import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.model.entity.User;
-import com.vgalloy.server.error.Error;
-import com.vgalloy.server.error.Errors;
 import com.vgalloy.server.service.exception.ServiceException;
 import com.vgalloy.server.service.validator.UserServiceValidator;
 import org.junit.Before;
@@ -15,9 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -137,16 +133,16 @@ public class TestServiceUserServiceImpl {
 
     @Test
     public void testDeleteOk() {
-        userService.deleteById(ID);
+        userService.deleteByUsername(ID);
     }
 
     @Test(expected = ServiceException.class)
     public void testDeleteWithNullId() {
-        userService.deleteById(null);
+        userService.deleteByUsername(null);
     }
 
     @Test(expected = ServiceException.class)
     public void testDeleteWithEmptyId() {
-        userService.deleteById(" ");
+        userService.deleteByUsername(" ");
     }
 }
