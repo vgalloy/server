@@ -1,6 +1,7 @@
 package com.vgalloy.server.service.validator;
 
 import com.vgalloy.server.StartServer;
+import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.error.Errors;
 import org.junit.Test;
@@ -25,54 +26,87 @@ public class TestUserServiceValidator {
 
     @Test
     public void testCreationOk() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User("test", "test"));
+        Errors errors = userServiceValidator.checkCreateOrUpdate(new User("test", "test"));
         assertFalse(errors.hasError());
     }
 
     @Test
     public void testCreationWithNullUser() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(null);
+        Errors errors = userServiceValidator.checkCreateOrUpdate(null);
         assertTrue(errors.hasError());
         assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
     public void testCreationWithEmptyUsername() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User("  ", "password"));
+        Errors errors = userServiceValidator.checkCreateOrUpdate(new User("  ", "password"));
         assertTrue(errors.hasError());
         assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
     public void testCreationWithNullUsername() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User(null, "password"));
+        Errors errors = userServiceValidator.checkCreateOrUpdate(new User(null, "password"));
         assertTrue(errors.hasError());
         assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
-    public void testUpdateOk() {
-        Errors errors = userServiceValidator.checkUserOkForCreate(new User("test", "test"));
+    public void testCreationWithEmptyPassword() {
+        Errors errors = userServiceValidator.checkCreateOrUpdate(new User("login", "  "));
+        assertTrue(errors.hasError());
+        assertEquals(1, errors.getErrorList().size());
+    }
+
+    @Test
+    public void testCreationWithNullPassword() {
+        Errors errors = userServiceValidator.checkCreateOrUpdate(new User("login", null));
+        assertTrue(errors.hasError());
+        assertEquals(1, errors.getErrorList().size());
+    }
+
+    @Test
+    public void testChangePasswordOk() {
+        Errors errors = userServiceValidator.checkChangePassword(new User("login", "password"), "pass");
         assertFalse(errors.hasError());
     }
 
     @Test
-    public void testUpdateWithEmptyUsername() {
-        Errors errors = userServiceValidator.checkUserOkForUpdate(new User("  ", "test"));
+    public void testChangePasswordWithEmptyPassword() {
+        Errors errors = userServiceValidator.checkChangePassword(new User("login", "password"), " ");
         assertTrue(errors.hasError());
         assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
-    public void testUpdateWithNullUsername() {
-        Errors errors = userServiceValidator.checkUserOkForUpdate(new User(null, "test"));
+    public void testChangePasswordWithNullPassword() {
+        Errors errors = userServiceValidator.checkChangePassword(new User("login", "password"), null);
         assertTrue(errors.hasError());
         assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
-    public void testUpdateWithNullUser() {
-        Errors errors = userServiceValidator.checkUserOkForUpdate(null);
+    public void testChangePasswordWithNullUser() {
+        Errors errors = userServiceValidator.checkChangePassword(null, "pass");
+        assertTrue(errors.hasError());
+        assertEquals(1, errors.getErrorList().size());
+    }
+
+    @Test
+    public void testChangeRoleOk() {
+        Errors errors = userServiceValidator.checkChangeRole(new User("login", "password"), SecurityLevel.ADMIN);
+        assertFalse(errors.hasError());
+    }
+
+    @Test
+    public void testChangeRoleOkWithNullRole() {
+        Errors errors = userServiceValidator.checkChangeRole(new User("login", "password"), null);
+        assertFalse(errors.hasError());
+    }
+
+    @Test
+    public void testChangeRoleWithNullUser() {
+        Errors errors = userServiceValidator.checkChangeRole(null, SecurityLevel.ADMIN);
         assertTrue(errors.hasError());
         assertEquals(1, errors.getErrorList().size());
     }

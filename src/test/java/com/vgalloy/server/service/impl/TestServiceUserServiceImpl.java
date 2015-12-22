@@ -75,24 +75,23 @@ public class TestServiceUserServiceImpl {
 
     @Test
     public void testCreateOk() {
-        User user = userService.create(correctUser);
+        User user = userService.createOrUpdate(correctUser);
         assertEquals(correctUser, user);
     }
 
-
     @Test(expected = ServiceException.class)
     public void testCreateWithNullUsername() {
-        userService.create(nullUsernameUser);
+        userService.createOrUpdate(nullUsernameUser);
     }
 
     @Test(expected = ServiceException.class)
     public void testCreateWithEmptyUsername() {
-        userService.create(emptyUsernameUser);
+        userService.createOrUpdate(emptyUsernameUser);
     }
 
     @Test(expected = ServiceException.class)
     public void testCreateWithNullUser() {
-        userService.create(null);
+        userService.createOrUpdate(null);
     }
 
     @Test
@@ -109,26 +108,6 @@ public class TestServiceUserServiceImpl {
     @Test(expected = ServiceException.class)
     public void testGetByWithEmptyUsername() {
         userService.getByUsername(" ");
-    }
-
-    @Test
-    public void testUpdateOk() {
-        userService.update(correctUser);
-    }
-
-    @Test(expected = ServiceException.class)
-    public void testUpdateWithNullUser() {
-        userService.update(null);
-    }
-
-    @Test(expected = ServiceException.class)
-    public void testUpdateWithNullUsername() {
-        userService.update(nullUsernameUser);
-    }
-
-    @Test(expected = ServiceException.class)
-    public void testUpdateWithEmptyUsername() {
-        userService.update(emptyUsernameUser);
     }
 
     @Test

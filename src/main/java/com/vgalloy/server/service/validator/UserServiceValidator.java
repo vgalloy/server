@@ -1,5 +1,6 @@
 package com.vgalloy.server.service.validator;
 
+import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.error.Error;
 import com.vgalloy.server.error.Errors;
@@ -11,18 +12,19 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserServiceValidator {
-    public Errors checkUserOkForCreate(User user) {
+    public Errors checkCreateOrUpdate(User user) {
         Errors errors = new Errors();
 
         isUserNotNull(errors, user);
         if (!errors.hasError()) {
             isUsernameNotNullAndNotEmpty(errors, user.getUsername());
+            isPasswordNotNullAndNotEmpty(errors, user.getPassword());
         }
 
         return errors;
     }
 
-    public Errors checkIdOkForGet(String username) {
+    public Errors checkGet(String username) {
         Errors errors = new Errors();
 
         isUsernameNotNullAndNotEmpty(errors, username);
@@ -30,21 +32,29 @@ public class UserServiceValidator {
         return errors;
     }
 
-    public Errors checkUserOkForUpdate(User user) {
+    public Errors checkDelete(String username) {
+        Errors errors = new Errors();
+
+        isUsernameNotNullAndNotEmpty(errors, username);
+
+        return errors;
+    }
+
+    public Errors checkChangePassword(User user, String password) {
         Errors errors = new Errors();
 
         isUserNotNull(errors, user);
         if (!errors.hasError()) {
-            isUsernameNotNullAndNotEmpty(errors, user.getUsername());
+            isPasswordNotNullAndNotEmpty(errors, password);
         }
 
         return errors;
     }
 
-    public Errors checkUsernameOkForDelete(String username) {
+    public Errors checkChangeRole(User user, SecurityLevel securityLevel) {
         Errors errors = new Errors();
 
-        isUsernameNotNullAndNotEmpty(errors, username);
+        isUserNotNull(errors, user);
 
         return errors;
     }
@@ -63,5 +73,11 @@ public class UserServiceValidator {
         }
     }
 
-
+    private void isPasswordNotNullAndNotEmpty(Errors errors, String password) {
+        if (password == null) {
+            errors.addError(new Error("password : null"));
+        } else if (password.trim().isEmpty()) {
+            errors.addError(new Error("password : empty"));
+        }
+    }
 }

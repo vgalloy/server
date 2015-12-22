@@ -1,5 +1,6 @@
 package com.vgalloy.server.service;
 
+import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.dao.model.entity.User;
 
 import java.util.List;
@@ -11,11 +12,13 @@ import java.util.List;
 public interface UserService {
     List<User> getAll();
 
-    User create(User user);
+    User createOrUpdate(User user);
 
     User getByUsername(String id);
 
-    User update(User user);
+    User changePassword(String username, String password);
+
+    User changeRole(String username, SecurityLevel securityLevel);
 
     void deleteByUsername(String id);
 }

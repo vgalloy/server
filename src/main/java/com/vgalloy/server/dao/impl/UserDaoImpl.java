@@ -9,8 +9,6 @@ import org.mongojack.JacksonDBCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 09/12/15.

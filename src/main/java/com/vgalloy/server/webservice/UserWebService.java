@@ -17,7 +17,5 @@ public interface UserWebService {
 
     User getByUsername(String username);
 
-    User update(String username, UserDto userDto);
-
     void delete(String username);
 }
