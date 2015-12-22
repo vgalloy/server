@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ResponseBody
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(SecurityException.class)
     public String handleException(SecurityException e) {
+        logger.warn("SecurityException");
         return e.toString();
     }
 
@@ -28,13 +30,15 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     @ExceptionHandler(ServiceException.class)
     public String handleException(ServiceException e) {
-        return e.toString();
+        logger.warn("ServiceException");
+        return e.getMessage();
     }
-/*
+
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e) {
+        logger.warn("INTERNAL_SERVER_ERROR : {}", e.getMessage());
         return "INTERNAL_SERVER_ERROR";
-    }*/
+    }
 }

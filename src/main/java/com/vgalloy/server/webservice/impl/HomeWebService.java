@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeWebService {
     @RequestMapping(method = RequestMethod.GET)
     public String home() {
-        return "Hello World";
+        return "Server is running";
     }
 }
