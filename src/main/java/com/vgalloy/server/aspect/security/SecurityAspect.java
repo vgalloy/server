@@ -18,9 +18,11 @@ public class SecurityAspect {
 
     @Around("@annotation(role)")
     public final Object logForClass(ProceedingJoinPoint joinPoint, Security role) throws Throwable {
-        if(!securityApi.getCurrentUserRole().equals(role.value())) {
-            throw new SecurityException("Vous n'êtes pas authorisé à acceder à cette ressource");
+        for (int i = 0; i < role.value().length; i++) {
+            if (role.value()[i].equals(securityApi.getCurrentUserRole())) {
+                return joinPoint.proceed();
+            }
         }
-        return joinPoint.proceed();
+        throw new SecurityException("Vous n'êtes pas authorisé à acceder à cette ressource");
     }
 }

@@ -30,11 +30,11 @@ public class GlobalExceptionHandler {
     public String handleException(ServiceException e) {
         return e.toString();
     }
-
+/*
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e) {
         return "INTERNAL_SERVER_ERROR";
-    }
+    }*/
 }

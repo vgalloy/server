@@ -14,11 +14,11 @@ public interface UserService {
 
     User createOrUpdate(User user);
 
-    User getByUsername(String id);
+    User getByUsername(String username);
 
     User changePassword(String username, String password);
 
     User changeRole(String username, SecurityLevel securityLevel);
 
-    void deleteByUsername(String id);
+    void deleteByUsername(String username);
 }

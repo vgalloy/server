@@ -1,5 +1,6 @@
 package com.vgalloy.server.webservice.impl;
 
+import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.service.UserService;
 import com.vgalloy.server.webservice.UserWebService;
@@ -42,6 +43,18 @@ public class UserWebServiceImpl implements UserWebService {
     @RequestMapping(value="/{username}", method = RequestMethod.GET)
     public User getByUsername(@PathVariable String username) {
         return userService.getByUsername(username);
+    }
+
+    @Override
+    @RequestMapping(value="/{username}/changePassword", method = RequestMethod.PUT)
+    public User changePassword(@PathVariable String username, @RequestBody String password) {
+        return userService.changePassword(username, password);
+    }
+
+    @Override
+    @RequestMapping(value="/{username}/changeRole", method = RequestMethod.PUT)
+    public User changeRole(@PathVariable String username, @RequestBody SecurityLevel securityLevel) {
+        return userService.changeRole(username, securityLevel);
     }
 
     @Override

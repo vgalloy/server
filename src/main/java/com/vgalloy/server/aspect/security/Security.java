@@ -12,5 +12,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Security {
-    SecurityLevel value() default SecurityLevel.ANONYMOUS;
+    SecurityLevel[] value() default SecurityLevel.ANONYMOUS;
 }

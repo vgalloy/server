@@ -1,7 +1,7 @@
 package com.vgalloy.server.aspect.security;
 
+import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.model.entity.User;
-import com.vgalloy.server.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,12 @@ import org.springframework.stereotype.Component;
 public class SecurityApi {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private ThreadLocal<User> userThreadLocal = new ThreadLocal<>();
+    /**
+     * On est obliger d'utiliser le DAO. L'obtention du user via le service serait impossible puisque certain rôle
+     * sont necessaires. Or à ce stade aucun user n'est present dans le context de sécurité.
+     */
     @Autowired
-    private UserService userService;
+    private UserDao userDao;
 
     /**
      * Cette méthode test si la combinaison nom d'utilisateur et mot de passe et correct.
@@ -28,20 +32,20 @@ public class SecurityApi {
      * @param password Le mot de passe associé à nom d'utilisateur
      */
     public void checkAndAdd(String username, String password) {
-        User user = null;
+        User user;
         if (username == null || username.trim().isEmpty()) {
             logger.info("Un utilisateur anonyme vient de ce connecter");
         } else {
-            user = userService.getByUsername(username);
+            user = userDao.getById(username);
             if(user == null) {
                 logger.info("Aucun utilisateur avec le nom d'utilisateur '{}'", username);
             } else if ((user.getPassword() != null && user.getPassword().equals(password)) || (user.getPassword() == null && password == null)) {
                 logger.info("L'utilisateur '{}' vient de ce connecter", username);
+                userThreadLocal.set(user);
             } else {
                 logger.info("L'utilisateur '{}' vient d'échouer dans sa tentative de connection", username);
             }
         }
-        userThreadLocal.set(user);
     }
 
     public SecurityLevel getCurrentUserRole() {
