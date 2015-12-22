@@ -23,6 +23,6 @@ public class SecurityAspect {
                 return joinPoint.proceed();
             }
         }
-        throw new SecurityException("Vous n'êtes pas authorisé à acceder à cette ressource");
+        throw new SecurityException(SecurityException.UNAUTHORIZED);
     }
 }

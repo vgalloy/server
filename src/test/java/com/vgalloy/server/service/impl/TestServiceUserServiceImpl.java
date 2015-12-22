@@ -4,6 +4,7 @@ import com.vgalloy.server.StartServer;
 import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.service.exception.ServiceException;
+import com.vgalloy.server.service.validator.UserServiceSecurityValidator;
 import com.vgalloy.server.service.validator.UserServiceValidator;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,6 +47,9 @@ public class TestServiceUserServiceImpl {
     private UserServiceValidator userServiceValidator;
 
     @Mock
+    private UserServiceSecurityValidator userServiceSecurityValidator;
+
+    @Mock
     private UserDao userDao;
 
     private static final String ID = "1";
@@ -64,6 +68,9 @@ public class TestServiceUserServiceImpl {
         Mockito.when(userDao.create(correctUser)).thenReturn(correctUser);
         Mockito.when(userDao.update(correctUser)).thenReturn(correctUser);
         Mockito.when(userDao.getById(USERNAME)).thenReturn(correctUser);
+        Mockito.when(userServiceSecurityValidator.isChangePasswordOk(any())).thenReturn(true);
+        Mockito.when(userServiceSecurityValidator.isGetOk(any())).thenReturn(true);
+
     }
 
     @Test

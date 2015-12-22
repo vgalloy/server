@@ -3,12 +3,15 @@ package com.vgalloy.server.service.impl;
 import com.vgalloy.server.aspect.logger.Log;
 import com.vgalloy.server.aspect.logger.LogLevel;
 import com.vgalloy.server.aspect.security.Security;
+import com.vgalloy.server.aspect.security.SecurityApi;
+import com.vgalloy.server.aspect.security.SecurityException;
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.model.entity.User;
 import com.vgalloy.server.error.Errors;
 import com.vgalloy.server.service.UserService;
 import com.vgalloy.server.service.exception.ServiceException;
+import com.vgalloy.server.service.validator.UserServiceSecurityValidator;
 import com.vgalloy.server.service.validator.UserServiceValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +29,8 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
     @Autowired
     private UserServiceValidator userServiceValidator;
+    @Autowired
+    private UserServiceSecurityValidator userServiceSecurityValidator;
 
     @Override
     @Security(SecurityLevel.ADMIN)
@@ -46,6 +51,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Security({SecurityLevel.ADMIN, SecurityLevel.USER})
     public User getByUsername(String username) {
+        if(!userServiceSecurityValidator.isGetOk(username)) {
+            throw new SecurityException(SecurityException.UNAUTHORIZED);
+        }
         Errors errors = userServiceValidator.checkGet(username);
         if (errors.hasError()) {
             throw new ServiceException(errors);
@@ -56,6 +64,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Security({SecurityLevel.ADMIN, SecurityLevel.USER})
     public User changePassword(String username, String password) {
+        if(!userServiceSecurityValidator.isChangePasswordOk(username)) {
+            throw new SecurityException(SecurityException.UNAUTHORIZED);
+        }
         User user = getByUsername(username);
         Errors errors = userServiceValidator.checkChangePassword(user, password);
         if (errors.hasError()) {

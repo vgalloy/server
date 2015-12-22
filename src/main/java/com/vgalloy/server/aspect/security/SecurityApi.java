@@ -56,4 +56,13 @@ public class SecurityApi {
             return user.getRole();
         }
     }
+
+    public String getCurrentUsername() {
+        User user = userThreadLocal.get();
+        if (user == null) {
+            return null;
+        } else {
+            return user.getUsername();
+        }
+    }
 }
