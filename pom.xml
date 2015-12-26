@@ -15,6 +15,7 @@
         <!-- Maven -->
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <sonar-maven-plugin.version>2.7</sonar-maven-plugin.version>
+        <cobertura.version>2.7</cobertura.version>
 
         <!-- Log -->
         <slf4j-api.version>1.7.13</slf4j-api.version>
@@ -139,6 +140,17 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>${sonar-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${cobertura.version}</version>
+                <configuration>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                </configuration>
             </plugin>
         </plugins>
     </build>
