@@ -5,8 +5,10 @@ import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.vgalloy.server.dao.exception.DaoException;
 import com.vgalloy.server.dao.factory.CollectionFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -24,29 +26,21 @@ public class CollectionFactoryImpl implements CollectionFactory {
     private DB database;
     private Map<String, DBCollection> collections;
 
+    @Value("${database.name}")
+    private String databaseName;
+
     /**
      * Constructor.
      */
     public CollectionFactoryImpl() {
-        Properties prop = new Properties();
-        InputStream intputStream = null;
-        try {
-            intputStream = CollectionFactoryImpl.class.getClassLoader().getResourceAsStream("config.properties");
-            prop.load(intputStream);
-            MongoClient mongoClient = new MongoClient();
-            database = mongoClient.getDB(prop.getProperty("database.name"));
-        } catch (IOException e) {
-            throw new DaoException("Can not create database", e);
-        } finally {
-            if (intputStream != null) {
-                try {
-                    intputStream.close();
-                } catch (IOException e) {
-                    throw new DaoException("Can not close properties output stream", e);
-                }
-            }
-        }
         collections = new HashMap<>();
+    }
+
+    @PostConstruct
+    public void inti() {
+        MongoClient mongoClient = new MongoClient();
+        database = mongoClient.getDB(databaseName);
+
     }
 
 
