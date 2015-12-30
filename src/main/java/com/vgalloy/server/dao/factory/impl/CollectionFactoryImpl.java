@@ -29,6 +29,9 @@ public class CollectionFactoryImpl implements CollectionFactory {
     @Value("${database.name}")
     private String databaseName;
 
+    @Value("${database.url}")
+    private String databaseUrl;
+
     /**
      * Constructor.
      */
@@ -38,9 +41,8 @@ public class CollectionFactoryImpl implements CollectionFactory {
 
     @PostConstruct
     public void inti() {
-        MongoClient mongoClient = new MongoClient();
+        MongoClient mongoClient = new MongoClient(databaseUrl);
         database = mongoClient.getDB(databaseName);
-
     }
 
 
