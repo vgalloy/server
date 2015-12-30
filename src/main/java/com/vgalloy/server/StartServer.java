@@ -24,11 +24,6 @@ import org.springframework.core.CollectionFactory;
 public class StartServer {
     public static void main(String[] args) throws Exception {
         new SpringApplicationBuilder(StartServer.class)
-                .properties("server.ssl.key-store:classpath:keystore-default.p12") // Ces propriétés peuvent être override par un application.yml
-                .properties("server.ssl.key-store-password:password")
-                .properties("server.ssl.keyStoreType:PKCS12")
-                .properties("server.ssl.keyAlias:tomcat")
-                .properties("server.port=8081") //Cette option n'est pas override par l'option -Dserver.port
                 .run(args);
     }
 }
