@@ -16,17 +16,17 @@ public class SecurityApi {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private ThreadLocal<User> userThreadLocal = new ThreadLocal<>();
     /**
-     * On est obliger d'utiliser le DAO. L'obtention du user via le service serait impossible puisque certain rôle
+     * On est obligé d'utiliser le DAO. L'obtention du user via le service serait impossible puisque certains rôles
      * sont necessaires. Or à ce stade aucun user n'est present dans le context de sécurité.
      */
     @Autowired
     private UserDao userDao;
 
     /**
-     * Cette méthode test si la combinaison nom d'utilisateur et mot de passe et correct.
+     * Cette méthode test si la combinaison nom d'utilisateur et mot de passe est correcte.
      * Si cette combinaison est correcte, les droits de l'utilisateur seront disponibles partout dans le tread lié à la
      * requête.
-     * Si la combinaison est incorrect (par exemple en cas d'utilisateur anonyme) aucun droit ne sera disponible
+     * Si la combinaison est incorrecte (par exemple en cas d'utilisateur anonyme) aucun droit ne sera disponible
      *
      * @param username Le nom d'utilisateur de la personne
      * @param password Le mot de passe associé à nom d'utilisateur

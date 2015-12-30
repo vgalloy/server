@@ -28,16 +28,16 @@ public class LoggerAspect {
      * 2. L'annotation @annotation permet de trouver les méthodes directement annoté par @Log
      * <p>
      * Le principale problème consiste à gerer la double annotation. Puisque chaque pointcut est un proxy il faut eviter
-     * que les logs s'affiches deux fois avec differents niveaux
+     * que les logs s'affichent deux fois avec differents niveaux
      * Dans le cas d'un pointCut avec un OU ( || ) l'annotation est remplie avec le second terme même si celui-ci est vide.
      * Exemple avec : @within(methodLog) || @annotation(methodLog)
-     * Si la classe est annoté mais pas la méthode, l'aspect sera bien appelé mais le methodLog sera vide.
+     * Si la classe est annotée mais pas la méthode, l'aspect sera bien appelé mais le methodLog sera vide.
      * <p>
      * Dans ce cas de figure évoqué precedement il faut donc retrouver avec la reflexion l'annotation sur la classe pour
-     * utiliser sa value. Il est important de noté que l'inverse n'est pas possible puisque les annotations sur les
-     * methodes ne peuvent pas être trouver par reflexion.
+     * utiliser sa value. Il est important de noter que l'inverse n'est pas possible puisque les annotations sur les
+     * methodes ne peuvent pas être trouvées par reflexion.
      *
-     * La seconde méthode consiste à effectuer un double OU ( || ) et de les lié avec un ET ( && ). Comme expliqué, les
+     * La seconde méthode consiste à effectuer un double OU ( || ) et de les lier avec un ET ( && ). Comme expliqué, les
      * clause OU seront toujours valables et retourneront les deux annotations.
      *
      * @param joinPoint Le joinPoint servant de reference vers le file d'execution et la méthode encapsulée
