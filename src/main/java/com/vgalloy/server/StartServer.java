@@ -1,5 +1,6 @@
 package com.vgalloy.server;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
@@ -23,7 +24,6 @@ import org.springframework.core.CollectionFactory;
 @EnableAutoConfiguration(exclude = {EmbeddedMongoAutoConfiguration.class, MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 public class StartServer {
     public static void main(String[] args) throws Exception {
-        new SpringApplicationBuilder(StartServer.class)
-                .run(args);
+        SpringApplication.run(StartServer.class, args);
     }
 }
