@@ -55,6 +55,7 @@ public class UserServiceValidator {
         Errors errors = new Errors();
 
         isUserNotNull(errors, user);
+        isSecurityLevelNotNull(errors, securityLevel);
 
         return errors;
     }
@@ -78,6 +79,12 @@ public class UserServiceValidator {
             errors.addError(new Error("password : null"));
         } else if (password.trim().isEmpty()) {
             errors.addError(new Error("password : empty"));
+        }
+    }
+
+    private void isSecurityLevelNotNull(Errors errors, SecurityLevel securityLevel) {
+        if (securityLevel == null) {
+            errors.addError(new Error("securityLevel : null"));
         }
     }
 }

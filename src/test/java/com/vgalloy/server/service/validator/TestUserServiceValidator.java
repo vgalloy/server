@@ -101,7 +101,8 @@ public class TestUserServiceValidator {
     @Test
     public void testChangeRoleOkWithNullRole() {
         Errors errors = userServiceValidator.checkChangeRole(new User("login", "password"), null);
-        assertFalse(errors.hasError());
+        assertTrue(errors.hasError());
+        assertEquals(1, errors.getErrorList().size());
     }
 
     @Test
