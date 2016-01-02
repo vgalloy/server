@@ -22,7 +22,7 @@ public class User implements Referenceable {
      * Constructor
      */
     public User() {
-        // Allow Spring to instanciate User
+        super();
     }
 
     public User(String username, String password) {
