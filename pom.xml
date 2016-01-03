@@ -34,7 +34,7 @@
 
         <!-- Test -->
         <junit.version>4.12</junit.version>
-        <mockito.version>1.9.5</mockito.version>
+        <mockito.version>2.0.2-beta</mockito.version>
         <rest-assured.version>2.8.0</rest-assured.version>
     </properties>
 
