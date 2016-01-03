@@ -55,6 +55,20 @@ public class UserWebServiceImplTest {
     }
 
     @Test
+    public void testGetAllWrongUser() {
+        given().auth().preemptive().basic("test", "test")
+                .when().get("/user")
+                .then().statusCode(HttpStatus.SC_FORBIDDEN);
+    }
+
+    @Test
+    public void testGetAllWrongPassword() {
+        given().auth().preemptive().basic(ADMIN, USER)
+                .when().get("/user")
+                .then().statusCode(HttpStatus.SC_FORBIDDEN);
+    }
+
+    @Test
     public void testGetAllUser() {
         given().auth().preemptive().basic(USER, USER)
                 .when().get("/user")

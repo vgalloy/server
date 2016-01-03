@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.Annotation;
-
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 14/12/15.
@@ -36,19 +34,18 @@ public class LoggerAspect {
      * Dans ce cas de figure évoqué precedement il faut donc retrouver avec la reflexion l'annotation sur la classe pour
      * utiliser sa value. Il est important de noter que l'inverse n'est pas possible puisque les annotations sur les
      * methodes ne peuvent pas être trouvées par reflexion.
-     *
+     * <p>
      * La seconde méthode consiste à effectuer un double OU ( || ) et de les lier avec un ET ( && ). Comme expliqué, les
      * clause OU seront toujours valables et retourneront les deux annotations.
      *
      * @param joinPoint Le joinPoint servant de reference vers le file d'execution et la méthode encapsulée
      * @param methodLog L'annotation (lié à la méthode) qui a servie faire le lien.
-     * @param classLog L'annotation (lié à la classe) qui a servie faire le lien.
+     * @param classLog  L'annotation (lié à la classe) qui a servie faire le lien.
      * @return Le resultat de la methode encapsulée par l'aspect
-     * @throws Throwable L'execution de la méthode encapsulé lance une exception de type Throwable
      */
     @Around("(@within(methodLog) || @annotation(methodLog)) && (@annotation(classLog) || @within(classLog))")
     public final Object logForClass(ProceedingJoinPoint joinPoint, Log methodLog, Log classLog) throws Throwable {
-        if(methodLog != null) {
+        if (methodLog != null) {
             return displayLog(joinPoint, methodLog.value());
         }
         return displayLog(joinPoint, classLog.value());
@@ -63,7 +60,6 @@ public class LoggerAspect {
      * @param joinPoint Le joinPoint servant de reference vers le file d'execution et la méthode encapsulée
      * @param logLevel  Le niveau de log attendu
      * @return Le resultat de la methode encapsulée par l'aspect
-     * @throws Throwable L'execution de la méthode encapsulé lance une exception de type Throwable
      */
     private Object displayLog(ProceedingJoinPoint joinPoint, LogLevel logLevel) throws Throwable {
         Logger logger = LoggerFactory.getLogger(joinPoint.getTarget().getClass());

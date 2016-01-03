@@ -60,13 +60,13 @@ public class UserServiceValidator {
         return errors;
     }
 
-    private void isUserNotNull(Errors errors, User user) {
+    private static void isUserNotNull(Errors errors, User user) {
         if (user == null) {
             errors.addError(new Error("user : null"));
         }
     }
 
-    private void isUsernameNotNullAndNotEmpty(Errors errors, String username) {
+    private static void isUsernameNotNullAndNotEmpty(Errors errors, String username) {
         if (username == null) {
             errors.addError(new Error("username : null"));
         } else if (username.trim().isEmpty()) {
@@ -74,7 +74,7 @@ public class UserServiceValidator {
         }
     }
 
-    private void isPasswordNotNullAndNotEmpty(Errors errors, String password) {
+    private static void isPasswordNotNullAndNotEmpty(Errors errors, String password) {
         if (password == null) {
             errors.addError(new Error("password : null"));
         } else if (password.trim().isEmpty()) {
@@ -82,7 +82,7 @@ public class UserServiceValidator {
         }
     }
 
-    private void isSecurityLevelNotNull(Errors errors, SecurityLevel securityLevel) {
+    private static void isSecurityLevelNotNull(Errors errors, SecurityLevel securityLevel) {
         if (securityLevel == null) {
             errors.addError(new Error("securityLevel : null"));
         }

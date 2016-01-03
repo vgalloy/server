@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SecurityApi {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(SecurityApi.class);
     private ThreadLocal<User> userThreadLocal = new ThreadLocal<>();
     /**
      * On est obligé d'utiliser le DAO. L'obtention du user via le service serait impossible puisque certains rôles
@@ -34,16 +34,16 @@ public class SecurityApi {
     public void checkAndAdd(String username, String password) {
         User user;
         if (username == null || username.trim().isEmpty()) {
-            logger.info("Un utilisateur anonyme vient de ce connecter");
+            LOGGER.info("Un utilisateur anonyme vient de ce connecter");
         } else {
             user = userDao.getById(username);
             if(user == null) {
-                logger.info("Aucun utilisateur avec le nom d'utilisateur '{}'", username);
+                LOGGER.info("Aucun utilisateur avec le nom d'utilisateur '{}'", username);
             } else if ((user.getPassword() != null && user.getPassword().equals(password)) || (user.getPassword() == null && password == null)) {
-                logger.info("L'utilisateur '{}' vient de ce connecter", username);
+                LOGGER.info("L'utilisateur '{}' vient de ce connecter", username);
                 userThreadLocal.set(user);
             } else {
-                logger.info("L'utilisateur '{}' vient d'échouer dans sa tentative de connection", username);
+                LOGGER.info("L'utilisateur '{}' vient d'échouer dans sa tentative de connection", username);
             }
         }
     }

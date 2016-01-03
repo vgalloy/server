@@ -3,7 +3,6 @@ package com.vgalloy.server.service.impl;
 import com.vgalloy.server.aspect.logger.Log;
 import com.vgalloy.server.aspect.logger.LogLevel;
 import com.vgalloy.server.aspect.security.Security;
-import com.vgalloy.server.aspect.security.SecurityApi;
 import com.vgalloy.server.aspect.security.SecurityException;
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.dao.UserDao;

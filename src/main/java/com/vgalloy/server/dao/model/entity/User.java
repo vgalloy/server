@@ -3,7 +3,6 @@ package com.vgalloy.server.dao.model.entity;
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.dao.model.Referenceable;
 import org.mongojack.Id;
-import org.mongojack.ObjectId;
 
 import javax.persistence.Transient;
 import java.util.Objects;
@@ -36,10 +35,12 @@ public class User implements Referenceable {
         this.role = role;
     }
 
+    @Override
     public String getId() {
         return username;
     }
 
+    @Override
     public void setId(String id) {
         this.username = id;
     }
@@ -87,7 +88,6 @@ public class User implements Referenceable {
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
     }
