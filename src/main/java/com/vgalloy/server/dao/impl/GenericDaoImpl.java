@@ -1,13 +1,10 @@
 package com.vgalloy.server.dao.impl;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 import com.vgalloy.server.dao.GenericDao;
 import com.vgalloy.server.dao.model.Referenceable;
-import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

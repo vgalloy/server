@@ -3,17 +3,13 @@ package com.vgalloy.server.dao.factory.impl;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
-import com.vgalloy.server.dao.exception.DaoException;
 import com.vgalloy.server.dao.factory.CollectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 
 /**

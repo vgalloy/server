@@ -16,7 +16,7 @@ public class SecurityAspect {
     private SecurityApi securityApi;
 
     @Before("@annotation(role)")
-    public final void logForClass(Security role) throws Throwable {
+    public final void logForClass(Security role) {
         boolean canAcces = false;
         for(SecurityLevel securityLevel : role.value()) {
             if (securityLevel.equals(securityApi.getCurrentUserRole())) {

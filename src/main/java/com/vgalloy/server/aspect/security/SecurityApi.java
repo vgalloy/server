@@ -1,9 +1,7 @@
 package com.vgalloy.server.aspect.security;
 
-import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.model.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.vgalloy.server.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,14 +11,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SecurityApi {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private ThreadLocal<User> userThreadLocal = new ThreadLocal<>();
-    /**
-     * On est obligé d'utiliser le DAO. L'obtention du user via le service serait impossible puisque certains rôles
-     * sont necessaires. Or à ce stade aucun user n'est present dans le context de sécurité.
-     */
+
     @Autowired
-    private UserDao userDao;
+    private SecurityService securityService;
 
     /**
      * Cette méthode test si la combinaison nom d'utilisateur et mot de passe est correcte.
@@ -32,20 +26,7 @@ public class SecurityApi {
      * @param password Le mot de passe associé à nom d'utilisateur
      */
     public void checkAndAdd(String username, String password) {
-        User user;
-        if (username == null || username.trim().isEmpty()) {
-            logger.info("Un utilisateur anonyme vient de ce connecter");
-        } else {
-            user = userDao.getById(username);
-            if(user == null) {
-                logger.info("Aucun utilisateur avec le nom d'utilisateur '{}'", username);
-            } else if ((user.getPassword() != null && user.getPassword().equals(password)) || (user.getPassword() == null && password == null)) {
-                logger.info("L'utilisateur '{}' vient de ce connecter", username);
-                userThreadLocal.set(user);
-            } else {
-                logger.info("L'utilisateur '{}' vient d'échouer dans sa tentative de connection", username);
-            }
-        }
+        userThreadLocal.set(securityService.getUserWithPassword(username, password));
     }
 
     public SecurityLevel getCurrentUserRole() {

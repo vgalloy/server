@@ -24,7 +24,7 @@ public class UserServiceSecurityValidator {
 
     private boolean canModify(String username) {
         if(SecurityLevel.ADMIN.equals(securityApi.getCurrentUserRole())){
-            return  true;
+            return true;
         } else if (SecurityLevel.USER.equals(securityApi.getCurrentUserRole())){
             if(securityApi.getCurrentUsername() != null && securityApi.getCurrentUsername().equals(username)) {
                 return true;

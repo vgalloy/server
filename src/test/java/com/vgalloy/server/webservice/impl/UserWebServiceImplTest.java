@@ -39,17 +39,31 @@ public class UserWebServiceImplTest {
 
     @Before
     public void setUp() {
+        RestAssured.port = port;
         userDao.removeAll();
         User admin = new User(ADMIN, ADMIN, SecurityLevel.ADMIN);
         userDao.create(admin);
         User user = new User(USER, USER, SecurityLevel.USER);
         userDao.create(user);
-        RestAssured.port = port;
     }
 
     @Test
     public void testGetAllAnonymous() {
         given()
+                .when().get("/user")
+                .then().statusCode(HttpStatus.SC_FORBIDDEN);
+    }
+
+    @Test
+    public void testGetAllWrongUser() {
+        given().auth().preemptive().basic("test", "test")
+                .when().get("/user")
+                .then().statusCode(HttpStatus.SC_FORBIDDEN);
+    }
+
+    @Test
+    public void testGetAllWrongPassword() {
+        given().auth().preemptive().basic(ADMIN, USER)
                 .when().get("/user")
                 .then().statusCode(HttpStatus.SC_FORBIDDEN);
     }
