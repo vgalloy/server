@@ -39,12 +39,12 @@ public class UserWebServiceImplTest {
 
     @Before
     public void setUp() {
+        RestAssured.port = port;
         userDao.removeAll();
         User admin = new User(ADMIN, ADMIN, SecurityLevel.ADMIN);
         userDao.create(admin);
         User user = new User(USER, USER, SecurityLevel.USER);
         userDao.create(user);
-        RestAssured.port = port;
     }
 
     @Test
