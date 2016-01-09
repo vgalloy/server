@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ResponseBody
     @ResponseStatus(HttpStatus.FORBIDDEN)
