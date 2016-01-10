@@ -16,7 +16,7 @@ public class ServiceException extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return toString();
+        return errors.toString();
     }
 
     @Override

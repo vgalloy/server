@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SecurityException.class)
     public String handleException(SecurityException e) {
         logger.warn("SecurityException");
-        return e.toString();
+        return e.getMessage();
     }
 
     @ResponseBody
