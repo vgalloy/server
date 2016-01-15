@@ -7,16 +7,21 @@ import java.io.Serializable;
  *         Created by Vincent Galloy on 11/12/15.
  */
 public class Error implements Serializable {
-    private final String cause;
+    private final String message;
 
-    public Error(String cause) {
-        this.cause = cause;
+    /**
+     * Constructeur avec un message d'erreur.
+     *
+     * @param message Le message d'erreur
+     */
+    public Error(String message) {
+        this.message = message;
     }
 
     @Override
     public String toString() {
         return "Error{" +
-                "cause='" + cause + '\'' +
+                "message='" + message + '\'' +
                 '}';
     }
 }

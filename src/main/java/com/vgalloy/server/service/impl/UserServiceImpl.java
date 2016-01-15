@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Security({SecurityLevel.ADMIN, SecurityLevel.USER})
     public User getByUsername(String username) {
-        if(!userServiceSecurityValidator.isGetOk(username)) {
+        if (!userServiceSecurityValidator.isGetOk(username)) {
             throw new SecurityException(SecurityException.UNAUTHORIZED);
         }
         Errors errors = userServiceValidator.checkGet(username);
@@ -62,16 +62,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Security({SecurityLevel.ADMIN, SecurityLevel.USER})
-    public User changePassword(String username, String password) {
-        if(!userServiceSecurityValidator.isChangePasswordOk(username)) {
+    public User changePassword(String username, String newPassword) {
+        if (!userServiceSecurityValidator.isChangePasswordOk(username)) {
             throw new SecurityException(SecurityException.UNAUTHORIZED);
         }
         User user = getByUsername(username);
-        Errors errors = userServiceValidator.checkChangePassword(user, password);
+        Errors errors = userServiceValidator.checkChangePassword(user, newPassword);
         if (errors.hasError()) {
             throw new ServiceException(errors);
         }
-        user.setPassword(password);
+        user.setPassword(newPassword);
         return userDao.update(user);
     }
 

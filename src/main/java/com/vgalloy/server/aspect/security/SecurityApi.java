@@ -29,6 +29,12 @@ public class SecurityApi {
         userThreadLocal.set(securityService.getUserWithPassword(username, password));
     }
 
+    /**
+     * Permet d'obtenir le niveau de securtité de l'utilisateur actuellement connecté. Retourne null si aucun utilisteur
+     * n'est enregistré dans le thread courant.
+     *
+     * @return Le niveau de securité
+     */
     public SecurityLevel getCurrentUserRole() {
         User user = userThreadLocal.get();
         if (user == null) {
@@ -38,6 +44,12 @@ public class SecurityApi {
         }
     }
 
+    /**
+     * Permet d'obtenir le nom de l'utilisateur connecté. Retourne null dans le cas ou aucun n'utilisteur n'est
+     * enregistré dans le thread courant.
+     *
+     * @return Le nom d'utilisateur
+     */
     public String getCurrentUsername() {
         User user = userThreadLocal.get();
         if (user == null) {

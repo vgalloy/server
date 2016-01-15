@@ -12,6 +12,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserServiceValidator {
+    /**
+     * S'assure que l'utilisateur est correct pour la création ou la modification.
+     *
+     * @param user L'utilisateur à tester
+     * @return L'objet Errors contenant les eventuelles erreurs
+     */
     public Errors checkCreateOrUpdate(User user) {
         Errors errors = new Errors();
 
@@ -24,6 +30,12 @@ public class UserServiceValidator {
         return errors;
     }
 
+    /**
+     * S'assure que le nom d'utilisateur est correct pour l'obtention d'un utilisateur.
+     *
+     * @param username Le nom d'utilisateur à tester
+     * @return L'objet Errors contenant les eventuelles erreurs
+     */
     public Errors checkGet(String username) {
         Errors errors = new Errors();
 
@@ -32,6 +44,12 @@ public class UserServiceValidator {
         return errors;
     }
 
+    /**
+     * S'assure que le nom d'utilisateur est correct pour la suppression.
+     *
+     * @param username Le nom d'utilisateur à tester
+     * @return L'objet Errors contenant les eventuelles erreurs
+     */
     public Errors checkDelete(String username) {
         Errors errors = new Errors();
 
@@ -40,6 +58,13 @@ public class UserServiceValidator {
         return errors;
     }
 
+    /**
+     * S'assure que l'utilisateur et son mot de passe sont corrects pour la modification.
+     *
+     * @param user     L'utilisateur à tester
+     * @param password Le nouveau mot de passe
+     * @return L'objet Errors contenant les eventuelles erreurs
+     */
     public Errors checkChangePassword(User user, String password) {
         Errors errors = new Errors();
 
@@ -51,6 +76,13 @@ public class UserServiceValidator {
         return errors;
     }
 
+    /**
+     * S'assure que l'utilisateur et son role sont corrects pour la modification.
+     *
+     * @param user          L'utilisateur à tester
+     * @param securityLevel Le nouveau role
+     * @return L'objet Errors contenant les eventuelles erreurs
+     */
     public Errors checkChangeRole(User user, SecurityLevel securityLevel) {
         Errors errors = new Errors();
 
@@ -60,12 +92,24 @@ public class UserServiceValidator {
         return errors;
     }
 
+    /**
+     * S'assure que l'utilisateur est non null.
+     *
+     * @param errors L'objet Errors contenant les eventuelles erreurs
+     * @param user   L'utilisateur à tester
+     */
     private static void isUserNotNull(Errors errors, User user) {
         if (user == null) {
             errors.addError(new Error("user : null"));
         }
     }
 
+    /**
+     * S'assure que le nom d'utilisateur est non null et non vide.
+     *
+     * @param errors   L'objet Errors contenant les eventuelles erreurs
+     * @param username Le nom d'utilisateur à tester
+     */
     private static void isUsernameNotNullAndNotEmpty(Errors errors, String username) {
         if (username == null) {
             errors.addError(new Error("username : null"));
@@ -74,6 +118,12 @@ public class UserServiceValidator {
         }
     }
 
+    /**
+     * S'assure que le mot de passe est non null et non vide.
+     *
+     * @param errors   L'objet Errors contenant les eventuelles erreurs
+     * @param password Le mot de passe à tester
+     */
     private static void isPasswordNotNullAndNotEmpty(Errors errors, String password) {
         if (password == null) {
             errors.addError(new Error("password : null"));
@@ -82,6 +132,12 @@ public class UserServiceValidator {
         }
     }
 
+    /**
+     * S'assure que le role est non null.
+     *
+     * @param errors        L'objet Errors contenant les eventuelles erreurs
+     * @param securityLevel Le role à tester
+     */
     private static void isSecurityLevelNotNull(Errors errors, SecurityLevel securityLevel) {
         if (securityLevel == null) {
             errors.addError(new Error("securityLevel : null"));

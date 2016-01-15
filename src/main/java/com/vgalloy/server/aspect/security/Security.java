@@ -12,5 +12,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Security {
+    /**
+     * L'ensemble des roles possible pour accéder à la méthode annotée.
+     */
     SecurityLevel[] value() default SecurityLevel.ANONYMOUS;
 }

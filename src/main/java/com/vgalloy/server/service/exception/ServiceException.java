@@ -9,6 +9,11 @@ import com.vgalloy.server.error.Errors;
 public class ServiceException extends RuntimeException {
     private final Errors errors;
 
+    /**
+     * Constructeur avec une liste d'erreurs.
+     *
+     * @param errors Les erreurs à l'origine de l'exception
+     */
     public ServiceException(Errors errors) {
         super();
         this.errors = errors;

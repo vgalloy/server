@@ -18,17 +18,30 @@ public class User implements Referenceable {
     private SecurityLevel role;
 
     /**
-     * Constructor
+     * Constructeur.
      */
     public User() {
         super();
     }
 
+    /**
+     * Constructeur.
+     *
+     * @param username Le nom d'utilisateur
+     * @param password Le mot de passe
+     */
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
+    /**
+     * Constructeur.
+     *
+     * @param username Le nom d'utilisateur
+     * @param password Le mot de passe
+     * @param role     Le role lié à l'utilisateur
+     */
     public User(String username, String password, SecurityLevel role) {
         this.username = username;
         this.password = password;
@@ -72,8 +85,12 @@ public class User implements Referenceable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         User user = (User) o;
         return Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password);

@@ -32,9 +32,14 @@ public class CollectionFactoryImpl implements CollectionFactory {
      * Constructor.
      */
     public CollectionFactoryImpl() {
+        super();
         collections = new HashMap<>();
     }
 
+    /**
+     * Spring ne rempli les champs annotés de @Value avec leur valeur qu'après avec instancié l'objet. Le client mongo
+     * necessitant ces informations, il ne peut pas être créer dans le constructeur.
+     */
     @PostConstruct
     public void inti() {
         MongoClient mongoClient = new MongoClient(databaseUrl);

@@ -16,29 +16,47 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    /**
+     * Intercepte les erreurs de type SecurityException pour definir un code de réponse approprié.
+     *
+     * @param e L'exception interceptée
+     * @return Le message d'erreur voulu
+     */
     @ResponseBody
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(SecurityException.class)
     public String handleException(SecurityException e) {
-        logger.warn("SecurityException");
+        LOGGER.warn("SecurityException");
         return e.getMessage();
     }
 
+    /**
+     * Intercepte les erreurs de type ServiceException pour definir un code de réponse approprié.
+     *
+     * @param e L'exception interceptée
+     * @return Le message d'erreur voulu
+     */
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     @ExceptionHandler(ServiceException.class)
     public String handleException(ServiceException e) {
-        logger.warn("ServiceException");
+        LOGGER.warn("ServiceException");
         return e.getMessage();
     }
 
+    /**
+     * Intercepte les erreurs de type Exception pour definir un code de réponse approprié.
+     *
+     * @param e L'exception interceptée
+     * @return Le message d'erreur voulu
+     */
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e) {
-        logger.warn("INTERNAL_SERVER_ERROR : {}", e.getMessage());
+        LOGGER.warn("INTERNAL_SERVER_ERROR : {}", e.getMessage());
         return "INTERNAL_SERVER_ERROR";
     }
 }

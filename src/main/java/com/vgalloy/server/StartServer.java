@@ -16,10 +16,15 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @ComponentScan
-@EnableAspectJAutoProxy(proxyTargetClass=true)
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAutoConfiguration(exclude = {EmbeddedMongoAutoConfiguration.class, MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 public class StartServer {
-    public static void main(String[] args) throws Exception {
+    /**
+     * La méthode main.
+     *
+     * @param args La liste des arguments
+     */
+    public static void main(String[] args) {
         SpringApplication.run(StartServer.class, args);
     }
 }

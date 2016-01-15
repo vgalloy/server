@@ -9,7 +9,7 @@ import com.mongodb.DBCollection;
  */
 public interface CollectionFactory {
     /**
-     * Obtains a collection
+     * Obtains a collection.
      *
      * @param collectionName The name of the collection
      * @return A mongoDB collection

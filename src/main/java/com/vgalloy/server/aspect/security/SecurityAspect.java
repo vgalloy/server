@@ -15,15 +15,20 @@ public class SecurityAspect {
     @Autowired
     private SecurityApi securityApi;
 
+    /**
+     * Verifie que l'utilisateur à le niveau d'habilitation demander par la méthode.
+     *
+     * @param role L'annotation de sécurité liée à la méthode
+     */
     @Before("@annotation(role)")
     public final void logForClass(Security role) {
         boolean canAcces = false;
-        for(SecurityLevel securityLevel : role.value()) {
+        for (SecurityLevel securityLevel : role.value()) {
             if (securityLevel.equals(securityApi.getCurrentUserRole())) {
                 canAcces = true;
             }
         }
-        if(!canAcces) {
+        if (!canAcces) {
             throw new SecurityException(SecurityException.UNAUTHORIZED);
         }
     }

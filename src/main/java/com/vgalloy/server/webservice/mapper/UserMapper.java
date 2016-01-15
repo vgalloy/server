@@ -8,10 +8,14 @@ import com.vgalloy.server.webservice.dto.UserDto;
  *         Created by Vincent Galloy on 21/12/15.
  */
 public interface UserMapper {
-    static User map(UserDto userDto) {
-        User user = new User();
-        user.setPassword(userDto.getPassword());
-        user.setRole(userDto.getRole());
-        return user;
+    /**
+     * Transforme un userDto en user.
+     *
+     * @param username Le nom d'utilisateur
+     * @param userDto  Le user Dto à transformer
+     * @return Le user
+     */
+    static User map(String username, UserDto userDto) {
+        return new User(username, userDto.getPassword(), userDto.getRole());
     }
 }

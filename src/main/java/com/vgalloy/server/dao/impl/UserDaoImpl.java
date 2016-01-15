@@ -21,7 +21,9 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
     private DaoValidator daoValidator;
 
     /**
-     * Constructor
+     * Constructeur avec la collectionFactory.
+     *
+     * @param collectionFactory La collection Factory
      */
     @Autowired
     public UserDaoImpl(CollectionFactory collectionFactory) {
