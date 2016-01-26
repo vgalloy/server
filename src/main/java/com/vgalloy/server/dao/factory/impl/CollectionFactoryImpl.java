@@ -21,10 +21,8 @@ import java.util.Map;
 public class CollectionFactoryImpl implements CollectionFactory {
     private DB database;
     private Map<String, DBCollection> collections;
-
     @Value("${database.name}")
     private String databaseName;
-
     @Value("${database.url}")
     private String databaseUrl;
 
@@ -32,7 +30,6 @@ public class CollectionFactoryImpl implements CollectionFactory {
      * Constructor.
      */
     public CollectionFactoryImpl() {
-        super();
         collections = new HashMap<>();
     }
 
@@ -45,7 +42,6 @@ public class CollectionFactoryImpl implements CollectionFactory {
         MongoClient mongoClient = new MongoClient(databaseUrl);
         database = mongoClient.getDB(databaseName);
     }
-
 
     @Override
     public DBCollection getCollection(String collectionName) {

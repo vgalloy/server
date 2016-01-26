@@ -16,7 +16,7 @@ public enum LogLevel {
      * @param logLevel Le niveau de log pour le message
      * @param message  Le message à afficher
      */
-    public static final void printLog(Logger logger, LogLevel logLevel, String message) {
+    public static void printLog(Logger logger, LogLevel logLevel, String message) {
         switch (logLevel) {
             case OFF:
                 break;

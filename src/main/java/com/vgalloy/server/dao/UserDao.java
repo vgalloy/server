@@ -1,6 +1,6 @@
 package com.vgalloy.server.dao;
 
-import com.vgalloy.server.dao.model.entity.User;
+import com.vgalloy.server.model.entity.User;
 
 /**
  * @author Vincent Galloy

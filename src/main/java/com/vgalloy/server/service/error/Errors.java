@@ -1,4 +1,4 @@
-package com.vgalloy.server.error;
+package com.vgalloy.server.service.error;
 
 import java.io.Serializable;
 import java.util.ArrayList;

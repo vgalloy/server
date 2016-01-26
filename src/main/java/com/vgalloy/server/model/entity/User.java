@@ -1,7 +1,7 @@
-package com.vgalloy.server.dao.model.entity;
+package com.vgalloy.server.model.entity;
 
 import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.dao.model.Referenceable;
+import com.vgalloy.server.model.Referenceable;
 import org.mongojack.Id;
 
 import javax.persistence.Transient;

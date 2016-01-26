@@ -1,6 +1,6 @@
 package com.vgalloy.server.dao;
 
-import com.vgalloy.server.dao.model.Referenceable;
+import com.vgalloy.server.model.Referenceable;
 
 import java.util.List;
 

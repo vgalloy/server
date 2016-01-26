@@ -14,4 +14,19 @@ public interface LoginWebService {
      * @return true si le mot de passe correspont, faux sinon
      */
     boolean checkPassword(AuthenticationDTO authenticationDTO);
+
+    /**
+     * Generère l'url permettant d'otenir le token de Google.
+     *
+     * @return L'url sous forme de String
+     */
+    String getGoogleTokenUrl();
+
+    /**
+     * Enregistre le token de Google.
+     *
+     * @param token Le code
+     * @return true si tout c'est bien passé, sinon false
+     */
+    boolean setToken(String token);
 }

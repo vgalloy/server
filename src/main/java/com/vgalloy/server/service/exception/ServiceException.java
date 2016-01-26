@@ -1,6 +1,6 @@
 package com.vgalloy.server.service.exception;
 
-import com.vgalloy.server.error.Errors;
+import com.vgalloy.server.service.error.Errors;
 
 /**
  * @author Vincent Galloy
@@ -15,7 +15,6 @@ public class ServiceException extends RuntimeException {
      * @param errors Les erreurs à l'origine de l'exception
      */
     public ServiceException(Errors errors) {
-        super();
         this.errors = errors;
     }
 

@@ -1,5 +1,4 @@
 /target/
 /.idea/
 *.iml
-keystore.p12
-application.yml
+/src/main/resources/client_secrets.json

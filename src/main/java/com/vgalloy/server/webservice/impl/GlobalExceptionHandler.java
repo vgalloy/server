@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
+    public static final String INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR";
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
@@ -28,7 +29,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(SecurityException.class)
     public String handleException(SecurityException e) {
-        LOGGER.warn("SecurityException");
+        LOGGER.error("SecurityException", e.toString());
         return e.getMessage();
     }
 
@@ -42,7 +43,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     @ExceptionHandler(ServiceException.class)
     public String handleException(ServiceException e) {
-        LOGGER.warn("ServiceException");
+        LOGGER.error("ServiceException", e.toString());
         return e.getMessage();
     }
 
@@ -56,7 +57,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e) {
-        LOGGER.warn("INTERNAL_SERVER_ERROR : {}", e.getMessage());
-        return "INTERNAL_SERVER_ERROR";
+        LOGGER.error("INTERNAL_SERVER_ERROR : {}", e.getMessage());
+        return INTERNAL_SERVER_ERROR;
     }
 }

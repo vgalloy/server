@@ -2,7 +2,7 @@ package com.vgalloy.server.dao.impl;
 
 import com.mongodb.BasicDBObject;
 import com.vgalloy.server.dao.GenericDao;
-import com.vgalloy.server.dao.model.Referenceable;
+import com.vgalloy.server.model.Referenceable;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
 

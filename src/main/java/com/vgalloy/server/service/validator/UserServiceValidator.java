@@ -1,9 +1,9 @@
 package com.vgalloy.server.service.validator;
 
 import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.dao.model.entity.User;
-import com.vgalloy.server.error.Error;
-import com.vgalloy.server.error.Errors;
+import com.vgalloy.server.model.entity.User;
+import com.vgalloy.server.service.error.Error;
+import com.vgalloy.server.service.error.Errors;
 import org.springframework.stereotype.Component;
 
 /**

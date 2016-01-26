@@ -3,7 +3,7 @@ package com.vgalloy.server.dao.impl;
 import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.exception.DaoException;
 import com.vgalloy.server.dao.factory.CollectionFactory;
-import com.vgalloy.server.dao.model.entity.User;
+import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.dao.validator.DaoValidator;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.beans.factory.annotation.Autowired;

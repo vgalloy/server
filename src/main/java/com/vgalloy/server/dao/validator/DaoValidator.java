@@ -1,6 +1,6 @@
 package com.vgalloy.server.dao.validator;
 
-import com.vgalloy.server.dao.model.entity.User;
+import com.vgalloy.server.model.entity.User;
 import org.springframework.stereotype.Component;
 
 /**

@@ -1,7 +1,7 @@
 package com.vgalloy.server.aspect.security;
 
-import com.vgalloy.server.dao.model.entity.User;
-import com.vgalloy.server.service.SecurityService;
+import com.vgalloy.server.model.entity.User;
+import com.vgalloy.server.service.manager.SecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityApi {
     private ThreadLocal<User> userThreadLocal = new ThreadLocal<>();
-
     @Autowired
-    private SecurityService securityService;
+    private SecurityManager securityManager;
 
     /**
      * Cette méthode test si la combinaison nom d'utilisateur et mot de passe est correcte.
@@ -26,7 +25,7 @@ public class SecurityApi {
      * @param password Le mot de passe associé à nom d'utilisateur
      */
     public void checkAndAdd(String username, String password) {
-        userThreadLocal.set(securityService.getUserWithPassword(username, password));
+        userThreadLocal.set(securityManager.getUserWithUsernameAndPassword(username, password));
     }
 
     /**
