@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -41,7 +43,12 @@ public class CredentialManagerImpl implements CredentialManager {
      */
     public CredentialManagerImpl() throws IOException {
         jsonFactory = new JacksonFactory();
-        clientSecrets = GoogleClientSecrets.load(jsonFactory, new InputStreamReader(Drive.class.getResourceAsStream("/client_secrets.json")));
+        File f = new File("client_secrets.json");
+        if (f.exists()) {
+            clientSecrets = GoogleClientSecrets.load(jsonFactory, new FileReader(f));
+        } else {
+            clientSecrets = GoogleClientSecrets.load(jsonFactory, new InputStreamReader(Drive.class.getResourceAsStream("/client_secrets.json")));
+        }
     }
 
     @Override
