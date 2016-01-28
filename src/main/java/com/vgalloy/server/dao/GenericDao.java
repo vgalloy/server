@@ -1,6 +1,6 @@
 package com.vgalloy.server.dao;
 
-import com.vgalloy.server.dao.model.Referenceable;
+import com.vgalloy.server.model.Referenceable;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ public interface GenericDao<T extends Referenceable> {
      * Insert a new element.
      *
      * @param t The new element to insert
+     * @return L'objet créer
      */
     T create(T t);
 
@@ -27,6 +28,7 @@ public interface GenericDao<T extends Referenceable> {
      * Find the element with the given id. Return null if no element found.
      *
      * @param id The id
+     * @return L'objet avec l'id demandé
      */
     T getById(String id);
 
@@ -34,6 +36,7 @@ public interface GenericDao<T extends Referenceable> {
      * Update an existing element.
      *
      * @param t The element to update
+     * @return L'objet modifié
      */
     T update(T t);
 

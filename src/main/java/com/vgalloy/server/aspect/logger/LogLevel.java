@@ -9,7 +9,14 @@ import org.slf4j.Logger;
 public enum LogLevel {
     OFF, TRACE, DEBUG, INFO, WARNING, ERROR;
 
-    public static final void printLog(Logger logger, LogLevel logLevel, String message) {
+    /**
+     * Permet l'affichage du message passer en paramètre dans le logger en fonction du niveau de log specifié.
+     *
+     * @param logger   Le logger permettant d'afficher le message
+     * @param logLevel Le niveau de log pour le message
+     * @param message  Le message à afficher
+     */
+    public static void printLog(Logger logger, LogLevel logLevel, String message) {
         switch (logLevel) {
             case OFF:
                 break;

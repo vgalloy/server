@@ -2,9 +2,8 @@ package com.vgalloy.server.dao.impl;
 
 import com.vgalloy.server.StartServer;
 import com.vgalloy.server.dao.exception.DaoException;
-import com.vgalloy.server.dao.model.entity.User;
+import com.vgalloy.server.model.entity.User;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

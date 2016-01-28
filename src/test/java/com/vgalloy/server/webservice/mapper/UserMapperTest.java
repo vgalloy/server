@@ -1,7 +1,7 @@
 package com.vgalloy.server.webservice.mapper;
 
 import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.dao.model.entity.User;
+import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.webservice.dto.UserDto;
 import org.junit.Test;
 
@@ -18,10 +18,10 @@ public class UserMapperTest {
         userDto.setPassword("pass");
         userDto.setRole(SecurityLevel.ADMIN);
 
-        User user = UserMapper.map(userDto);
+        User user = UserMapper.map("test", userDto);
 
         assertEquals(user.getPassword(), userDto.getPassword());
-        assertEquals(user.getUsername(), null);
+        assertEquals(user.getUsername(), "test");
         assertEquals(user.getRole(), SecurityLevel.ADMIN);
     }
 
@@ -31,7 +31,7 @@ public class UserMapperTest {
         userDto.setPassword(null);
         userDto.setRole(null);
 
-        User user = UserMapper.map(userDto);
+        User user = UserMapper.map(null, userDto);
 
         assertEquals(user.getPassword(), null);
         assertEquals(user.getUsername(), null);

@@ -5,5 +5,5 @@ package com.vgalloy.server.aspect.security;
  *         Created by Vincent Galloy on 18/12/15.
  */
 public enum SecurityLevel {
-    ADMIN, USER, ANONYMOUS;
+    ADMIN, USER, ANONYMOUS
 }

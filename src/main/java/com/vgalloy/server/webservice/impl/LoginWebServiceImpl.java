@@ -1,5 +1,6 @@
 package com.vgalloy.server.webservice.impl;
 
+import com.vgalloy.server.service.CredentialService;
 import com.vgalloy.server.service.SecurityService;
 import com.vgalloy.server.webservice.LoginWebService;
 import com.vgalloy.server.webservice.dto.AuthenticationDTO;
@@ -14,14 +15,29 @@ import org.springframework.web.bind.annotation.RestController;
  *         Created by Vincent Galloy on 06/01/16.
  */
 @RestController
-@RequestMapping("/login")
+@RequestMapping("security")
 public class LoginWebServiceImpl implements LoginWebService {
     @Autowired
     private SecurityService securityService;
+    @Autowired
+    private CredentialService credentialService;
 
     @Override
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     public boolean checkPassword(@RequestBody AuthenticationDTO authenticationDTO) {
         return securityService.checkUsernameAndPassword(authenticationDTO.getUsername(), authenticationDTO.getPassword());
+    }
+
+    @Override
+    @RequestMapping(value = "url", method = RequestMethod.GET)
+    public String getGoogleTokenUrl() {
+        return credentialService.generateUrl();
+    }
+
+    @Override
+    @RequestMapping(value = "token", method = RequestMethod.POST)
+    public boolean setToken(@RequestBody String tokenWithoutSlash) {
+        String correctToken = tokenWithoutSlash.replace("%2F", "/");
+        return credentialService.setToken(correctToken);
     }
 }

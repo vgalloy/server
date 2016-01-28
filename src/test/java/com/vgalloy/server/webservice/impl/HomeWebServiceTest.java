@@ -2,14 +2,10 @@ package com.vgalloy.server.webservice.impl;
 
 import com.jayway.restassured.RestAssured;
 import com.vgalloy.server.StartServer;
-import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.dao.UserDao;
-import com.vgalloy.server.dao.model.entity.User;
 import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -27,10 +23,8 @@ import static com.jayway.restassured.RestAssured.when;
 @WebAppConfiguration
 @IntegrationTest("server.port:0") // Trouve n'importe quel port de libre pour lancer le server de test
 public class HomeWebServiceTest {
-
-    // Trouve le port associé au server de test
-    @Value("${local.server.port}")
-    int port;
+    @Value("${local.server.port}")// Trouve le port associé au server de test
+    private int port;
 
     @Before
     public void setUp() {
@@ -38,7 +32,7 @@ public class HomeWebServiceTest {
     }
 
     @Test
-    public void test() {
+    public void testHomePage() {
         when().get("/home")
                 .then()
                 .statusCode(HttpStatus.SC_OK);

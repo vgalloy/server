@@ -21,10 +21,8 @@ import java.util.Map;
 public class CollectionFactoryImpl implements CollectionFactory {
     private DB database;
     private Map<String, DBCollection> collections;
-
     @Value("${database.name}")
     private String databaseName;
-
     @Value("${database.url}")
     private String databaseUrl;
 
@@ -35,12 +33,15 @@ public class CollectionFactoryImpl implements CollectionFactory {
         collections = new HashMap<>();
     }
 
+    /**
+     * Spring ne rempli les champs annotés de @Value avec leur valeur qu'après avec instancié l'objet. Le client mongo
+     * necessitant ces informations, il ne peut pas être créer dans le constructeur.
+     */
     @PostConstruct
     public void inti() {
         MongoClient mongoClient = new MongoClient(databaseUrl);
         database = mongoClient.getDB(databaseName);
     }
-
 
     @Override
     public DBCollection getCollection(String collectionName) {

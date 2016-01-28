@@ -1,7 +1,7 @@
 package com.vgalloy.server.webservice.impl;
 
 import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.dao.model.entity.User;
+import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.service.UserService;
 import com.vgalloy.server.webservice.UserWebService;
 import com.vgalloy.server.webservice.dto.UserDto;
@@ -20,7 +20,7 @@ import java.util.List;
  *         Created by Vincent Galloy on 09/12/15.
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserWebServiceImpl implements UserWebService {
     @Autowired
     private UserService userService;
@@ -32,33 +32,31 @@ public class UserWebServiceImpl implements UserWebService {
     }
 
     @Override
-    @RequestMapping(value="/{username}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{username}", method = RequestMethod.PUT)
     public User create(@PathVariable String username, @RequestBody UserDto userDto) {
-        User user = UserMapper.map(userDto);
-        user.setUsername(username);
-        return userService.createOrUpdate(user);
+        return userService.createOrUpdate(UserMapper.map(username, userDto));
     }
 
     @Override
-    @RequestMapping(value="/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public User getByUsername(@PathVariable String username) {
         return userService.getByUsername(username);
     }
 
     @Override
-    @RequestMapping(value="/{username}/changePassword", method = RequestMethod.PUT)
-    public User changePassword(@PathVariable String username, @RequestBody String password) {
-        return userService.changePassword(username, password);
+    @RequestMapping(value = "/{username}/changePassword", method = RequestMethod.PUT)
+    public User changePassword(@PathVariable String username, @RequestBody String newPassword) {
+        return userService.changePassword(username, newPassword);
     }
 
     @Override
-    @RequestMapping(value="/{username}/changeRole", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{username}/changeRole", method = RequestMethod.PUT)
     public User changeRole(@PathVariable String username, @RequestBody SecurityLevel securityLevel) {
         return userService.changeRole(username, securityLevel);
     }
 
     @Override
-    @RequestMapping(value="/{username}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{username}", method = RequestMethod.DELETE)
     public void delete(@PathVariable String username) {
         userService.deleteByUsername(username);
     }
