@@ -28,13 +28,17 @@
         <!-- Aspect -->
         <aspectjrt.version>1.8.8</aspectjrt.version>
 
-        <!-- Mongo -->
-        <mongo-java-driver-version>3.2.0</mongo-java-driver-version>
-        <mongojack-version>2.5.1</mongojack-version>
-
         <!-- Spring -->
-        <spring-boot.version>1.3.1.RELEASE</spring-boot.version>
+        <spring-boot.version>1.3.2.RELEASE</spring-boot.version>
         <spring.version>4.2.4.RELEASE</spring.version>
+
+        <!-- Mongo -->
+        <mongo-java-driver.version>3.2.1</mongo-java-driver.version>
+        <mongojack.version>2.5.1</mongojack.version>
+
+        <!-- Google -->
+        <google-api-services-drive.version>v3-rev4-1.21.0</google-api-services-drive.version>
+        <com.google.gdata.version>1.47.1</com.google.gdata.version>
 
         <!-- Test -->
         <junit.version>4.12</junit.version>
@@ -44,40 +48,6 @@
 
 
     <dependencies>
-
-
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-base</artifactId>
-            <version>2.6.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-drive</artifactId>
-            <version>v3-rev4-1.21.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.gdata</groupId>
-            <artifactId>core</artifactId>
-            <version>1.47.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.mortbay.jetty</groupId>
-                    <artifactId>jetty</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.5.0</version>
-        </dependency>
-
-
         <!-- Log -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -118,12 +88,30 @@
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>${mongo-java-driver-version}</version>
+            <version>${mongo-java-driver.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mongojack</groupId>
             <artifactId>mongojack</artifactId>
-            <version>${mongojack-version}</version>
+            <version>${mongojack.version}</version>
+        </dependency>
+
+        <!-- Google -->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-drive</artifactId>
+            <version>${google-api-services-drive.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gdata</groupId>
+            <artifactId>core</artifactId>
+            <version>${com.google.gdata.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Test -->
