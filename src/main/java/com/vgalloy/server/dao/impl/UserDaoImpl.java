@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
+
     private static final String COLLECTION = "user";
 
     @Autowired

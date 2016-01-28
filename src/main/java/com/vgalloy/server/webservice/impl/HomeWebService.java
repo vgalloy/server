@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("home")
 @PropertySource(value = "classpath:META-INF/maven/com.vgalloy/server/pom.properties", ignoreResourceNotFound = true)
 public class HomeWebService {
+
     @Value("${project.type}")
     private String type;
     @Value("${version:none}")

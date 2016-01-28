@@ -9,6 +9,7 @@ import java.util.List;
  *         Created by Vincent Galloy on 11/12/15.
  */
 public class Errors implements Serializable {
+
     private List<Error> errorList;
 
     /**

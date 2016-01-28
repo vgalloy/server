@@ -39,10 +39,10 @@ public class LoggerAspect {
      * clause OU seront toujours valables et retourneront les deux annotations.
      *
      * @param joinPoint Le joinPoint servant de reference vers le file d'execution et la méthode encapsulée
-     * @param methodLog L'annotation (lié à la méthode) qui a servie faire le lien.
-     * @param classLog  L'annotation (lié à la classe) qui a servie faire le lien.
+     * @param methodLog L'annotation (liée à la méthode) qui a servie faire le lien.
+     * @param classLog  L'annotation (liée à la classe) qui a servie faire le lien.
      * @return Le resultat de la methode encapsulée par l'aspect
-     * @throws Throwable La méthode encapsulé peux jetter n'importe quel type de Throwable
+     * @throws Throwable La méthode encapsulée peux jetter n'importe quel type de Throwable
      */
     @Around("(@within(methodLog) || @annotation(methodLog)) && (@annotation(classLog) || @within(classLog))")
     public final Object logForClass(ProceedingJoinPoint joinPoint, Log methodLog, Log classLog) throws Throwable {
@@ -61,15 +61,15 @@ public class LoggerAspect {
      * @param joinPoint Le joinPoint servant de reference vers le file d'execution et la méthode encapsulée
      * @param logLevel  Le niveau de log attendu
      * @return Le resultat de la methode encapsulée par l'aspect
-     * @throws Throwable La méthode encapsulé peux jetter n'importe quel type de Throwable
+     * @throws Throwable La méthode encapsulée peux jetter n'importe quel type de Throwable
      */
-    private Object displayLog(ProceedingJoinPoint joinPoint, LogLevel logLevel) throws Throwable {
+    private static Object displayLog(ProceedingJoinPoint joinPoint, LogLevel logLevel) throws Throwable {
         Logger logger = LoggerFactory.getLogger(joinPoint.getTarget().getClass());
         StringBuilder stringBuilder = new StringBuilder("[ START ] : ")
                 .append(joinPoint.getSignature().getName())
                 .append("(");
         for (Object o : joinPoint.getArgs()) {
-            stringBuilder.append(o.toString()).append("");
+            stringBuilder.append(o.toString());
         }
         stringBuilder.append(")");
         LogLevel.printLog(logger, logLevel, stringBuilder.toString());
@@ -83,5 +83,4 @@ public class LoggerAspect {
         LogLevel.printLog(logger, logLevel, stringBuilder.toString());
         return result;
     }
-
 }

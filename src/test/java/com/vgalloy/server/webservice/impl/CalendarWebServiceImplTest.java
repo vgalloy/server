@@ -25,9 +25,10 @@ import static org.hamcrest.Matchers.equalTo;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = StartServer.class)
 @WebAppConfiguration
-@IntegrationTest("server.port:0") // Trouve n'importe quel port de libre pour lancer le server de test
+@IntegrationTest("server.port:0")
 public class CalendarWebServiceImplTest extends AbstractWebServiceImplTest {
-    @Value("${local.server.port}")// Trouve le port associé au server de test
+
+    @Value("${local.server.port}")
     private int port;
 
     @Before

@@ -19,6 +19,7 @@ import java.util.Map;
  */
 @Component
 public class CollectionFactoryImpl implements CollectionFactory {
+
     private DB database;
     private Map<String, DBCollection> collections;
     @Value("${database.name}")

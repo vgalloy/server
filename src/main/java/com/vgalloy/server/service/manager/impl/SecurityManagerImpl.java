@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SecurityManagerImpl implements SecurityManager {
+
     @Autowired
     private UserDao userDao;
 

@@ -22,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("user")
 public class UserWebServiceImpl implements UserWebService {
+
     @Autowired
     private UserService userService;
 

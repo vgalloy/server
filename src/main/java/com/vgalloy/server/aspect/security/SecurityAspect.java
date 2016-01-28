@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class SecurityAspect {
+
     @Autowired
     private SecurityApi securityApi;
 
@@ -22,13 +23,13 @@ public class SecurityAspect {
      */
     @Before("@annotation(role)")
     public final void logForClass(Security role) {
-        boolean canAcces = false;
+        boolean canAccess = false;
         for (SecurityLevel securityLevel : role.value()) {
             if (securityLevel.equals(securityApi.getCurrentUserRole())) {
-                canAcces = true;
+                canAccess = true;
             }
         }
-        if (!canAcces) {
+        if (!canAccess) {
             throw new SecurityException(SecurityException.UNAUTHORIZED);
         }
     }

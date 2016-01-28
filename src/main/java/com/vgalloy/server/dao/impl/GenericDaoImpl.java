@@ -13,7 +13,8 @@ import java.util.List;
  *         Created by Vincent Galloy on 09/12/15.
  */
 public class GenericDaoImpl<T extends Referenceable> implements GenericDao<T> {
-    private JacksonDBCollection<T, String> collection;
+
+    private final JacksonDBCollection<T, String> collection;
 
     /**
      * Constructeur avec la collection déja créée.

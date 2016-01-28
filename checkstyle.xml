@@ -173,7 +173,6 @@
         <!-- <module name="InterfaceIsType"/> -->
         <!-- <module name="VisibilityModifier"/> -->
 
-
         <!-- Miscellaneous other checks.                   -->
         <!-- See http://checkstyle.sf.net/config_misc.html -->
         <module name="ArrayTypeStyle"/>
@@ -188,6 +187,5 @@
         <property name="offCommentFormat" value="BEGIN GENERATED CODE"/>
         <property name="onCommentFormat" value="END GENERATED CODE"/>
     </module>
-
 
 </module>

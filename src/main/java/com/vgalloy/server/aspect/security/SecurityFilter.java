@@ -20,6 +20,7 @@ import java.util.Base64;
  */
 @Component
 public class SecurityFilter implements Filter {
+
     @Autowired
     private SecurityApi securityApi;
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CredentialServiceImpl implements com.vgalloy.server.service.CredentialService {
+
     @Autowired
     private CredentialManager credentialManager;
 

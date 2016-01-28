@@ -28,6 +28,7 @@ import java.util.List;
  */
 @Service
 public class CredentialManagerImpl implements CredentialManager {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(CredentialManagerImpl.class);
     private static final String REDIRECT_URI = "https://mon-url-impossible.com/";
     private static final List<String> SCOPES = Arrays.asList("https://spreadsheets.google.com/feeds");

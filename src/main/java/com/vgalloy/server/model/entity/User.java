@@ -12,6 +12,7 @@ import java.util.Objects;
  *         Created by Vincent Galloy on 02/12/15.
  */
 public class User implements Referenceable {
+
     @Id
     private String username;
     private String password;

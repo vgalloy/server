@@ -7,6 +7,7 @@ import com.vgalloy.server.service.error.Errors;
  *         Created by Vincent Galloy on 10/12/15.
  */
 public class ServiceException extends RuntimeException {
+
     private final Errors errors;
 
     /**

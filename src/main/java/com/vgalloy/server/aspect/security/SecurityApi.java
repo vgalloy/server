@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SecurityApi {
-    private ThreadLocal<User> userThreadLocal = new ThreadLocal<>();
+
+    private final ThreadLocal<User> userThreadLocal = new ThreadLocal<>();
+
     @Autowired
     private SecurityManager securityManager;
 

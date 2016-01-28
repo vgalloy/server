@@ -5,6 +5,7 @@ package com.vgalloy.server.model.entity;
  *         Created by Vincent Galloy on 25/01/16.
  */
 public class Day {
+
     private final Event event;
 
     /**

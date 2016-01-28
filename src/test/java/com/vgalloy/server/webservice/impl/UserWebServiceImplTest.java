@@ -1,12 +1,9 @@
 package com.vgalloy.server.webservice.impl;
 
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.vgalloy.server.StartServer;
 import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.webservice.AbstractWebServiceImplTest;
 import org.apache.http.HttpStatus;
@@ -14,7 +11,6 @@ import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -31,12 +27,10 @@ import static org.hamcrest.Matchers.equalTo;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = StartServer.class)
 @WebAppConfiguration
-@IntegrationTest("server.port:0") // Trouve n'importe quel port de libre pour lancer le server de test
+@IntegrationTest("server.port:0")
 public class UserWebServiceImplTest extends AbstractWebServiceImplTest {
-    private static final JsonNodeFactory factory = JsonNodeFactory.instance;
-    private static final String ADMIN = "ADMIN";
-    private static final String USER = "USER";
-    @Value("${local.server.port}")// Trouve le port associé au server de test
+
+    @Value("${local.server.port}")
     private int port;
 
     @Before

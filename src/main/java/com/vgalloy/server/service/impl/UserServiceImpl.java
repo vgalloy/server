@@ -24,6 +24,7 @@ import java.util.List;
 @Service
 @Log(LogLevel.DEBUG)
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserDao userDao;
     @Autowired

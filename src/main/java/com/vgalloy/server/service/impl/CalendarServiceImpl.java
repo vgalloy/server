@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CalendarServiceImpl implements CalendarService {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(CalendarServiceImpl.class);
+
     @Autowired
     private GoogleManager googleManager;
     private Calendar calendar;
@@ -32,7 +34,7 @@ public class CalendarServiceImpl implements CalendarService {
     /**
      * Permet d'actualiser regulièrement le calendrier.
      */
-    @Scheduled(fixedRate = 10_000)
+    @Scheduled(fixedRate = 60_000)
     protected void refreshCalendar() {
         try {
             calendar = googleManager.getCalendar();

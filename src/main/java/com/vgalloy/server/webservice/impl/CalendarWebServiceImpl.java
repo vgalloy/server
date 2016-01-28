@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("calendar")
 public class CalendarWebServiceImpl implements CalendarWebService {
+
     @Autowired
     private CalendarService calendarService;
 

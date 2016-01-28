@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     public static final String INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR";
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 

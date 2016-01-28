@@ -44,13 +44,10 @@ public class TestServiceUserServiceImpl {
 
     @InjectMocks
     private UserServiceImpl userService;
-
     @Spy
     private UserServiceValidator userServiceValidator;
-
     @Mock
     private UserServiceSecurityValidator userServiceSecurityValidator;
-
     @Mock
     private UserDao userDao;
 
