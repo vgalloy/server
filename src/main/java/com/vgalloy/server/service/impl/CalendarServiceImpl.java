@@ -32,7 +32,7 @@ public class CalendarServiceImpl implements CalendarService {
     /**
      * Permet d'actualiser regulièrement le calendrier.
      */
-    @Scheduled(fixedRate = 60_000)
+    @Scheduled(fixedRate = 10_000)
     protected void refreshCalendar() {
         try {
             calendar = googleManager.getCalendar();
