@@ -11,7 +11,7 @@ import org.springframework.boot.test.SpringApplicationContextLoader;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static junit.framework.Assert.assertNull;
+import static org.junit.Assert.assertNull;
 import static junit.framework.TestCase.assertEquals;
 
 /**
