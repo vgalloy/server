@@ -9,6 +9,7 @@ import java.util.List;
  *         Created by Vincent Galloy on 02/12/15.
  */
 public interface GenericDao<T extends Referenceable> {
+
     /**
      * Retrieve all elements from a collection.
      *
@@ -51,5 +52,4 @@ public interface GenericDao<T extends Referenceable> {
      * Remove all element of the collection.
      */
     void removeAll();
-
 }

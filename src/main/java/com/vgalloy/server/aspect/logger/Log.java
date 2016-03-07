@@ -12,6 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface Log {
+
     /**
      * Retourne le niveau de log. Par defaut ce niveau vaut TRACE.
      */

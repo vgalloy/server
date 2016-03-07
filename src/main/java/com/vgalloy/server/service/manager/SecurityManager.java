@@ -7,6 +7,7 @@ import com.vgalloy.server.model.entity.User;
  *         Created by Vincent Galloy on 06/01/16.
  */
 public interface SecurityManager {
+
     /**
      * Permet de verifier si la combinaison nom d'utilisateur/mot de passe est correct.
      *

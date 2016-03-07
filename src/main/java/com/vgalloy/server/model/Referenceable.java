@@ -5,6 +5,7 @@ package com.vgalloy.server.model;
  *         Created by Vincent Galloy on 09/12/15.
  */
 public interface Referenceable {
+
     /**
      * Tout objet referençable à un id.
      *
@@ -18,5 +19,4 @@ public interface Referenceable {
      * @param id Defini l'id de l'objet
      */
     void setId(String id);
-
 }

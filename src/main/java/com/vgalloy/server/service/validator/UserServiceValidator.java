@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserServiceValidator {
+
     /**
      * S'assure que l'utilisateur est correct pour la création ou la modification.
      *

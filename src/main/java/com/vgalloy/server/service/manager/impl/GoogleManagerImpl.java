@@ -79,7 +79,6 @@ public class GoogleManagerImpl implements GoogleManager {
         for (WorksheetEntry worksheet : worksheets) {
             Month month = new Month();
 
-
             // Fetch the cell feed of the worksheet.
             URL cellFeedUrl = worksheet.getCellFeedUrl();
             CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);

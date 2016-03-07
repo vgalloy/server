@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DaoValidator {
+
     /**
      * Permet de s'assurer que l'utilisateur est conforme au spécification.
      *

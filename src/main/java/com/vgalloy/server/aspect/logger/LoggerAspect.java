@@ -16,10 +16,10 @@ import org.springframework.stereotype.Component;
  *         niveau. En cas de double annotation (l'une venant de la méthode et l'autre de la classe) c'est la plus proche
  *         (celle de la methode) qui doit prendre le pas.
  */
-
 @Aspect
 @Component
 public class LoggerAspect {
+
     /**
      * On crée un pointCut pour injecter l'aspect aux bons endroits.
      * 1. L'annotation @within permet de trouver les méthodes dont la classe est annoté par @Log

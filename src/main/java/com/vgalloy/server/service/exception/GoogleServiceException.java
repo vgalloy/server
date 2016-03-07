@@ -5,6 +5,7 @@ package com.vgalloy.server.service.exception;
  *         Created by Vincent Galloy on 27/01/16.
  */
 public class GoogleServiceException extends RuntimeException {
+
     /**
      * Constructeur avec un message d'erreur et la cause.
      *

@@ -49,5 +49,4 @@ public class Errors implements Serializable {
                 "errorList=" + errorList +
                 '}';
     }
-
 }

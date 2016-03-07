@@ -23,7 +23,7 @@ public class HomeWebService {
     /**
      * Requête HTTP GET : obtention de la page d'accueil.
      *
-     * @return Un String avec quelque informations
+     * @return Un String avec quelques informations
      */
     @RequestMapping(method = RequestMethod.GET)
     public String home() {

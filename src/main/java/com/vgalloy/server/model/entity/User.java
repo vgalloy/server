@@ -109,5 +109,4 @@ public class User implements Referenceable {
                 ", role=" + role +
                 '}';
     }
-
 }

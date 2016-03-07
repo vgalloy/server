@@ -5,6 +5,7 @@ package com.vgalloy.server.service;
  *         Created by Vincent Galloy on 28/01/16.
  */
 public interface SecurityService {
+
     /**
      * Permet de verifier si la combinaison nom d'utilisateur/mot de passe est correct.
      *

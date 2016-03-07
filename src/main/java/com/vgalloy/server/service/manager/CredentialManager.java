@@ -7,6 +7,7 @@ import com.google.api.client.auth.oauth2.Credential;
  *         Created by Vincent Galloy on 26/01/16.
  */
 public interface CredentialManager {
+
     /**
      * Retorune les Credential permetant une connexion au drive.
      *

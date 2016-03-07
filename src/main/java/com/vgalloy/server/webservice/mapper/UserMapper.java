@@ -8,6 +8,7 @@ import com.vgalloy.server.webservice.dto.UserDto;
  *         Created by Vincent Galloy on 21/12/15.
  */
 public interface UserMapper {
+
     /**
      * Transforme un userDto en user.
      *

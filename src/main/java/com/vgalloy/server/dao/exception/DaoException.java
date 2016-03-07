@@ -5,6 +5,7 @@ package com.vgalloy.server.dao.exception;
  *         Created by Vincent Galloy on 12/12/15.
  */
 public class DaoException extends RuntimeException {
+
     /**
      * Constructeur avec un message d'erreur.
      *

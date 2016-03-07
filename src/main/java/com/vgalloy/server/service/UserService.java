@@ -10,6 +10,7 @@ import java.util.List;
  *         Created by Vincent Galloy on 09/12/15.
  */
 public interface UserService {
+
     /**
      * Permet d'obtenir l'ensemble des informations de tout les utilisateurs.
      *

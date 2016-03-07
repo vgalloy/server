@@ -1,6 +1,5 @@
 package com.vgalloy.server.service.manager;
 
-
 import com.vgalloy.server.model.entity.Calendar;
 import com.vgalloy.server.service.exception.NoCredentialException;
 
@@ -9,6 +8,7 @@ import com.vgalloy.server.service.exception.NoCredentialException;
  *         Created by Vincent Galloy on 25/01/16.
  */
 public interface GoogleManager {
+
     /**
      * Permet l'obtention du calendrier.
      *

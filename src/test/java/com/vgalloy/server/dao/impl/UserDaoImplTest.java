@@ -69,19 +69,19 @@ public class UserDaoImplTest {
     public void testGetOk() {
         User user = new User("user", "password");
         userDao.create(user);
-        User usertmp = userDao.getById("user");
-        assertEquals(user, usertmp);
+        User userTmp = userDao.getById("user");
+        assertEquals(user, userTmp);
     }
 
     @Test
     public void testGetNullId() {
-        User usertmp = userDao.getById(null);
-        assertNull(usertmp);
+        User userTmp = userDao.getById(null);
+        assertNull(userTmp);
     }
 
     @Test
     public void testGetEmptyId() {
-        User usertmp = userDao.getById(null);
-        assertNull(usertmp);
+        User userTmp = userDao.getById(null);
+        assertNull(userTmp);
     }
 }

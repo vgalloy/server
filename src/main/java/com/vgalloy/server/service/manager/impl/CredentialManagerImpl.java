@@ -76,7 +76,6 @@ public class CredentialManagerImpl implements CredentialManager {
                 .setAccessToken(response.getAccessToken())
                 .setRefreshToken(response.getRefreshToken());
         return true;
-
     }
 
     /**

@@ -5,6 +5,7 @@ package com.vgalloy.server.service;
  *         Created by Vincent Galloy on 28/01/16.
  */
 public interface CredentialService {
+
     /**
      * Enregistre le code necessaire a la creation des Credential.
      *

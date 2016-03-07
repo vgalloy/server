@@ -17,6 +17,7 @@ public class Day {
 
     /**
      * Constructeur avec un event.
+     *
      * @param event L'event
      */
     public Day(Event event) {
