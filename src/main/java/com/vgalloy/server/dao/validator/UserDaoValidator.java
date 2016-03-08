@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  *         Created by Vincent Galloy on 21/12/15.
  */
 @Component
-public class DaoValidator {
+public class UserDaoValidator {
 
     /**
      * Permet de s'assurer que l'utilisateur est conforme au spécification.
@@ -17,7 +17,7 @@ public class DaoValidator {
      * @return true si aucun problème n'est détécté. Faux sinon.
      */
     public boolean isUserOkForCreateOrUpdate(User user) {
-        return user != null && user.getUsername() != null && !user.getUsername().trim().isEmpty();
+        return CommonValidator.isReferableOkForCreateOrUpdate(user);
     }
 }
 

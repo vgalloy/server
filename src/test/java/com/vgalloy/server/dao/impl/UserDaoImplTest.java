@@ -1,29 +1,30 @@
 package com.vgalloy.server.dao.impl;
 
 import com.vgalloy.server.StartServer;
+import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.exception.DaoException;
 import com.vgalloy.server.model.entity.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertNull;
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 21/12/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = StartServer.class, loader = SpringApplicationContextLoader.class)
+@SpringApplicationConfiguration(classes = StartServer.class)
 public class UserDaoImplTest {
 
     @Autowired
-    private UserDaoImpl userDao;
+    private UserDao userDao;
 
     @Before
     public void init() {
@@ -69,19 +70,42 @@ public class UserDaoImplTest {
     public void testGetOk() {
         User user = new User("user", "password");
         userDao.create(user);
-        User userTmp = userDao.getById("user");
-        assertEquals(user, userTmp);
+        assertEquals(user, userDao.getById("user"));
     }
 
     @Test
     public void testGetNullId() {
-        User userTmp = userDao.getById(null);
-        assertNull(userTmp);
+        assertNull(userDao.getById(null));
     }
 
     @Test
     public void testGetEmptyId() {
-        User userTmp = userDao.getById(null);
-        assertNull(userTmp);
+        assertNull(userDao.getById("  "));
+    }
+
+    @Test
+    public void testDeleteWithNullId() {
+        try {
+            userDao.deleteById(null);
+        } catch (Exception e) {
+            fail("Exception when try to delete with null id");
+        }
+    }
+
+    @Test
+    public void testDeleteWithNoExistingId() {
+        try {
+            userDao.deleteById("test");
+        } catch (Exception e) {
+            fail("Exception when try to delete with not existing id");
+        }
+    }
+
+    @Test
+    public void testDeleteWithCorrectId() {
+        User user = new User("user", "password");
+        userDao.create(user);
+        userDao.deleteById(user.getId());
+        assertEquals(0, userDao.getAll().size());
     }
 }

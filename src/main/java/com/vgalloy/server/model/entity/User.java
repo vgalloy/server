@@ -1,7 +1,7 @@
 package com.vgalloy.server.model.entity;
 
 import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.model.Referenceable;
+import com.vgalloy.server.model.Referable;
 import org.mongojack.Id;
 
 import javax.persistence.Transient;
@@ -11,7 +11,7 @@ import java.util.Objects;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 02/12/15.
  */
-public class User implements Referenceable {
+public class User implements Referable {
 
     @Id
     private String username;
@@ -19,7 +19,7 @@ public class User implements Referenceable {
     private SecurityLevel role;
 
     /**
-     * Constructeur.
+     * Default constructor.
      */
     public User() {
         super();

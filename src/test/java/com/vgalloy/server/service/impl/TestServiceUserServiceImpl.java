@@ -10,14 +10,8 @@ import com.vgalloy.server.service.validator.UserServiceValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
-import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
+import org.mockito.*;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
@@ -34,7 +28,7 @@ import static org.mockito.Matchers.any;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = StartServer.class, loader = SpringApplicationContextLoader.class)
+@SpringApplicationConfiguration(classes = StartServer.class)
 public class TestServiceUserServiceImpl {
 
     /**

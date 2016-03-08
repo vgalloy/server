@@ -19,10 +19,10 @@ public interface UserService {
     List<User> getAll();
 
     /**
-     * Permet de créer/modifier un utilisateur.
+     * Create or update user.
      *
-     * @param user l'utilisateur
-     * @return L'utilisateur créé.
+     * @param user The user
+     * @return Updated user
      */
     User createOrUpdate(User user);
 

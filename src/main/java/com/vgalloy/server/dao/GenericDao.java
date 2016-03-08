@@ -1,6 +1,6 @@
 package com.vgalloy.server.dao;
 
-import com.vgalloy.server.model.Referenceable;
+import com.vgalloy.server.model.Referable;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 02/12/15.
  */
-public interface GenericDao<T extends Referenceable> {
+public interface GenericDao<T extends Referable> {
 
     /**
      * Retrieve all elements from a collection.

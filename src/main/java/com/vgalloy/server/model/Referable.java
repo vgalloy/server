@@ -4,7 +4,7 @@ package com.vgalloy.server.model;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 09/12/15.
  */
-public interface Referenceable {
+public interface Referable {
 
     /**
      * Tout objet referençable à un id.
