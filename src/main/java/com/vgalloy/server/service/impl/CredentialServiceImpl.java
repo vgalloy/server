@@ -18,13 +18,13 @@ public class CredentialServiceImpl implements com.vgalloy.server.service.Credent
 
     @Override
     @Security({SecurityLevel.ADMIN})
-    public boolean setToken(String token) {
-        return credentialManager.setToken(token);
+    public void setToken(String token) {
+        credentialManager.setToken(token);
     }
 
     @Override
     @Security({SecurityLevel.ADMIN})
-    public String generateUrl() {
-        return credentialManager.generateUrl();
+    public String generateGoogleTokenUrl() {
+        return credentialManager.generateGoogleTokenUrl();
     }
 }

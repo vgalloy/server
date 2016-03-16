@@ -13,51 +13,51 @@ import java.util.List;
 public interface UserWebService {
 
     /**
-     * Permet d'obtenir l'ensemble des informations de tout les utilisateurs.
+     * Get all users.
      *
-     * @return Un liste contenant l'ensemble des utilisateurs
+     * @return All users as a list.
      */
     List<User> getAll();
 
     /**
-     * Permet de créer un utilisateur.
+     * Create a new user.
      *
-     * @param username Le nom d'utilistateur
-     * @param userDto  Le reste des informations lié à l'utilisateur
-     * @return L'utilisateur créé.
+     * @param username The username.
+     * @param userDto  The user information.
+     * @return The new user
      */
     User create(String username, UserDto userDto);
 
     /**
-     * Permet d'obtenir un utilisateur par son nom d'utilisateur.
+     * Get a user with his username.
      *
-     * @param username Le nom d'utilisateur
-     * @return Les informations sur l'utilisateur
+     * @param username The username
+     * @return The user
      */
     User getByUsername(String username);
 
     /**
-     * Permet de changer le mot de passe de l'utilisateur.
+     * Change the password.
      *
-     * @param username    Le nom d'utilisateur
-     * @param newPassword Le nouveau mot de passe
-     * @return L'utilisateur modifié
+     * @param username    The username
+     * @param newPassword The new password
+     * @return The modify user
      */
     User changePassword(String username, String newPassword);
 
     /**
-     * Permet de changer le rôle de l'utilisateur.
+     * Change the security rules for a user.
      *
-     * @param username      Le nom d'utilisateur
-     * @param securityLevel Le nouveau role
-     * @return L'utilisateur modifié
+     * @param username      The username
+     * @param securityLevel The new rules for the user
+     * @return The modify user
      */
     User changeRole(String username, SecurityLevel securityLevel);
 
     /**
-     * Permet de supprimer le mot de passe.
+     * Delete a user.
      *
-     * @param username Le nom d'utilisateur
+     * @param username The username
      */
-    void delete(String username);
+    void deleteByUsername(String username);
 }

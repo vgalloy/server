@@ -21,9 +21,9 @@ public class HomeWebService {
     private String version;
 
     /**
-     * Requête HTTP GET : obtention de la page d'accueil.
+     * Request GET : home page.
      *
-     * @return Un String avec quelques informations
+     * @return A string with some information.
      */
     @RequestMapping(method = RequestMethod.GET)
     public String home() {

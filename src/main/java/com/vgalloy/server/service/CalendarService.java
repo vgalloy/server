@@ -9,9 +9,9 @@ import com.vgalloy.server.model.entity.Calendar;
 public interface CalendarService {
 
     /**
-     * Permet l'obtention du calendrier.
+     * Get the calendar.
      *
-     * @return Le calendrier
+     * @return The calendar
      */
     Calendar getCalendar();
 }

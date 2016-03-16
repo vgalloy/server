@@ -32,13 +32,14 @@ public class LoginWebServiceImpl implements LoginWebService {
     @Override
     @RequestMapping(value = "url", method = RequestMethod.GET)
     public String getGoogleTokenUrl() {
-        return credentialService.generateUrl();
+        return credentialService.generateGoogleTokenUrl();
     }
 
     @Override
     @RequestMapping(value = "token", method = RequestMethod.POST)
     public boolean setToken(@RequestBody String tokenWithoutSlash) {
         String correctToken = tokenWithoutSlash.replace("%2F", "/");
-        return credentialService.setToken(correctToken);
+        credentialService.setToken(correctToken);
+        return true;
     }
 }

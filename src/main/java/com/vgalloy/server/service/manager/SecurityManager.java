@@ -9,20 +9,20 @@ import com.vgalloy.server.model.entity.User;
 public interface SecurityManager {
 
     /**
-     * Permet de verifier si la combinaison nom d'utilisateur/mot de passe est correct.
+     * Check if username/password is correct.
      *
-     * @param username Le nom d'utilisateur
-     * @param password Le mot de passe
-     * @return true si le mot de passe correspont, faux sinon
+     * @param username The username
+     * @param password The password
+     * @return true if username match with password
      */
     boolean checkUsernameAndPassword(String username, String password);
 
     /**
-     * Permet d'obtenir l'utilisateur correspondant à la combinaison nom d'utilisateur/mot de passe.
+     * Get the user define with the given username and password.
      *
-     * @param username Le nom d'utilisateur
-     * @param password Le mot de passe
-     * @return L'utilisateur correspondant à la combinaison. Sinon null.
+     * @param username The username
+     * @param password The password
+     * @return The corresponding user or null
      */
     User getUserWithUsernameAndPassword(String username, String password);
 }

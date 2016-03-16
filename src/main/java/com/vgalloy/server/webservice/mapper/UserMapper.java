@@ -10,11 +10,11 @@ import com.vgalloy.server.webservice.dto.UserDto;
 public interface UserMapper {
 
     /**
-     * Transforme un userDto en user.
+     * Map an userDto into user.
      *
-     * @param username Le nom d'utilisateur
-     * @param userDto  Le user Dto à transformer
-     * @return Le user
+     * @param username The username
+     * @param userDto  The userDto
+     * @return The user
      */
     static User map(String username, UserDto userDto) {
         return new User(username, userDto.getPassword(), userDto.getRole());

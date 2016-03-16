@@ -10,11 +10,11 @@ public enum LogLevel {
     OFF, TRACE, DEBUG, INFO, WARNING, ERROR;
 
     /**
-     * Permet l'affichage du message passer en paramètre dans le logger en fonction du niveau de log specifié.
+     * Print the message with the correct log level.
      *
-     * @param logger   Le logger permettant d'afficher le message
-     * @param logLevel Le niveau de log pour le message
-     * @param message  Le message à afficher
+     * @param logger   The logger
+     * @param logLevel The log level
+     * @param message  The message
      */
     public static void printLog(Logger logger, LogLevel logLevel, String message) {
         switch (logLevel) {

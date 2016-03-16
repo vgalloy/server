@@ -7,17 +7,16 @@ package com.vgalloy.server.service;
 public interface CredentialService {
 
     /**
-     * Enregistre le code necessaire a la creation des Credential.
+     * Save the token.
      *
-     * @param token Le le formis par l'api de google
-     * @return true si tout c'est bien passé, sinon false
+     * @param token The google's token
      */
-    boolean setToken(String token);
+    void setToken(String token);
 
     /**
-     * Generère l'url permettant d'otenir le token de Google.
+     * Create url for the google token.
      *
-     * @return L'url sous forme de String
+     * @return The url as a String.
      */
-    String generateUrl();
+    String generateGoogleTokenUrl();
 }

@@ -30,7 +30,7 @@ public class SecurityManagerImpl implements SecurityManager {
             user = userDao.getById(username);
             if (user == null) {
                 return null;
-            } else if ((user.getPassword() != null && user.getPassword().equals(password)) || (user.getPassword() == null && password == null)) {
+            } else if (user.getPassword() != null && user.getPassword().equals(password) || (user.getPassword() == null && password == null)) {
                 return user;
             } else {
                 return null;

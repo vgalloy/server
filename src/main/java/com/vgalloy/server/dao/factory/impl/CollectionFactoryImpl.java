@@ -34,8 +34,7 @@ public class CollectionFactoryImpl implements CollectionFactory {
     }
 
     /**
-     * Spring ne rempli les champs annotés de @Value avec leur valeur qu'après avec instancié l'objet. Le client mongo
-     * necessitant ces informations, il ne peut pas être créer dans le constructeur.
+     * Spring set fields with @value after the constructor. MongoClient have to be create after the constructor.
      */
     @PostConstruct
     public void inti() {

@@ -21,7 +21,7 @@ public interface GenericDao<T extends Referable> {
      * Insert a new element.
      *
      * @param t The new element to insert
-     * @return L'objet créer
+     * @return The new element
      */
     T create(T t);
 
@@ -29,7 +29,7 @@ public interface GenericDao<T extends Referable> {
      * Find the element with the given id. Return null if no element found.
      *
      * @param id The id
-     * @return L'objet avec l'id demandé
+     * @return L'object with the given id
      */
     T getById(String id);
 
@@ -37,7 +37,7 @@ public interface GenericDao<T extends Referable> {
      * Update an existing element.
      *
      * @param t The element to update
-     * @return L'objet modifié
+     * @return The modify object
      */
     T update(T t);
 

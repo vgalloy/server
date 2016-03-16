@@ -32,14 +32,14 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
     /**
-     * Permet d'actualiser regulièrement le calendrier.
+     * Refresh the calendar.
      */
     @Scheduled(fixedRate = 60_000)
     protected void refreshCalendar() {
         try {
             calendar = googleManager.getCalendar();
         } catch (NoCredentialException e) {
-            LOGGER.warn("refreshCalendar fails");
+            LOGGER.warn("refreshCalendar fails : {}", e.getMessage());
         }
     }
 }

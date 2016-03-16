@@ -26,7 +26,7 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // Rien à faire de particulier
+        // Nothing to do
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SecurityFilter implements Filter {
         if (authorization != null && authorization.startsWith("Basic")) {
             String base64Credentials = authorization.substring("Basic".length()).trim();
             String credentials = new String(Base64.getDecoder().decode(base64Credentials), Charset.forName("UTF-8"));
-            final String[] values = credentials.split(":", 2);
+            String[] values = credentials.split(":", 2);
             username = values[0];
             password = values[1];
         }
@@ -51,6 +51,6 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void destroy() {
-        // Rien à faire de particulier
+        // Nothing to do
     }
 }

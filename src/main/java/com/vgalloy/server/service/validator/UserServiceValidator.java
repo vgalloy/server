@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 public class UserServiceValidator {
 
     /**
-     * S'assure que l'utilisateur est correct pour la création ou la modification.
+     * Check user if ok for create or update.
      *
-     * @param user L'utilisateur à tester
-     * @return L'objet Errors contenant les eventuelles erreurs
+     * @param user The user to test
+     * @return Errors object with the error
      */
     public Errors checkCreateOrUpdate(User user) {
         Errors errors = new Errors();
@@ -32,10 +32,10 @@ public class UserServiceValidator {
     }
 
     /**
-     * S'assure que le nom d'utilisateur est correct pour l'obtention d'un utilisateur.
+     * Check username is correct for get method.
      *
-     * @param username Le nom d'utilisateur à tester
-     * @return L'objet Errors contenant les eventuelles erreurs
+     * @param username The username to test
+     * @return Errors object with the error
      */
     public Errors checkGet(String username) {
         Errors errors = new Errors();
@@ -46,10 +46,10 @@ public class UserServiceValidator {
     }
 
     /**
-     * S'assure que le nom d'utilisateur est correct pour la suppression.
+     * Check username is correct for delete method.
      *
-     * @param username Le nom d'utilisateur à tester
-     * @return L'objet Errors contenant les eventuelles erreurs
+     * @param username The username to test
+     * @return Errors object with the error
      */
     public Errors checkDelete(String username) {
         Errors errors = new Errors();
@@ -60,11 +60,11 @@ public class UserServiceValidator {
     }
 
     /**
-     * S'assure que l'utilisateur et son mot de passe sont corrects pour la modification.
+     * Check user and new password ok for change password method.
      *
-     * @param user     L'utilisateur à tester
-     * @param password Le nouveau mot de passe
-     * @return L'objet Errors contenant les eventuelles erreurs
+     * @param user The user to test
+     * @param password The new password
+     * @return Errors object with the error
      */
     public Errors checkChangePassword(User user, String password) {
         Errors errors = new Errors();
@@ -78,11 +78,11 @@ public class UserServiceValidator {
     }
 
     /**
-     * S'assure que l'utilisateur et son role sont corrects pour la modification.
+     * Check user and security level are for changeRole method.
      *
-     * @param user          L'utilisateur à tester
-     * @param securityLevel Le nouveau role
-     * @return L'objet Errors contenant les eventuelles erreurs
+     * @param user The user to test
+     * @param securityLevel The new security level
+     * @return Errors object with the error
      */
     public Errors checkChangeRole(User user, SecurityLevel securityLevel) {
         Errors errors = new Errors();
@@ -94,10 +94,10 @@ public class UserServiceValidator {
     }
 
     /**
-     * S'assure que l'utilisateur est non null.
+     * Check user not null.
      *
-     * @param errors L'objet Errors contenant les eventuelles erreurs
-     * @param user   L'utilisateur à tester
+     * @param errors object with the error
+     * @param user The user to test
      */
     private static void isUserNotNull(Errors errors, User user) {
         if (user == null) {
@@ -106,10 +106,10 @@ public class UserServiceValidator {
     }
 
     /**
-     * S'assure que le nom d'utilisateur est non null et non vide.
+     * Check username not null and not empty.
      *
-     * @param errors   L'objet Errors contenant les eventuelles erreurs
-     * @param username Le nom d'utilisateur à tester
+     * @param errors object with the error
+     * @param username The username to test
      */
     private static void isUsernameNotNullAndNotEmpty(Errors errors, String username) {
         if (username == null) {
@@ -120,10 +120,10 @@ public class UserServiceValidator {
     }
 
     /**
-     * S'assure que le mot de passe est non null et non vide.
+     * Check password is not null and not empty.
      *
-     * @param errors   L'objet Errors contenant les eventuelles erreurs
-     * @param password Le mot de passe à tester
+     * @param errors object with the error
+     * @param password The password to test
      */
     private static void isPasswordNotNullAndNotEmpty(Errors errors, String password) {
         if (password == null) {
@@ -134,10 +134,10 @@ public class UserServiceValidator {
     }
 
     /**
-     * S'assure que le role est non null.
+     * Check role is not null.
      *
-     * @param errors        L'objet Errors contenant les eventuelles erreurs
-     * @param securityLevel Le role à tester
+     * @param errors object with the error
+     * @param securityLevel The role to test
      */
     private static void isSecurityLevelNotNull(Errors errors, SecurityLevel securityLevel) {
         if (securityLevel == null) {

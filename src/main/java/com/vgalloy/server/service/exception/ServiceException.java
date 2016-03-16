@@ -11,9 +11,9 @@ public class ServiceException extends RuntimeException {
     private final Errors errors;
 
     /**
-     * Constructeur avec une liste d'erreurs.
+     * Constructor with errors list.
      *
-     * @param errors Les erreurs à l'origine de l'exception
+     * @param errors The errors list
      */
     public ServiceException(Errors errors) {
         this.errors = errors;

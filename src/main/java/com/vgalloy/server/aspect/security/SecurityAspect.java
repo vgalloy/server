@@ -17,9 +17,9 @@ public class SecurityAspect {
     private SecurityApi securityApi;
 
     /**
-     * Verifie que l'utilisateur à le niveau d'habilitation demander par la méthode.
+     * Check if the user get the correct right.
      *
-     * @param role L'annotation de sécurité liée à la méthode
+     * @param role The security annotation.
      */
     @Before("@annotation(role)")
     public final void logForClass(Security role) {

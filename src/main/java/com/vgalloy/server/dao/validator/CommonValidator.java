@@ -12,7 +12,7 @@ public final class CommonValidator {
      * Default constructor to prevent instantiation.
      */
     private CommonValidator() {
-        super();
+
     }
 
     /**

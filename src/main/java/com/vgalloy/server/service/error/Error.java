@@ -11,9 +11,9 @@ public class Error implements Serializable {
     private final String message;
 
     /**
-     * Constructeur avec un message d'erreur.
+     * Constructor with error message.
      *
-     * @param message Le message d'erreur
+     * @param message The error message.
      */
     public Error(String message) {
         this.message = message;

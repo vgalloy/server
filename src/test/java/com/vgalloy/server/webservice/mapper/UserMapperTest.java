@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
  *         Created by Vincent Galloy on 21/12/15.
  */
 public class UserMapperTest {
+
     @Test
     public void testMap1() {
         UserDto userDto = new UserDto();

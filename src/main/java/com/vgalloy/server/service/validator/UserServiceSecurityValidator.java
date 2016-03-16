@@ -16,33 +16,30 @@ public class UserServiceSecurityValidator {
     private SecurityApi securityApi;
 
     /**
-     * Assure que l'utilisateur courant peut obtenir les informations sur l'utilisateur dont le nom est passé en
-     * paramètre.
+     * Can the current user get information about another user.
      *
-     * @param username Le nom d'utilisateur que l'on chercher à obtenir
-     * @return true si l'utilisateur courant peux voir l'utilisateur spécifié.
+     * @param username The username of the user we would retrieve information.
+     * @return true if the current user can access the  information
      */
     public boolean isGetOk(String username) {
         return canModify(username);
     }
 
     /**
-     * Assure que l'utilisateur courant peut modifier le mot de passe de l'utilisateur dont le nom est passé en
-     * paramètre.
+     * Can the current user change the password of another.
      *
-     * @param username Le nom d'utilisateur que l'on chercher à obtenir
-     * @return true si l'utilisateur courant peux le mot de passe de l'utilisateur spécifié.
+     * @param username The username of the user we would change password.
+     * @return true if current user can change password.
      */
     public boolean isChangePasswordOk(String username) {
         return canModify(username);
     }
 
     /**
-     * Assure que l'utilisateur courant peut obtenir/modifier les informations sur l'utilisateur dont le nom est passé en
-     * paramètre.
+     * Can the current user modify another user.
      *
-     * @param username Le nom d'utilisateur que l'on chercher à obtenir
-     * @return true si l'utilisateur courant peux voir/modifier l'utilisateur spécifié.
+     * @param  username The username of the user we would modify information.
+     * @return true if current user can modify user.
      */
     private boolean canModify(String username) {
         if (SecurityLevel.ADMIN.equals(securityApi.getCurrentUserRole())) {

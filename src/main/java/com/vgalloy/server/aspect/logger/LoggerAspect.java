@@ -22,17 +22,17 @@ public class LoggerAspect {
 
     /**
      * On crée un pointCut pour injecter l'aspect aux bons endroits.
-     * 1. L'annotation @within permet de trouver les méthodes dont la classe est annoté par @Log
-     * 2. L'annotation @annotation permet de trouver les méthodes directement annoté par @Log
+     * 1. L'annotation @within permet de trouver les méthodes dont la classe est annotée par @Log
+     * 2. L'annotation @annotation permet de trouver les méthodes directement annotée par @Log
      * <p>
-     * Le principale problème consiste à gerer la double annotation. Puisque chaque pointcut est un proxy il faut eviter
+     * Le principal problème consiste à gerer la double annotation. Puisque chaque pointcut est un proxy il faut éviter
      * que les logs s'affichent deux fois avec differents niveaux
      * Dans le cas d'un pointCut avec un OU ( || ) l'annotation est remplie avec le second terme même si celui-ci est vide.
      * Exemple avec : @within(methodLog) || @annotation(methodLog)
      * Si la classe est annotée mais pas la méthode, l'aspect sera bien appelé mais le methodLog sera vide.
      * <p>
      * Dans ce cas de figure évoqué precedement il faut donc retrouver avec la reflexion l'annotation sur la classe pour
-     * utiliser sa value. Il est important de noter que l'inverse n'est pas possible puisque les annotations sur les
+     * utiliser sa 'value'. Il est important de noter que l'inverse n'est pas possible puisque les annotations sur les
      * methodes ne peuvent pas être trouvées par reflexion.
      * <p>
      * La seconde méthode consiste à effectuer un double OU ( || ) et de les lier avec un ET ( && ). Comme expliqué, les

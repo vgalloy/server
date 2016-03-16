@@ -13,17 +13,17 @@ public class Errors implements Serializable {
     private List<Error> errorList;
 
     /**
-     * Constructeur.
+     * Constructor.
      */
     public Errors() {
-        this.errorList = new ArrayList<>();
+        errorList = new ArrayList<>();
     }
 
     /**
-     * Permet d'ajouter des erreurs de manière fonctionnel.
+     * Add error with functional approach.
      *
-     * @param error L'erreur à ajouter
-     * @return L'Errors modifié.
+     * @param error The error
+     * @return Errors with the new Error
      */
     public Errors addError(Error error) {
         errorList.add(error);
@@ -35,9 +35,9 @@ public class Errors implements Serializable {
     }
 
     /**
-     * Permet de s'assurer qu'aucune erreur n'a été trouvées.
+     * Assert there is no error.
      *
-     * @return true si l'Errors contient des erreurs.
+     * @return true if errorList contains error.
      */
     public boolean hasError() {
         return !errorList.isEmpty();

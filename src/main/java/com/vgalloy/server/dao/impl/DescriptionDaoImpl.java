@@ -22,9 +22,9 @@ public class DescriptionDaoImpl extends GenericDaoImpl<Description> implements D
     private DescriptionDaoValidator descriptionDaoValidator;
 
     /**
-     * Constructeur avec la collection déja créée.
+     * Constructor with the collectionFactory.
      *
-     * @param collectionFactory La collection Jackson
+     * @param collectionFactory The Jackson collection
      */
     @Autowired
     public DescriptionDaoImpl(CollectionFactory collectionFactory) {

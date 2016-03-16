@@ -9,7 +9,7 @@ public class Event {
     private String action;
 
     /**
-     * Constructeur.
+     * Constructor.
      */
     public Event() {
         super();

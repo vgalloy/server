@@ -14,7 +14,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 09/12/15.
  */
-
 @Configuration
 @ComponentScan
 @EnableScheduling
@@ -23,11 +22,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class StartServer {
 
     /**
-     * La méthode main.
+     * The main method.
      *
-     * @param args La liste des arguments
+     * @param args The arguments list
      */
-    public static void main(String[] args) {
+    public static void main(String... args) {
         SpringApplication.run(StartServer.class, args);
     }
 }

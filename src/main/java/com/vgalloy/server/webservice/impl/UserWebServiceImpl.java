@@ -58,7 +58,7 @@ public class UserWebServiceImpl implements UserWebService {
 
     @Override
     @RequestMapping(value = "/{username}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable String username) {
+    public void deleteByUsername(@PathVariable String username) {
         userService.deleteByUsername(username);
     }
 }

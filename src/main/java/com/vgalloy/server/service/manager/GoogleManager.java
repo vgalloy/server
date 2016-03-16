@@ -10,10 +10,10 @@ import com.vgalloy.server.service.exception.NoCredentialException;
 public interface GoogleManager {
 
     /**
-     * Permet l'obtention du calendrier.
+     * Get the calendar.
      *
-     * @return Le calendrier
-     * @throws NoCredentialException Retourne une exception si aucun credential n'est encore defini
+     * @return The calendar
+     * @throws NoCredentialException If no credential are define yet.
      */
     Calendar getCalendar() throws NoCredentialException;
 }

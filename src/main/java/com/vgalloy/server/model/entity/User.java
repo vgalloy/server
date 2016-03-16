@@ -22,14 +22,14 @@ public class User implements Referable {
      * Default constructor.
      */
     public User() {
-        super();
+        // Nothing to do
     }
 
     /**
-     * Constructeur.
+     * Constructor with arguments.
      *
-     * @param username Le nom d'utilisateur
-     * @param password Le mot de passe
+     * @param username The username
+     * @param password The password
      */
     public User(String username, String password) {
         this.username = username;
@@ -37,11 +37,11 @@ public class User implements Referable {
     }
 
     /**
-     * Constructeur.
+     * Constructor with arguments.
      *
-     * @param username Le nom d'utilisateur
-     * @param password Le mot de passe
-     * @param role     Le role lié à l'utilisateur
+     * @param username The username
+     * @param password The password
+     * @param role     The right
      */
     public User(String username, String password, SecurityLevel role) {
         this.username = username;

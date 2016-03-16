@@ -9,14 +9,14 @@ public class Day {
     private final Event event;
 
     /**
-     * Contructeur.
+     * Constructor.
      */
     public Day() {
-        this.event = new Event();
+        event = new Event();
     }
 
     /**
-     * Constructeur avec un event.
+     * Constructor with event.
      *
      * @param event L'event
      */

@@ -13,10 +13,10 @@ public class Week {
     private final List<Day> dayList;
 
     /**
-     * Contructeur.
+     * Default constructor.
      */
     public Week() {
-        this.dayList = new ArrayList<>();
+        dayList = new ArrayList<>();
         for (int i = 0; i < DayOfWeek.values().length; i++) {
             dayList.add(new Day());
         }
@@ -27,20 +27,20 @@ public class Week {
     }
 
     /**
-     * Permet l'otention d'un jour.
+     * Get one specify day.
      *
-     * @param day Le jour sous forme de date (API time)
-     * @return Le jour demander
+     * @param day The day of the week
+     * @return The day.
      */
     public Day getDay(DayOfWeek day) {
         return getDay(day.getValue());
     }
 
     /**
-     * Permet l'otention d'un jour.
+     * Get one specify day with its position in the week.
      *
-     * @param dayOfWeek Le numero du jour dans la semaine. Lundi = 1
-     * @return Le jour demander
+     * @param dayOfWeek The position of the day in the week [1, 7]
+     * @return The day
      */
     public Day getDay(int dayOfWeek) {
         return dayList.get(dayOfWeek - 1);

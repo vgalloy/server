@@ -21,10 +21,10 @@ public class GlobalExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
-     * Intercepte les erreurs de type SecurityException pour definir un code de réponse approprié.
+     * Handle error and set the correct response status.
      *
-     * @param e L'exception interceptée
-     * @return Le message d'erreur voulu
+     * @param e The handle exception
+     * @return The error message for web user
      */
     @ResponseBody
     @ResponseStatus(HttpStatus.FORBIDDEN)
@@ -35,10 +35,10 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * Intercepte les erreurs de type ServiceException pour definir un code de réponse approprié.
+     * Handle error and set the correct response status.
      *
-     * @param e L'exception interceptée
-     * @return Le message d'erreur voulu
+     * @param e The handle exception
+     * @return The error message for web user
      */
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
@@ -49,16 +49,16 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * Intercepte les erreurs de type Exception pour definir un code de réponse approprié.
+     * Handle error and set the correct response status.
      *
-     * @param e L'exception interceptée
-     * @return Le message d'erreur voulu
+     * @param e The handle exception
+     * @return The error message for web user
      */
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e) {
-        LOGGER.error("INTERNAL_SERVER_ERROR : {}", e.getMessage());
+        LOGGER.error(INTERNAL_SERVER_ERROR + " : {}", e.getMessage());
         return INTERNAL_SERVER_ERROR;
     }
 }

@@ -1,21 +1,13 @@
 package com.vgalloy.server.webservice.impl;
 
-import com.jayway.restassured.RestAssured;
+import org.apache.http.HttpStatus;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+
 import com.jayway.restassured.http.ContentType;
-import com.vgalloy.server.StartServer;
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.webservice.AbstractWebServiceImplTest;
-import org.apache.http.HttpStatus;
-import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -24,20 +16,8 @@ import static org.hamcrest.Matchers.equalTo;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 22/12/15.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = StartServer.class)
-@WebAppConfiguration
-@IntegrationTest("server.port:0")
+
 public class UserWebServiceImplTest extends AbstractWebServiceImplTest {
-
-    @Value("${local.server.port}")
-    private int port;
-
-    @Before
-    public void setUp() {
-        super.setUp();
-        RestAssured.port = port;
-    }
 
     @Test
     public void testGetAllAnonymous() {
@@ -164,5 +144,4 @@ public class UserWebServiceImplTest extends AbstractWebServiceImplTest {
                 .when().put("/user/username35")
                 .then().statusCode(HttpStatus.SC_NOT_ACCEPTABLE).assertThat().body(equalTo("Errors{errorList=[Error{message='password : empty'}]}"));
     }
-
 }

@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 public class UserDaoValidator {
 
     /**
-     * Permet de s'assurer que l'utilisateur est conforme au spécification.
+     * Check user is ok for create and update method.
      *
-     * @param user L'utilistateur à verifier
-     * @return true si aucun problème n'est détécté. Faux sinon.
+     * @param user The user to test
+     * @return true the user is ok for create and update method
      */
     public boolean isUserOkForCreateOrUpdate(User user) {
         return CommonValidator.isReferableOkForCreateOrUpdate(user);
