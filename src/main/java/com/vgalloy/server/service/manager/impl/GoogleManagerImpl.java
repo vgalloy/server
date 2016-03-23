@@ -1,5 +1,12 @@
 package com.vgalloy.server.service.manager.impl;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
 import com.google.gdata.data.spreadsheet.CellFeed;
@@ -8,20 +15,13 @@ import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 import com.google.gdata.util.ServiceException;
+
 import com.vgalloy.server.model.entity.Calendar;
 import com.vgalloy.server.model.entity.Month;
-import com.vgalloy.server.service.manager.CredentialManager;
-import com.vgalloy.server.service.manager.GoogleManager;
 import com.vgalloy.server.service.exception.GoogleServiceException;
 import com.vgalloy.server.service.exception.NoCredentialException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import com.vgalloy.server.service.manager.CredentialManager;
+import com.vgalloy.server.service.manager.GoogleManager;
 
 /**
  * @author Vincent Galloy
@@ -29,6 +29,7 @@ import java.util.List;
  */
 @Service
 public class GoogleManagerImpl implements GoogleManager {
+
     @Value("${google.sheetKey}")
     private String sheetKey;
     @Autowired
@@ -38,7 +39,7 @@ public class GoogleManagerImpl implements GoogleManager {
     public Calendar getCalendar() throws NoCredentialException {
         Credential credential = credentialManager.getCredential();
         if (credential == null) {
-            throw new NoCredentialException("Aucun credential n'est defini");
+            throw new NoCredentialException();
         }
         List<Month> months;
         try {
@@ -50,12 +51,12 @@ public class GoogleManagerImpl implements GoogleManager {
     }
 
     /**
-     * Permet de lire la google sheet et d'en extraire une liste de mois.
+     * Extract the month list.
      *
-     * @param credential Les credentials permettant d'acceder à l'api google
-     * @return La liste de moi
+     * @param credential The google credential
+     * @return The month list
      * @throws IOException      IOException
-     * @throws ServiceException ServiceException de Google
+     * @throws ServiceException ServiceException from Google
      */
     private List<Month> getMonth(Credential credential) throws IOException, ServiceException {
         SpreadsheetService service = new SpreadsheetService("Application-name");
@@ -77,7 +78,6 @@ public class GoogleManagerImpl implements GoogleManager {
 
         for (WorksheetEntry worksheet : worksheets) {
             Month month = new Month();
-
 
             // Fetch the cell feed of the worksheet.
             URL cellFeedUrl = worksheet.getCellFeedUrl();

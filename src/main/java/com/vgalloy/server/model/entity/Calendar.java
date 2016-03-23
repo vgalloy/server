@@ -1,33 +1,34 @@
 package com.vgalloy.server.model.entity;
 
-import com.vgalloy.server.model.MonthsOfTheYear;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.vgalloy.server.model.MonthsOfTheYear;
 
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 25/01/16.
  */
 public class Calendar {
+
     private List<Month> months;
 
     /**
-     * Constructeur avec la liste des mois.
+     * Constructor with the list of month.
      *
-     * @param months la liste de mois
+     * @param months The month list
      */
     public Calendar(List<Month> months) {
         this.months = months;
     }
 
     /**
-     * Constructeur.
+     * Constructor.
      */
     public Calendar() {
-        this.months = new ArrayList<>();
+        months = new ArrayList<>();
         for (int i = 0; i < MonthsOfTheYear.values().length; i++) {
-            this.months.add(new Month());
+            months.add(new Month());
         }
     }
 
@@ -36,10 +37,10 @@ public class Calendar {
     }
 
     /**
-     * Obtention d'un mois de l'anné.
+     * Get a specific month of the year.
      *
-     * @param monthsOfTheYear Le mois de l'année
-     * @return Le mois demandé
+     * @param monthsOfTheYear The month of the year
+     * @return The month of the year
      */
     public Month getMonth(MonthsOfTheYear monthsOfTheYear) {
         return months.get(monthsOfTheYear.getValue());

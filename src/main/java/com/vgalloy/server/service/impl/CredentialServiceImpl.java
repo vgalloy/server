@@ -1,10 +1,11 @@
 package com.vgalloy.server.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.vgalloy.server.aspect.security.Security;
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.service.manager.CredentialManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Vincent Galloy
@@ -12,18 +13,19 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CredentialServiceImpl implements com.vgalloy.server.service.CredentialService {
+
     @Autowired
     private CredentialManager credentialManager;
 
     @Override
     @Security({SecurityLevel.ADMIN})
-    public boolean setToken(String token) {
-        return credentialManager.setToken(token);
+    public void setToken(String token) {
+        credentialManager.setToken(token);
     }
 
     @Override
     @Security({SecurityLevel.ADMIN})
-    public String generateUrl() {
-        return credentialManager.generateUrl();
+    public String generateGoogleTokenUrl() {
+        return credentialManager.generateGoogleTokenUrl();
     }
 }

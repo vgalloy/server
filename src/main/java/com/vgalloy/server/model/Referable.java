@@ -4,19 +4,19 @@ package com.vgalloy.server.model;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 09/12/15.
  */
-public interface Referenceable {
+public interface Referable {
+
     /**
-     * Tout objet referençable à un id.
+     * The id getter.
      *
-     * @return L'id de l'objet referençable
+     * @return The id
      */
     String getId();
 
     /**
-     * Tout objet referençable à un id.
+     * The id setter.
      *
-     * @param id Defini l'id de l'objet
+     * @param id The id to set
      */
     void setId(String id);
-
 }

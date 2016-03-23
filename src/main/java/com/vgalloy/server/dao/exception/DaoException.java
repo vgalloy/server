@@ -5,10 +5,12 @@ package com.vgalloy.server.dao.exception;
  *         Created by Vincent Galloy on 12/12/15.
  */
 public class DaoException extends RuntimeException {
+
     /**
-     * Constructeur avec un message d'erreur.
+     * Constructs a new runtime exception with the specified detail message.
      *
-     * @param message Le message d'erreur
+     * @param message the detail message (which is saved for later retrieval
+     *                by the {@link #getMessage()} method).
      */
     public DaoException(String message) {
         super(message);

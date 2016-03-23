@@ -1,9 +1,10 @@
 package com.vgalloy.server.service.impl;
 
-import com.vgalloy.server.service.manager.SecurityManager;
-import com.vgalloy.server.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.vgalloy.server.service.SecurityService;
+import com.vgalloy.server.service.manager.SecurityManager;
 
 /**
  * @author Vincent Galloy
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SecurityServiceImpl implements SecurityService {
+
     @Autowired
     private SecurityManager securityManager;
 

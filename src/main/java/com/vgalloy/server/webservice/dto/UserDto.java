@@ -7,6 +7,7 @@ import com.vgalloy.server.aspect.security.SecurityLevel;
  *         Created by Vincent Galloy on 21/12/15.
  */
 public class UserDto {
+
     private String password;
     private SecurityLevel role;
 

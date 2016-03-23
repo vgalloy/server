@@ -1,24 +1,26 @@
 package com.vgalloy.server.service.validator;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import com.vgalloy.server.StartServer;
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.service.error.Errors;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 12/12/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = StartServer.class, loader = SpringApplicationContextLoader.class)
+@SpringApplicationConfiguration(classes = StartServer.class)
 public class TestUserServiceValidator {
 
     @Autowired

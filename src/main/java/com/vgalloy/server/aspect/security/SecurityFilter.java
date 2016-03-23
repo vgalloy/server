@@ -1,8 +1,8 @@
 package com.vgalloy.server.aspect.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Base64;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -10,9 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Vincent Galloy
@@ -20,12 +19,13 @@ import java.util.Base64;
  */
 @Component
 public class SecurityFilter implements Filter {
+
     @Autowired
     private SecurityApi securityApi;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // Rien à faire de particulier
+        // Nothing to do
     }
 
     @Override
@@ -39,17 +39,17 @@ public class SecurityFilter implements Filter {
         if (authorization != null && authorization.startsWith("Basic")) {
             String base64Credentials = authorization.substring("Basic".length()).trim();
             String credentials = new String(Base64.getDecoder().decode(base64Credentials), Charset.forName("UTF-8"));
-            final String[] values = credentials.split(":", 2);
+            String[] values = credentials.split(":", 2);
             username = values[0];
             password = values[1];
         }
 
-        securityApi.checkAndAdd(username, password);
+        securityApi.setUser(username, password);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
     public void destroy() {
-        // Rien à faire de particulier
+        // Nothing to do
     }
 }

@@ -1,14 +1,15 @@
 package com.vgalloy.server.webservice.impl;
 
-import com.vgalloy.server.service.CredentialService;
-import com.vgalloy.server.service.SecurityService;
-import com.vgalloy.server.webservice.LoginWebService;
-import com.vgalloy.server.webservice.dto.AuthenticationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.vgalloy.server.service.CredentialService;
+import com.vgalloy.server.service.SecurityService;
+import com.vgalloy.server.webservice.LoginWebService;
+import com.vgalloy.server.webservice.dto.AuthenticationDto;
 
 /**
  * @author Vincent Galloy
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("security")
 public class LoginWebServiceImpl implements LoginWebService {
+
     @Autowired
     private SecurityService securityService;
     @Autowired
@@ -24,20 +26,21 @@ public class LoginWebServiceImpl implements LoginWebService {
 
     @Override
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public boolean checkPassword(@RequestBody AuthenticationDTO authenticationDTO) {
-        return securityService.checkUsernameAndPassword(authenticationDTO.getUsername(), authenticationDTO.getPassword());
+    public boolean checkPassword(@RequestBody AuthenticationDto authenticationDto) {
+        return securityService.checkUsernameAndPassword(authenticationDto.getUsername(), authenticationDto.getPassword());
     }
 
     @Override
     @RequestMapping(value = "url", method = RequestMethod.GET)
     public String getGoogleTokenUrl() {
-        return credentialService.generateUrl();
+        return credentialService.generateGoogleTokenUrl();
     }
 
     @Override
     @RequestMapping(value = "token", method = RequestMethod.POST)
     public boolean setToken(@RequestBody String tokenWithoutSlash) {
         String correctToken = tokenWithoutSlash.replace("%2F", "/");
-        return credentialService.setToken(correctToken);
+        credentialService.setToken(correctToken);
+        return true;
     }
 }

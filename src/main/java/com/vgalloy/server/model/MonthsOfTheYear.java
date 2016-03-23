@@ -16,13 +16,12 @@ public enum MonthsOfTheYear {
     BLACK("Noir"),
     GREEN("Vert");
 
-    private String name;
-    private int value;
+    private final String name;
 
     /**
-     * Le constructeur du mois.
+     * Constructor.
      *
-     * @param name Le nom en Français du mois
+     * @param name The French name of the month.
      */
     MonthsOfTheYear(String name) {
         this.name = name;
@@ -32,15 +31,7 @@ public enum MonthsOfTheYear {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getValue() {
         return ordinal() + 1;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 }

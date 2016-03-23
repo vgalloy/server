@@ -5,12 +5,13 @@ package com.vgalloy.server.service;
  *         Created by Vincent Galloy on 28/01/16.
  */
 public interface SecurityService {
+
     /**
-     * Permet de verifier si la combinaison nom d'utilisateur/mot de passe est correct.
+     * Check if username/password is correct.
      *
-     * @param username Le nom d'utilisateur
-     * @param password Le mot de passe
-     * @return true si le mot de passe correspont, faux sinon
+     * @param username The username
+     * @param password The password
+     * @return true if username match with password
      */
     boolean checkUsernameAndPassword(String username, String password);
 }

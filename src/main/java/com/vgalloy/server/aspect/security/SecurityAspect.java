@@ -12,23 +12,24 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class SecurityAspect {
+
     @Autowired
     private SecurityApi securityApi;
 
     /**
-     * Verifie que l'utilisateur à le niveau d'habilitation demander par la méthode.
+     * Check if the user get the correct right.
      *
-     * @param role L'annotation de sécurité liée à la méthode
+     * @param role The security annotation.
      */
     @Before("@annotation(role)")
     public final void logForClass(Security role) {
-        boolean canAcces = false;
+        boolean canAccess = false;
         for (SecurityLevel securityLevel : role.value()) {
             if (securityLevel.equals(securityApi.getCurrentUserRole())) {
-                canAcces = true;
+                canAccess = true;
             }
         }
-        if (!canAcces) {
+        if (!canAccess) {
             throw new SecurityException(SecurityException.UNAUTHORIZED);
         }
     }

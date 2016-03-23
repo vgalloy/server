@@ -7,25 +7,25 @@ import com.google.api.client.auth.oauth2.Credential;
  *         Created by Vincent Galloy on 26/01/16.
  */
 public interface CredentialManager {
+
     /**
-     * Retorune les Credential permetant une connexion au drive.
+     * Get the credential.
      *
-     * @return Les Credential si ceux-ci sont disponible, null sinon
+     * @return The credential if the token is present or null
      */
     Credential getCredential();
 
     /**
-     * Enregistre le code necessaire a la creation des Credential.
+     * Save the token.
      *
-     * @param token Le le formis par l'api de google
-     * @return true si tout c'est bien passé, sinon false
+     * @param token The token to save
      */
-    boolean setToken(String token);
+    void setToken(String token);
 
     /**
-     * Generère l'url permettant d'otenir le token de Google.
+     * Create url for the google token.
      *
-     * @return L'url sous forme de String
+     * @return The url as a String.
      */
-    String generateUrl();
+    String generateGoogleTokenUrl();
 }

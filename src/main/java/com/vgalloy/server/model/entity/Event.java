@@ -5,13 +5,14 @@ package com.vgalloy.server.model.entity;
  *         Created by Vincent Galloy on 25/01/16.
  */
 public class Event {
+
     private String action;
 
     /**
-     * Constructeur.
+     * Constructor.
      */
     public Event() {
-        super();
+        // Nothing to do
     }
 
     public String getAction() {

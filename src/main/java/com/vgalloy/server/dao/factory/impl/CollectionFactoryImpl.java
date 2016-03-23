@@ -1,16 +1,15 @@
 package com.vgalloy.server.dao.factory.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+
 import com.vgalloy.server.dao.factory.CollectionFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
-
 
 /**
  * @author Vincent Galloy
@@ -19,6 +18,7 @@ import java.util.Map;
  */
 @Component
 public class CollectionFactoryImpl implements CollectionFactory {
+
     private DB database;
     private Map<String, DBCollection> collections;
     @Value("${database.name}")
@@ -34,8 +34,7 @@ public class CollectionFactoryImpl implements CollectionFactory {
     }
 
     /**
-     * Spring ne rempli les champs annotés de @Value avec leur valeur qu'après avec instancié l'objet. Le client mongo
-     * necessitant ces informations, il ne peut pas être créer dans le constructeur.
+     * Spring set fields with @value after the constructor. MongoClient have to be create after the constructor.
      */
     @PostConstruct
     public void inti() {

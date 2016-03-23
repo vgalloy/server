@@ -1,34 +1,35 @@
 package com.vgalloy.server.model.entity;
 
-import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.model.Referenceable;
+import java.util.Objects;
+import javax.persistence.Transient;
 import org.mongojack.Id;
 
-import javax.persistence.Transient;
-import java.util.Objects;
+import com.vgalloy.server.aspect.security.SecurityLevel;
+import com.vgalloy.server.model.Referable;
 
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 02/12/15.
  */
-public class User implements Referenceable {
+public class User implements Referable {
+
     @Id
     private String username;
     private String password;
     private SecurityLevel role;
 
     /**
-     * Constructeur.
+     * Default constructor.
      */
     public User() {
-        super();
+        // Nothing to do
     }
 
     /**
-     * Constructeur.
+     * Constructor with arguments.
      *
-     * @param username Le nom d'utilisateur
-     * @param password Le mot de passe
+     * @param username The username
+     * @param password The password
      */
     public User(String username, String password) {
         this.username = username;
@@ -36,11 +37,11 @@ public class User implements Referenceable {
     }
 
     /**
-     * Constructeur.
+     * Constructor with arguments.
      *
-     * @param username Le nom d'utilisateur
-     * @param password Le mot de passe
-     * @param role     Le role lié à l'utilisateur
+     * @param username The username
+     * @param password The password
+     * @param role     The right
      */
     public User(String username, String password, SecurityLevel role) {
         this.username = username;
@@ -108,5 +109,4 @@ public class User implements Referenceable {
                 ", role=" + role +
                 '}';
     }
-
 }

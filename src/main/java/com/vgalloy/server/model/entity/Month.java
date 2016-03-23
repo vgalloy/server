@@ -8,15 +8,16 @@ import java.util.List;
  *         Created by Vincent Galloy on 25/01/16.
  */
 public class Month {
+
     private final List<Week> weekList;
 
     /**
-     * Constructeur.
+     * Constructor.
      */
     public Month() {
-        this.weekList = new ArrayList<>();
+        weekList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            this.weekList.add(new Week());
+            weekList.add(new Week());
         }
     }
 
@@ -25,10 +26,10 @@ public class Month {
     }
 
     /**
-     * Permet d'obtenir une semaine du mois.
+     * Get the week of the month.
      *
-     * @param weekNumber Le numero de la semaine
-     * @return La semaine
+     * @param weekNumber The number of the week
+     * @return The week with the given number
      */
     public Week getWeek(int weekNumber) {
         return weekList.get(weekNumber);

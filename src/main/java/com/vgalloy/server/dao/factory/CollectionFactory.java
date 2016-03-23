@@ -8,6 +8,7 @@ import com.mongodb.DBCollection;
  *         This class keep the different collection into a map. This permit to not recreate a database for each request.
  */
 public interface CollectionFactory {
+
     /**
      * Obtains a collection.
      *

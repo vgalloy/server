@@ -5,12 +5,14 @@ package com.vgalloy.server.aspect.security;
  *         Created by Vincent Galloy on 18/12/15.
  */
 public class SecurityException extends RuntimeException {
-    public static final String UNAUTHORIZED = "Vous n'êtes pas autorisé à acceder à cette ressource";
+
+    public static final String UNAUTHORIZED = "Vous n'êtes pas autorisé à accéder à cette ressource";
 
     /**
-     * Constructeur avec un message d'erreur.
+     * Constructs a new runtime exception with the specified detail message.
      *
-     * @param message Le message d'erreur
+     * @param message the detail message (which is saved for later retrieval
+     *                by the {@link #getMessage()} method).
      */
     public SecurityException(String message) {
         super(message);
