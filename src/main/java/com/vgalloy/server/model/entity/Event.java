@@ -12,7 +12,7 @@ public class Event {
      * Constructor.
      */
     public Event() {
-        super();
+        // Nothing to do
     }
 
     public String getAction() {

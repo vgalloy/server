@@ -1,10 +1,11 @@
 package com.vgalloy.server.service.manager.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.service.manager.SecurityManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Vincent Galloy
@@ -30,7 +31,7 @@ public class SecurityManagerImpl implements SecurityManager {
             user = userDao.getById(username);
             if (user == null) {
                 return null;
-            } else if (user.getPassword() != null && user.getPassword().equals(password) || (user.getPassword() == null && password == null)) {
+            } else if (user.getPassword() != null && user.getPassword().equals(password) || user.getPassword() == null && password == null) {
                 return user;
             } else {
                 return null;

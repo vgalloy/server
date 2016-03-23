@@ -1,5 +1,9 @@
 package com.vgalloy.server.service.impl;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.vgalloy.server.aspect.logger.Log;
 import com.vgalloy.server.aspect.logger.LogLevel;
 import com.vgalloy.server.aspect.security.Security;
@@ -7,15 +11,11 @@ import com.vgalloy.server.aspect.security.SecurityException;
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.model.entity.User;
-import com.vgalloy.server.service.error.Errors;
 import com.vgalloy.server.service.UserService;
+import com.vgalloy.server.service.error.Errors;
 import com.vgalloy.server.service.exception.ServiceException;
 import com.vgalloy.server.service.validator.UserServiceSecurityValidator;
 import com.vgalloy.server.service.validator.UserServiceValidator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author Vincent Galloy

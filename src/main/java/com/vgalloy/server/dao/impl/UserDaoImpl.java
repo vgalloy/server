@@ -1,13 +1,14 @@
 package com.vgalloy.server.dao.impl;
 
-import com.vgalloy.server.dao.UserDao;
-import com.vgalloy.server.dao.exception.DaoException;
-import com.vgalloy.server.dao.factory.CollectionFactory;
-import com.vgalloy.server.model.entity.User;
-import com.vgalloy.server.dao.validator.UserDaoValidator;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.vgalloy.server.dao.UserDao;
+import com.vgalloy.server.dao.exception.DaoException;
+import com.vgalloy.server.dao.factory.CollectionFactory;
+import com.vgalloy.server.dao.validator.UserDaoValidator;
+import com.vgalloy.server.model.entity.User;
 
 /**
  * @author Vincent Galloy

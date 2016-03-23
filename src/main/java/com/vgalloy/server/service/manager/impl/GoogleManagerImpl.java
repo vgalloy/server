@@ -1,5 +1,12 @@
 package com.vgalloy.server.service.manager.impl;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
 import com.google.gdata.data.spreadsheet.CellFeed;
@@ -8,20 +15,13 @@ import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 import com.google.gdata.util.ServiceException;
+
 import com.vgalloy.server.model.entity.Calendar;
 import com.vgalloy.server.model.entity.Month;
-import com.vgalloy.server.service.manager.CredentialManager;
-import com.vgalloy.server.service.manager.GoogleManager;
 import com.vgalloy.server.service.exception.GoogleServiceException;
 import com.vgalloy.server.service.exception.NoCredentialException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import com.vgalloy.server.service.manager.CredentialManager;
+import com.vgalloy.server.service.manager.GoogleManager;
 
 /**
  * @author Vincent Galloy

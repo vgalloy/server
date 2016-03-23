@@ -1,10 +1,11 @@
 package com.vgalloy.server.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.vgalloy.server.aspect.security.Security;
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.service.manager.CredentialManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Vincent Galloy

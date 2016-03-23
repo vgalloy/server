@@ -1,8 +1,8 @@
 package com.vgalloy.server.aspect.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Base64;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -10,9 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Vincent Galloy
@@ -45,7 +44,7 @@ public class SecurityFilter implements Filter {
             password = values[1];
         }
 
-        securityApi.checkAndAdd(username, password);
+        securityApi.setUser(username, password);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

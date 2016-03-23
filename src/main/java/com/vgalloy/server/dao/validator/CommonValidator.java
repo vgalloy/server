@@ -17,6 +17,7 @@ public final class CommonValidator {
 
     /**
      * Check if referable object is not null and get a correct id.
+     *
      * @param referable The referable
      * @return true if the object is correct
      */

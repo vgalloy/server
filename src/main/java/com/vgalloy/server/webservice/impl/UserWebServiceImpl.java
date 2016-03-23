@@ -1,11 +1,6 @@
 package com.vgalloy.server.webservice.impl;
 
-import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.model.entity.User;
-import com.vgalloy.server.service.UserService;
-import com.vgalloy.server.webservice.UserWebService;
-import com.vgalloy.server.webservice.dto.UserDto;
-import com.vgalloy.server.webservice.mapper.UserMapper;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.vgalloy.server.aspect.security.SecurityLevel;
+import com.vgalloy.server.model.entity.User;
+import com.vgalloy.server.service.UserService;
+import com.vgalloy.server.webservice.UserWebService;
+import com.vgalloy.server.webservice.dto.UserDto;
+import com.vgalloy.server.webservice.mapper.UserMapper;
 
 /**
  * @author Vincent Galloy

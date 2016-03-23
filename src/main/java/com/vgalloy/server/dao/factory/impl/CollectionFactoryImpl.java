@@ -1,15 +1,15 @@
 package com.vgalloy.server.dao.factory.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
-import com.vgalloy.server.dao.factory.CollectionFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
+import com.vgalloy.server.dao.factory.CollectionFactory;
 
 /**
  * @author Vincent Galloy

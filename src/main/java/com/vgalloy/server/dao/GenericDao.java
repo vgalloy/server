@@ -1,8 +1,8 @@
 package com.vgalloy.server.dao;
 
-import com.vgalloy.server.model.Referable;
-
 import java.util.List;
+
+import com.vgalloy.server.model.Referable;
 
 /**
  * @author Vincent Galloy

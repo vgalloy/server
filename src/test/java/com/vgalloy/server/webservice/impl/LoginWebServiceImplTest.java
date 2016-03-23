@@ -2,10 +2,10 @@ package com.vgalloy.server.webservice.impl;
 
 import org.apache.http.HttpStatus;
 import org.junit.Test;
-
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jayway.restassured.http.ContentType;
+
 import com.vgalloy.server.aspect.security.SecurityException;
 import com.vgalloy.server.webservice.AbstractWebServiceImplTest;
 

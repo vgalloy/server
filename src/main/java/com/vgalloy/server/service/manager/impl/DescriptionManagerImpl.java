@@ -1,12 +1,12 @@
 package com.vgalloy.server.service.manager.impl;
 
-import com.vgalloy.server.dao.DescriptionDao;
-import com.vgalloy.server.model.entity.Description;
-import com.vgalloy.server.service.manager.DescriptionManager;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.vgalloy.server.dao.DescriptionDao;
+import com.vgalloy.server.model.entity.Description;
+import com.vgalloy.server.service.manager.DescriptionManager;
 
 /**
  * @author Vincent Galloy

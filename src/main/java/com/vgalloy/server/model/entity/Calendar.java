@@ -1,9 +1,9 @@
 package com.vgalloy.server.model.entity;
 
-import com.vgalloy.server.model.MonthsOfTheYear;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.vgalloy.server.model.MonthsOfTheYear;
 
 /**
  * @author Vincent Galloy

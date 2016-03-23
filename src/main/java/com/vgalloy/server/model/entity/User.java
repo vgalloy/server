@@ -1,11 +1,11 @@
 package com.vgalloy.server.model.entity;
 
-import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.model.Referable;
+import java.util.Objects;
+import javax.persistence.Transient;
 import org.mongojack.Id;
 
-import javax.persistence.Transient;
-import java.util.Objects;
+import com.vgalloy.server.aspect.security.SecurityLevel;
+import com.vgalloy.server.model.Referable;
 
 /**
  * @author Vincent Galloy

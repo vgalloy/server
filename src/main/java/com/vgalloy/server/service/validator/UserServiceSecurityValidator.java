@@ -1,9 +1,10 @@
 package com.vgalloy.server.service.validator;
 
-import com.vgalloy.server.aspect.security.SecurityApi;
-import com.vgalloy.server.aspect.security.SecurityLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.vgalloy.server.aspect.security.SecurityApi;
+import com.vgalloy.server.aspect.security.SecurityLevel;
 
 /**
  * @author Vincent Galloy
@@ -38,13 +39,14 @@ public class UserServiceSecurityValidator {
     /**
      * Can the current user modify another user.
      *
-     * @param  username The username of the user we would modify information.
+     * @param username The username of the user we would modify information.
      * @return true if current user can modify user.
      */
     private boolean canModify(String username) {
         if (SecurityLevel.ADMIN.equals(securityApi.getCurrentUserRole())) {
             return true;
-        } else if (SecurityLevel.USER.equals(securityApi.getCurrentUserRole())) {
+        }
+        if (SecurityLevel.USER.equals(securityApi.getCurrentUserRole())) {
             if (securityApi.getCurrentUsername() != null && securityApi.getCurrentUsername().equals(username)) {
                 return true;
             }

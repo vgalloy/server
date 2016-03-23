@@ -1,16 +1,17 @@
 package com.vgalloy.server.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
 import com.vgalloy.server.aspect.security.Security;
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.model.entity.Calendar;
 import com.vgalloy.server.service.CalendarService;
 import com.vgalloy.server.service.exception.NoCredentialException;
 import com.vgalloy.server.service.manager.GoogleManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Vincent Galloy

@@ -1,10 +1,10 @@
 package com.vgalloy.server.model.entity;
 
-import com.vgalloy.server.model.Referable;
+import java.util.Objects;
+import javax.persistence.Transient;
 import org.mongojack.Id;
 
-import javax.persistence.Transient;
-import java.util.Objects;
+import com.vgalloy.server.model.Referable;
 
 /**
  * @author Vincent Galloy
@@ -20,7 +20,7 @@ public class Description implements Referable {
      * Default constructor.
      */
     public Description() {
-        super();
+        // Nothing to do
     }
 
     /**

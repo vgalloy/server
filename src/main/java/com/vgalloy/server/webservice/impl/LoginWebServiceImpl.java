@@ -1,14 +1,15 @@
 package com.vgalloy.server.webservice.impl;
 
-import com.vgalloy.server.service.CredentialService;
-import com.vgalloy.server.service.SecurityService;
-import com.vgalloy.server.webservice.LoginWebService;
-import com.vgalloy.server.webservice.dto.AuthenticationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.vgalloy.server.service.CredentialService;
+import com.vgalloy.server.service.SecurityService;
+import com.vgalloy.server.webservice.LoginWebService;
+import com.vgalloy.server.webservice.dto.AuthenticationDto;
 
 /**
  * @author Vincent Galloy

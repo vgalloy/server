@@ -1,9 +1,9 @@
 package com.vgalloy.server.service;
 
+import java.util.List;
+
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.model.entity.User;
-
-import java.util.List;
 
 /**
  * @author Vincent Galloy

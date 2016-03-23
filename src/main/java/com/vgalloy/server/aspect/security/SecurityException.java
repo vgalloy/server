@@ -11,8 +11,8 @@ public class SecurityException extends RuntimeException {
     /**
      * Constructs a new runtime exception with the specified detail message.
      *
-     * @param  message the detail message (which is saved for later retrieval
-     *         by the {@link #getMessage()} method).
+     * @param message the detail message (which is saved for later retrieval
+     *                by the {@link #getMessage()} method).
      */
     public SecurityException(String message) {
         super(message);

@@ -1,8 +1,8 @@
 package com.vgalloy.server.service.manager;
 
-import com.vgalloy.server.model.entity.Description;
-
 import java.util.List;
+
+import com.vgalloy.server.model.entity.Description;
 
 /**
  * @author Vincent Galloy

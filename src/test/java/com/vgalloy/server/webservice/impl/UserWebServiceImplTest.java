@@ -3,8 +3,8 @@ package com.vgalloy.server.webservice.impl;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.junit.Test;
-
 import com.jayway.restassured.http.ContentType;
+
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.webservice.AbstractWebServiceImplTest;

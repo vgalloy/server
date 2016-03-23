@@ -1,18 +1,16 @@
 package com.vgalloy.server.dao.impl;
 
-import com.vgalloy.server.StartServer;
-import com.vgalloy.server.dao.DescriptionDao;
-import com.vgalloy.server.dao.exception.DaoException;
-import com.vgalloy.server.model.entity.Description;
-import com.vgalloy.server.model.entity.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.vgalloy.server.StartServer;
+import com.vgalloy.server.dao.DescriptionDao;
+import com.vgalloy.server.dao.exception.DaoException;
+import com.vgalloy.server.model.entity.Description;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNull;

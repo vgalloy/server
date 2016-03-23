@@ -1,12 +1,12 @@
 package com.vgalloy.server.dao.impl;
 
-import com.mongodb.BasicDBObject;
-import com.vgalloy.server.dao.GenericDao;
-import com.vgalloy.server.model.Referable;
+import java.util.List;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
+import com.mongodb.BasicDBObject;
 
-import java.util.List;
+import com.vgalloy.server.dao.GenericDao;
+import com.vgalloy.server.model.Referable;
 
 /**
  * @author Vincent Galloy

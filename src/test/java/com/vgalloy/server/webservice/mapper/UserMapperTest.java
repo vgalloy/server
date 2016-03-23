@@ -1,11 +1,12 @@
 package com.vgalloy.server.webservice.mapper;
 
+import org.junit.Test;
+
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.webservice.dto.UserDto;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Vincent Galloy

@@ -1,12 +1,7 @@
 package com.vgalloy.server.service.impl;
 
-import com.vgalloy.server.StartServer;
-import com.vgalloy.server.aspect.security.SecurityLevel;
-import com.vgalloy.server.dao.UserDao;
-import com.vgalloy.server.model.entity.User;
-import com.vgalloy.server.service.exception.ServiceException;
-import com.vgalloy.server.service.validator.UserServiceSecurityValidator;
-import com.vgalloy.server.service.validator.UserServiceValidator;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,8 +13,13 @@ import org.mockito.Spy;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.vgalloy.server.StartServer;
+import com.vgalloy.server.aspect.security.SecurityLevel;
+import com.vgalloy.server.dao.UserDao;
+import com.vgalloy.server.model.entity.User;
+import com.vgalloy.server.service.exception.ServiceException;
+import com.vgalloy.server.service.validator.UserServiceSecurityValidator;
+import com.vgalloy.server.service.validator.UserServiceValidator;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
@@ -35,6 +35,9 @@ import static org.mockito.Matchers.any;
 @SpringApplicationConfiguration(classes = StartServer.class)
 public class TestServiceUserServiceImpl {
 
+    private static final String ID = "1";
+    private static final String PASSWORD = "password";
+    private static final String USERNAME = "username";
     /**
      * /!\ @InjectMocks cherche à remplir TOUT les champs de l'objet ciblé avec des mocks ou des spys. Si certains
      * champs n'ont pas de spy/mock associé ils seront settés à null. Mockito n'ira pas chercher les beans de Spring.
@@ -47,10 +50,6 @@ public class TestServiceUserServiceImpl {
     private UserServiceSecurityValidator userServiceSecurityValidator;
     @Mock
     private UserDao userDao;
-
-    private static final String ID = "1";
-    private static final String PASSWORD = "password";
-    private static final String USERNAME = "username";
     private User correctUser = new User(USERNAME, PASSWORD);
     private User correctUser2 = new User(USERNAME, PASSWORD, SecurityLevel.USER);
     private User nullUsernameUser = new User(" ", PASSWORD);
@@ -68,7 +67,6 @@ public class TestServiceUserServiceImpl {
         Mockito.when(userDao.getById(USERNAME)).thenReturn(correctUser);
         Mockito.when(userServiceSecurityValidator.isChangePasswordOk(any())).thenReturn(true);
         Mockito.when(userServiceSecurityValidator.isGetOk(any())).thenReturn(true);
-
     }
 
     @Test
