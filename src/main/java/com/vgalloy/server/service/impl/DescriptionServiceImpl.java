@@ -18,7 +18,6 @@ public class DescriptionServiceImpl implements DescriptionService {
 
     @Autowired
     private DescriptionDao descriptionDao;
-
     @Autowired
     private DescriptionManager descriptionManager;
 

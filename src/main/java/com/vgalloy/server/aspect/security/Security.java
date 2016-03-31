@@ -14,7 +14,9 @@ import java.lang.annotation.Target;
 public @interface Security {
 
     /**
-     * L'ensemble des roles possible pour accéder à la méthode annotée.
+     * Array of allowed role for method.
+     *
+     * @return The Array of security role.
      */
     SecurityLevel[] value() default SecurityLevel.ANONYMOUS;
 }

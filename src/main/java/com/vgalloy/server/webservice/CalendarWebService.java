@@ -11,7 +11,7 @@ public interface CalendarWebService {
     /**
      * Get the calendar.
      *
-     * @return le calendrier
+     * @return The calendar
      */
     Calendar getCalendar();
 }

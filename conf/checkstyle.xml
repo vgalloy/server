@@ -69,6 +69,7 @@
         <property name="message" value="Line has trailing spaces."/>
     </module>
 
+
     <!-- Checks for Headers                                -->
     <!-- See http://checkstyle.sf.net/config_header.html   -->
     <!-- <module name="Header"> -->
@@ -77,6 +78,12 @@
     <!-- </module> -->
 
     <module name="TreeWalker">
+
+        <module name="EmptyLineSeparator">
+            <property name="tokens" value="METHOD_DEF"/>
+            <property name="allowNoEmptyLineBetweenFields" value="true"/>
+            <property name="allowMultipleEmptyLines" value="false"/>
+        </module>
 
         <!-- Checks for Javadoc comments.                     -->
         <!-- See http://checkstyle.sf.net/config_javadoc.html -->
@@ -136,6 +143,7 @@
         <module name="WhitespaceAround"/>
 
 
+
         <!-- Modifier Checks                                    -->
         <!-- See http://checkstyle.sf.net/config_modifiers.html -->
         <module name="ModifierOrder"/>
@@ -158,7 +166,7 @@
 
         <module name="RightCurly">
             <property name="option" value="alone"/>
-            <property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/>
+            <property name="tokens" value="CLASS_DEF"/>
         </module>
 
         <module name="AbstractClassName">

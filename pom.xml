@@ -19,8 +19,8 @@
         <cobertura.version>2.7</cobertura.version>
 
         <!-- Checkstyle -->
-        <checkstyle.version>2.15</checkstyle.version>
-        <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
+        <checkstyle.version>2.17</checkstyle.version>
+        <checkstyle.config.location>conf/checkstyle.xml</checkstyle.config.location>
 
         <!-- Log -->
         <slf4j-api.version>1.7.19</slf4j-api.version>
@@ -189,7 +189,7 @@
                         <id>validate</id>
                         <phase>validate</phase>
                         <configuration>
-                            <configLocation>${checkstyle.config.location}</configLocation>
+                            <configLocation>conf/checkstyle.xml</configLocation>
                             <encoding>UTF-8</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>

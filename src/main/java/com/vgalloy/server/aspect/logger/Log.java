@@ -15,6 +15,8 @@ public @interface Log {
 
     /**
      * The Log level.
+     *
+     * @return The log level
      */
     LogLevel value() default LogLevel.TRACE;
 }
