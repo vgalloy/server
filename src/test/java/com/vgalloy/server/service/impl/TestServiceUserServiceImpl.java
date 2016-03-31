@@ -13,8 +13,8 @@ import org.mockito.Spy;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vgalloy.server.StartServer;
 import com.vgalloy.server.aspect.security.SecurityLevel;
+import com.vgalloy.server.configuration.CommonConfiguration;
 import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.service.exception.ServiceException;
@@ -32,7 +32,7 @@ import static org.mockito.Matchers.any;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = StartServer.class)
+@SpringApplicationConfiguration(classes = CommonConfiguration.class)
 public class TestServiceUserServiceImpl {
 
     private static final String ID = "1";

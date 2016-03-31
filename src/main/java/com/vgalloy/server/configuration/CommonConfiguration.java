@@ -1,30 +1,23 @@
-package com.vgalloy.server;
-
-import org.springframework.boot.SpringApplication;
+package com.vgalloy.server.configuration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
 /**
- * @author Vincent Galloy
- *         Created by Vincent Galloy on 09/12/15.
+ * Created by Vincent Galloy on 31/03/16.
  */
-@ComponentScan
+@Configuration
+@ComponentScan(basePackages = "com.vgalloy.server",
+        excludeFilters = @Filter(type = FilterType.ASPECTJ, pattern = "com.vgalloy.server.configuration.*"))
 @EnableScheduling
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAutoConfiguration(exclude = {EmbeddedMongoAutoConfiguration.class, MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
-public class StartServer {
+public class CommonConfiguration {
 
-    /**
-     * The main method.
-     *
-     * @param args The arguments list
-     */
-    public static void main(String... args) {
-        SpringApplication.run(StartServer.class, args);
-    }
 }

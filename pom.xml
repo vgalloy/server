@@ -41,6 +41,9 @@
         <google-api-services-drive.version>v3-rev15-1.21.0</google-api-services-drive.version>
         <com.google.gdata.version>1.47.1</com.google.gdata.version>
 
+        <!-- Springfox (Swagger)-->
+        <springfox.version>2.4.0</springfox.version>
+
         <!-- Test -->
         <junit.version>4.12</junit.version>
         <mockito.version>2.0.2-beta</mockito.version>
@@ -135,6 +138,18 @@
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
         </dependency>
     </dependencies>
 

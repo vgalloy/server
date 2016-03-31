@@ -1,5 +1,8 @@
 package com.vgalloy.server.webservice.mapper;
 
+import java.util.Collections;
+import java.util.List;
+
 import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.webservice.dto.UserDto;
 

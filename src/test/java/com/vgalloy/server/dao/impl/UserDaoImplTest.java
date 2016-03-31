@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vgalloy.server.StartServer;
+import com.vgalloy.server.configuration.CommonConfiguration;
 import com.vgalloy.server.dao.UserDao;
 import com.vgalloy.server.dao.exception.DaoException;
 import com.vgalloy.server.model.entity.User;
@@ -21,7 +21,7 @@ import static org.junit.Assert.fail;
  *         Created by Vincent Galloy on 21/12/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = StartServer.class)
+@SpringApplicationConfiguration(classes = CommonConfiguration.class)
 public class UserDaoImplTest {
 
     @Autowired
