@@ -1,12 +1,13 @@
 package com.vgalloy.server.dao.impl;
 
-import java.util.List;
-import org.mongojack.JacksonDBCollection;
-import org.mongojack.WriteResult;
 import com.mongodb.BasicDBObject;
-
+import com.mongodb.DBCollection;
 import com.vgalloy.server.dao.GenericDao;
 import com.vgalloy.server.model.Referable;
+import org.mongojack.JacksonDBCollection;
+import org.mongojack.WriteResult;
+
+import java.util.List;
 
 /**
  * @author Vincent Galloy
@@ -16,13 +17,14 @@ public class GenericDaoImpl<T extends Referable> implements GenericDao<T> {
 
     private final JacksonDBCollection<T, String> collection;
 
+    private final Class<T> clazz = null;
     /**
      * Constructor with the collectionFactory.
      *
      * @param collection The Jackson collection
      */
-    public GenericDaoImpl(JacksonDBCollection<T, String> collection) {
-        this.collection = collection;
+    public GenericDaoImpl(DBCollection collection) {
+        this.collection = JacksonDBCollection.wrap(collection, clazz, String.class);
     }
 
     @Override

@@ -1,4 +1,5 @@
 package com.vgalloy.server.configuration;
+
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
@@ -9,8 +10,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.scheduling.annotation.EnableScheduling;
+
 /**
- * Created by Vincent Galloy on 31/03/16.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 31/03/16.
  */
 @Configuration
 @ComponentScan(basePackages = "com.vgalloy.server",

@@ -1,9 +1,14 @@
 package com.vgalloy.server.service.manager.impl;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+
+import com.google.gdata.util.ServiceException;
+import com.vgalloy.server.service.manager.mapper.MonthMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,7 +19,6 @@ import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
 import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
-import com.google.gdata.util.ServiceException;
 
 import com.vgalloy.server.model.entity.Calendar;
 import com.vgalloy.server.model.entity.Month;
@@ -42,11 +46,7 @@ public class GoogleManagerImpl implements GoogleManager {
             throw new NoCredentialException();
         }
         List<Month> months;
-        try {
-            months = getMonth(credential);
-        } catch (Exception e) {
-            throw new GoogleServiceException("Impossible d'obtenir la liste de mois", e);
-        }
+        months = getMonth(credential);
         return new Calendar(months);
     }
 
@@ -55,43 +55,61 @@ public class GoogleManagerImpl implements GoogleManager {
      *
      * @param credential The google credential
      * @return The month list
-     * @throws IOException      IOException
-     * @throws ServiceException ServiceException from Google
      */
-    private List<Month> getMonth(Credential credential) throws IOException, ServiceException {
+    private List<Month> getMonth(Credential credential) {
         SpreadsheetService service = new SpreadsheetService("Application-name");
         service.setOAuth2Credentials(credential);
-        URL spreadsheetFeedUrl = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
-        SpreadsheetFeed feed = service.getFeed(spreadsheetFeedUrl, SpreadsheetFeed.class);
-        List<SpreadsheetEntry> spreadsheets = feed.getEntries();
-        SpreadsheetEntry spreadsheet = spreadsheets.get(0);
-        for (SpreadsheetEntry e : spreadsheets) {
-            if (sheetKey.equals(e.getKey())) {
-                spreadsheet = e;
-            }
-        }
+
+        SpreadsheetEntry spreadsheet = getSpreadsheetEntry(service);
 
         WorksheetFeed worksheetFeed = service.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
         List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
 
         List<Month> months = new ArrayList<>();
-
         for (WorksheetEntry worksheet : worksheets) {
-            Month month = new Month();
-
             // Fetch the cell feed of the worksheet.
             URL cellFeedUrl = worksheet.getCellFeedUrl();
             CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
-
-            // Iterate through each cell, printing its value.
-            cellFeed.getEntries().stream()
-                    .filter(cell -> cell.getCell().getRow() > 1)
-                    .forEach(cell -> month.getWeek(cell.getCell().getRow() - 2)
-                            .getDay(cell.getCell().getCol())
-                            .getEvent()
-                            .setAction(cell.getCell().getValue()));
+            Month month = MonthMapper.mapRow(cellFeed);
             months.add(month);
         }
+
         return months;
+    }
+
+    /**
+     * Get SpreadsheetFeed.
+     *
+     * @param service The google service
+     * @return The spreadSheet
+     */
+    private SpreadsheetEntry getSpreadsheetEntry(SpreadsheetService service) {
+        // Url Creation
+        URL spreadsheetFeedUrl;
+        try {
+            spreadsheetFeedUrl = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+        } catch (MalformedURLException e) {
+            throw new GoogleServiceException(e);
+        }
+
+        // Obtain Spreadsheet
+        SpreadsheetFeed spreadsheetFeed;
+        try {
+            spreadsheetFeed = service.getFeed(spreadsheetFeedUrl, SpreadsheetFeed.class);
+        } catch (ServiceException | IOException e) {
+            throw new GoogleServiceException(e);
+        }
+
+        // Get the correct spreadSheet
+        List<SpreadsheetEntry> spreadsheets = spreadsheetFeed.getEntries();
+        SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+        for (SpreadsheetEntry e : spreadsheets) {
+            if (sheetKey.equals(e.getKey())) {
+                spreadsheet = e;
+                break;
+            }
+        }
+
+        return spreadsheet;
     }
 }

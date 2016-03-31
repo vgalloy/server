@@ -1,14 +1,12 @@
 package com.vgalloy.server.dao.impl;
 
-import org.mongojack.JacksonDBCollection;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import com.vgalloy.server.dao.DescriptionDao;
 import com.vgalloy.server.dao.exception.DaoException;
 import com.vgalloy.server.dao.factory.CollectionFactory;
 import com.vgalloy.server.dao.validator.DescriptionDaoValidator;
 import com.vgalloy.server.model.entity.Description;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Vincent Galloy
@@ -29,7 +27,7 @@ public class DescriptionDaoImpl extends GenericDaoImpl<Description> implements D
      */
     @Autowired
     public DescriptionDaoImpl(CollectionFactory collectionFactory) {
-        super(JacksonDBCollection.wrap(collectionFactory.getCollection(COLLECTION), Description.class, String.class));
+        super(collectionFactory.getCollection(COLLECTION));
     }
 
     @Override

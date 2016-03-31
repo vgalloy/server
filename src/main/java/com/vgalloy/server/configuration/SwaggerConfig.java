@@ -16,7 +16,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static com.google.common.collect.Lists.newArrayList;
 /**
- * Created by Vincent Galloy on 31/03/16.
+ * @author Vincent Galloy
+ *         Created by Vincent Galloy on 31/03/16.
  */
 @Configuration
 @EnableSwagger2
@@ -34,7 +35,6 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
-                .pathMapping("/")
                 .directModelSubstitute(LocalDate.class, String.class)
                 .genericModelSubstitutes(ResponseEntity.class)
                 .useDefaultResponseMessages(false)
