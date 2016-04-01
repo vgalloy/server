@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class LoggerAspect {
 
     /**
-     * 1. Analise le point cut afin de trouver le nom et les arguments de la fonction appelé et les log en fonction du
+     * 1. Analyse le point cut afin de trouver le nom et les arguments de la fonction appelé et les log en fonction du
      * niveau de log passé en paramètre.
      * 2. Execute la méthode
      * 3. Affiche le resultat

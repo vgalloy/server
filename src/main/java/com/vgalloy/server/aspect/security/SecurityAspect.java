@@ -27,6 +27,7 @@ public class SecurityAspect {
         for (SecurityLevel securityLevel : role.value()) {
             if (securityLevel.equals(securityApi.getCurrentUserRole())) {
                 canAccess = true;
+                break;
             }
         }
         if (!canAccess) {
