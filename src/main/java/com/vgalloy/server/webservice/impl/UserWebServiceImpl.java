@@ -2,10 +2,12 @@ package com.vgalloy.server.webservice.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vgalloy.server.aspect.security.SecurityLevel;
@@ -33,6 +35,7 @@ public class UserWebServiceImpl implements UserWebService {
     }
 
     @Override
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/{username}", method = RequestMethod.PUT)
     public User create(@PathVariable String username, @RequestBody UserDto userDto) {
         return userService.createOrUpdate(UserMapper.map(username, userDto));
@@ -57,6 +60,7 @@ public class UserWebServiceImpl implements UserWebService {
     }
 
     @Override
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(value = "/{username}", method = RequestMethod.DELETE)
     public void deleteByUsername(@PathVariable String username) {
         userService.deleteByUsername(username);

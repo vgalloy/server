@@ -9,9 +9,9 @@
     <version>1.7.0-SNAPSHOT</version>
 
     <properties>
-        <!-- JAVA -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Project -->
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Maven -->
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
@@ -204,7 +204,7 @@
                         <id>validate</id>
                         <phase>validate</phase>
                         <configuration>
-                            <configLocation>conf/checkstyle.xml</configLocation>
+                            <configLocation>${checkstyle.config.location}</configLocation>
                             <encoding>UTF-8</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>

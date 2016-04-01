@@ -9,12 +9,12 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
 import springfox.documentation.schema.ModelRef;
-import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 31/03/16.
@@ -43,7 +43,6 @@ public class SwaggerConfig {
                         new ResponseMessageBuilder().code(404).message("Not Found").responseModel(new ModelRef("Error")).build(),
                         new ResponseMessageBuilder().code(401).message("Unauthorized").responseModel(new ModelRef("Error")).build(),
                         new ResponseMessageBuilder().code(500).message("Internal Server Error").responseModel(new ModelRef("Error")).build()))
-                .enableUrlTemplating(true)
-                .tags(new Tag("Pet Service", "All apis relating to pets"));
+                .enableUrlTemplating(true);
     }
 }
