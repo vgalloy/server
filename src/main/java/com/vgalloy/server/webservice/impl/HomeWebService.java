@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Vincent Galloy
  *         Created by Vincent Galloy on 18/12/15.
  */
+
 @RestController
 @RequestMapping("home")
 @PropertySource(value = "classpath:META-INF/maven/com.vgalloy/server/pom.properties", ignoreResourceNotFound = true)

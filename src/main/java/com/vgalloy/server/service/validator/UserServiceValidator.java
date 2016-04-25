@@ -14,6 +14,13 @@ import com.vgalloy.server.service.error.Errors;
 @Component
 public class UserServiceValidator {
 
+    public static final String USER_NULL = "user : null";
+    public static final String USERNAME_NULL = "username : null";
+    public static final String USERNAME_EMPTY = "username : empty";
+    public static final String PASSWORD_NULL = "password : null";
+    public static final String PASSWORD_EMPTY = "password : empty";
+    public static final String SECURITY_LEVEL_NULL = "securityLevel : null";
+
     /**
      * Check user not null.
      *
@@ -22,7 +29,7 @@ public class UserServiceValidator {
      */
     private static void isUserNotNull(Errors errors, User user) {
         if (user == null) {
-            errors.addError(new Error("user : null"));
+            errors.addError(new Error(USER_NULL));
         }
     }
 
@@ -34,9 +41,9 @@ public class UserServiceValidator {
      */
     private static void isUsernameNotNullAndNotEmpty(Errors errors, String username) {
         if (username == null) {
-            errors.addError(new Error("username : null"));
+            errors.addError(new Error(USERNAME_NULL));
         } else if (username.trim().isEmpty()) {
-            errors.addError(new Error("username : empty"));
+            errors.addError(new Error(USERNAME_EMPTY));
         }
     }
 
@@ -48,9 +55,9 @@ public class UserServiceValidator {
      */
     private static void isPasswordNotNullAndNotEmpty(Errors errors, String password) {
         if (password == null) {
-            errors.addError(new Error("password : null"));
+            errors.addError(new Error(PASSWORD_NULL));
         } else if (password.trim().isEmpty()) {
-            errors.addError(new Error("password : empty"));
+            errors.addError(new Error(PASSWORD_EMPTY));
         }
     }
 
@@ -62,7 +69,7 @@ public class UserServiceValidator {
      */
     private static void isSecurityLevelNotNull(Errors errors, SecurityLevel securityLevel) {
         if (securityLevel == null) {
-            errors.addError(new Error("securityLevel : null"));
+            errors.addError(new Error(SECURITY_LEVEL_NULL));
         }
     }
 

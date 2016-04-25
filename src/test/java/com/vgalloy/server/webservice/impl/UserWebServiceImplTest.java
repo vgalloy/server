@@ -3,10 +3,15 @@ package com.vgalloy.server.webservice.impl;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.junit.Test;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.http.ContentType;
 
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.model.entity.User;
+import com.vgalloy.server.service.error.Error;
+import com.vgalloy.server.service.error.Errors;
+import com.vgalloy.server.service.exception.ServiceException;
+import com.vgalloy.server.service.validator.UserServiceValidator;
 import com.vgalloy.server.webservice.AbstractWebServiceImplTest;
 
 import static com.jayway.restassured.RestAssured.given;
@@ -132,16 +137,30 @@ public class UserWebServiceImplTest extends AbstractWebServiceImplTest {
     }
 
     @Test
-    public void testCreateUserOk() {
+    public void testCreateUserOk() throws Exception {
         given().auth().preemptive().basic(ADMIN, ADMIN).contentType(ContentType.JSON).body(new User("useless", "password", SecurityLevel.ADMIN))
                 .when().put("/user/username34")
-                .then().statusCode(HttpStatus.SC_OK).assertThat().body(equalTo("{\"username\":\"username34\",\"password\":\"password\",\"role\":\"ADMIN\",\"id\":\"username34\"}"));
+                .then().statusCode(HttpStatus.SC_CREATED).assertThat().body(equalTo(new ObjectMapper().writeValueAsString(new User("username34", "password", SecurityLevel.ADMIN))));
     }
 
     @Test
     public void testCreateUserWithEmptyPassword() {
         given().auth().preemptive().basic(ADMIN, ADMIN).contentType(ContentType.JSON).body(new User("useless", "", SecurityLevel.ADMIN))
                 .when().put("/user/username35")
-                .then().statusCode(HttpStatus.SC_NOT_ACCEPTABLE).assertThat().body(equalTo("Errors{errorList=[Error{message='password : empty'}]}"));
+                .then().statusCode(HttpStatus.SC_NOT_ACCEPTABLE).assertThat().body(equalTo(new ServiceException(new Errors().addError(new Error(UserServiceValidator.PASSWORD_EMPTY))).getMessage()));
+    }
+
+    @Test
+    public void testDeleteUser() {
+        given().auth().preemptive().basic(ADMIN, ADMIN).contentType(ContentType.JSON)
+                .when().delete("/user/USER")
+                .then().statusCode(HttpStatus.SC_NO_CONTENT);
+    }
+
+    @Test
+    public void testDeleteUnExistingUser() {
+        given().auth().preemptive().basic(ADMIN, ADMIN).contentType(ContentType.JSON)
+                .when().delete("/user/USER_123")
+                .then().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 }

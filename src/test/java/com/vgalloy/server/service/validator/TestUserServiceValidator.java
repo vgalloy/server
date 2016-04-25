@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vgalloy.server.StartServer;
 import com.vgalloy.server.aspect.security.SecurityLevel;
+import com.vgalloy.server.configuration.CommonConfiguration;
 import com.vgalloy.server.model.entity.User;
 import com.vgalloy.server.service.error.Errors;
 
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
  *         Created by Vincent Galloy on 12/12/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = StartServer.class)
+@SpringApplicationConfiguration(classes = CommonConfiguration.class)
 public class TestUserServiceValidator {
 
     @Autowired

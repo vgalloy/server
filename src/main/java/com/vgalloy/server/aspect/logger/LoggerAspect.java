@@ -21,6 +21,38 @@ import org.springframework.stereotype.Component;
 public class LoggerAspect {
 
     /**
+     * 1. Analyse le point cut afin de trouver le nom et les arguments de la fonction appelé et les log en fonction du
+     * niveau de log passé en paramètre.
+     * 2. Execute la méthode
+     * 3. Affiche le resultat
+     *
+     * @param joinPoint Le joinPoint servant de reference vers le file d'execution et la méthode encapsulée
+     * @param logLevel  Le niveau de log attendu
+     * @return Le resultat de la methode encapsulée par l'aspect
+     * @throws Throwable La méthode encapsulée peux jetter n'importe quel type de Throwable
+     */
+    private static Object displayLog(ProceedingJoinPoint joinPoint, LogLevel logLevel) throws Throwable {
+        Logger logger = LoggerFactory.getLogger(joinPoint.getTarget().getClass());
+        StringBuilder stringBuilder = new StringBuilder("[ START ] : ")
+                .append(joinPoint.getSignature().getName())
+                .append("(");
+        for (Object o : joinPoint.getArgs()) {
+            stringBuilder.append(o.toString());
+        }
+        stringBuilder.append(")");
+        LogLevel.printLog(logger, logLevel, stringBuilder.toString());
+
+        Object result = joinPoint.proceed();
+
+        stringBuilder = new StringBuilder("[ END   ] : ")
+                .append(joinPoint.getSignature().getName())
+                .append(" ==> ")
+                .append(result);
+        LogLevel.printLog(logger, logLevel, stringBuilder.toString());
+        return result;
+    }
+
+    /**
      * On crée un pointCut pour injecter l'aspect aux bons endroits.
      * 1. L'annotation @within permet de trouver les méthodes dont la classe est annotée par @Log
      * 2. L'annotation @annotation permet de trouver les méthodes directement annotée par @Log
@@ -50,37 +82,5 @@ public class LoggerAspect {
             return displayLog(joinPoint, methodLog.value());
         }
         return displayLog(joinPoint, classLog.value());
-    }
-
-    /**
-     * 1. Analise le point cut afin de trouver le nom et les arguments de la fonction appelé et les log en fonction du
-     * niveau de log passé en paramètre.
-     * 2. Execute la méthode
-     * 3. Affiche le resultat
-     *
-     * @param joinPoint Le joinPoint servant de reference vers le file d'execution et la méthode encapsulée
-     * @param logLevel  Le niveau de log attendu
-     * @return Le resultat de la methode encapsulée par l'aspect
-     * @throws Throwable La méthode encapsulée peux jetter n'importe quel type de Throwable
-     */
-    private static Object displayLog(ProceedingJoinPoint joinPoint, LogLevel logLevel) throws Throwable {
-        Logger logger = LoggerFactory.getLogger(joinPoint.getTarget().getClass());
-        StringBuilder stringBuilder = new StringBuilder("[ START ] : ")
-                .append(joinPoint.getSignature().getName())
-                .append("(");
-        for (Object o : joinPoint.getArgs()) {
-            stringBuilder.append(o.toString());
-        }
-        stringBuilder.append(")");
-        LogLevel.printLog(logger, logLevel, stringBuilder.toString());
-
-        Object result = joinPoint.proceed();
-
-        stringBuilder = new StringBuilder("[ END   ] : ")
-                .append(joinPoint.getSignature().getName())
-                .append(" ==> ")
-                .append(result);
-        LogLevel.printLog(logger, logLevel, stringBuilder.toString());
-        return result;
     }
 }

@@ -1,9 +1,11 @@
 package com.vgalloy.server.dao.impl;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
 
 import com.vgalloy.server.dao.GenericDao;
 import com.vgalloy.server.model.Referable;
@@ -21,8 +23,9 @@ public class GenericDaoImpl<T extends Referable> implements GenericDao<T> {
      *
      * @param collection The Jackson collection
      */
-    public GenericDaoImpl(JacksonDBCollection<T, String> collection) {
-        this.collection = collection;
+    public GenericDaoImpl(DBCollection collection) {
+        Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        this.collection = JacksonDBCollection.wrap(collection, clazz, String.class);
     }
 
     @Override
@@ -32,8 +35,8 @@ public class GenericDaoImpl<T extends Referable> implements GenericDao<T> {
 
     @Override
     public T create(T t) {
-        WriteResult writeResult = collection.insert(t);
-        t.setId(writeResult.getSavedId().toString());
+        WriteResult<T, String> writeResult = collection.insert(t);
+        t.setId(writeResult.getSavedId());
         return t;
     }
 

@@ -1,18 +1,19 @@
 package com.vgalloy.server.service.manager.impl;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
+import com.google.gdata.data.IFeed;
 import com.google.gdata.data.spreadsheet.CellFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
 import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
-import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 import com.google.gdata.util.ServiceException;
 
@@ -22,6 +23,7 @@ import com.vgalloy.server.service.exception.GoogleServiceException;
 import com.vgalloy.server.service.exception.NoCredentialException;
 import com.vgalloy.server.service.manager.CredentialManager;
 import com.vgalloy.server.service.manager.GoogleManager;
+import com.vgalloy.server.service.manager.mapper.MonthMapper;
 
 /**
  * @author Vincent Galloy
@@ -41,12 +43,7 @@ public class GoogleManagerImpl implements GoogleManager {
         if (credential == null) {
             throw new NoCredentialException();
         }
-        List<Month> months;
-        try {
-            months = getMonth(credential);
-        } catch (Exception e) {
-            throw new GoogleServiceException("Impossible d'obtenir la liste de mois", e);
-        }
+        List<Month> months = getMonth(credential);
         return new Calendar(months);
     }
 
@@ -55,43 +52,74 @@ public class GoogleManagerImpl implements GoogleManager {
      *
      * @param credential The google credential
      * @return The month list
-     * @throws IOException      IOException
-     * @throws ServiceException ServiceException from Google
      */
-    private List<Month> getMonth(Credential credential) throws IOException, ServiceException {
+    private List<Month> getMonth(Credential credential) {
         SpreadsheetService service = new SpreadsheetService("Application-name");
         service.setOAuth2Credentials(credential);
-        URL spreadsheetFeedUrl = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
-        SpreadsheetFeed feed = service.getFeed(spreadsheetFeedUrl, SpreadsheetFeed.class);
-        List<SpreadsheetEntry> spreadsheets = feed.getEntries();
-        SpreadsheetEntry spreadsheet = spreadsheets.get(0);
-        for (SpreadsheetEntry e : spreadsheets) {
-            if (sheetKey.equals(e.getKey())) {
-                spreadsheet = e;
-            }
+
+        SpreadsheetEntry spreadsheet = getSpreadsheetEntry(service);
+        List<CellFeed> cellFeedsList = getCellFeeds(spreadsheet, service);
+
+        return cellFeedsList.stream()
+                .map(MonthMapper::mapRow)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get the List of Cell Feeds (ie a list of table).
+     *
+     * @param spreadsheet The spreadSheet
+     * @param service     The google service
+     * @return The list of cell feed
+     */
+    private List<CellFeed> getCellFeeds(SpreadsheetEntry spreadsheet, SpreadsheetService service) {
+        WorksheetFeed worksheetFeed = getGoogleFeed(service, spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+        return worksheetFeed.getEntries()
+                .stream()
+                .map(e -> getGoogleFeed(service, e.getCellFeedUrl(), CellFeed.class))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get the Google Feed and wrap Exceptions.
+     *
+     * @param service The Google Service
+     * @param url     The url to access the feed
+     * @param clazz   The class of the feed
+     * @param <T>     The abstract parameter
+     * @return The feed
+     */
+    private <T extends IFeed> T getGoogleFeed(SpreadsheetService service, URL url, Class<T> clazz) {
+        try {
+            return service.getFeed(url, clazz);
+        } catch (ServiceException | IOException e) {
+            throw new GoogleServiceException(e);
+        }
+    }
+
+    /**
+     * Get the correct SpreadsheetFeed.
+     *
+     * @param service The google service
+     * @return The spreadSheet
+     */
+    private SpreadsheetEntry getSpreadsheetEntry(SpreadsheetService service) {
+        // Url Creation
+        URL spreadsheetFeedUrl;
+        try {
+            spreadsheetFeedUrl = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+        } catch (MalformedURLException e) {
+            throw new GoogleServiceException(e);
         }
 
-        WorksheetFeed worksheetFeed = service.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
-        List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
+        // Obtain Spreadsheet
+        SpreadsheetFeed spreadsheetFeed = getGoogleFeed(service, spreadsheetFeedUrl, SpreadsheetFeed.class);
 
-        List<Month> months = new ArrayList<>();
-
-        for (WorksheetEntry worksheet : worksheets) {
-            Month month = new Month();
-
-            // Fetch the cell feed of the worksheet.
-            URL cellFeedUrl = worksheet.getCellFeedUrl();
-            CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
-
-            // Iterate through each cell, printing its value.
-            cellFeed.getEntries().stream()
-                    .filter(cell -> cell.getCell().getRow() > 1)
-                    .forEach(cell -> month.getWeek(cell.getCell().getRow() - 2)
-                            .getDay(cell.getCell().getCol())
-                            .getEvent()
-                            .setAction(cell.getCell().getValue()));
-            months.add(month);
-        }
-        return months;
+        // Get the correct spreadSheet
+        List<SpreadsheetEntry> spreadsheets = spreadsheetFeed.getEntries();
+        return spreadsheets.stream()
+                .filter(e -> sheetKey.equals(e.getKey()))
+                .findFirst()
+                .get();
     }
 }
