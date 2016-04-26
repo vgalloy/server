@@ -20,7 +20,7 @@ import com.vgalloy.server.dao.factory.CollectionFactory;
 public class CollectionFactoryImpl implements CollectionFactory {
 
     private DB database;
-    private Map<String, DBCollection> collections;
+    private final Map<String, DBCollection> collections;
     @Value("${database.name}")
     private String databaseName;
     @Value("${database.url}")

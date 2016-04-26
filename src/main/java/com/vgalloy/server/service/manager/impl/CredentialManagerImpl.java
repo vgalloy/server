@@ -33,7 +33,7 @@ public class CredentialManagerImpl implements CredentialManager {
 
     private Credential credential;
     private GoogleClientSecrets clientSecrets;
-    private JacksonFactory jsonFactory;
+    private final JacksonFactory jsonFactory;
 
     /**
      * Constructor.

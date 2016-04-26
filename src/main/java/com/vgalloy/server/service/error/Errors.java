@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Errors implements Serializable {
 
-    private List<Error> errorList;
+    private final List<Error> errorList;
 
     /**
      * Constructor.
