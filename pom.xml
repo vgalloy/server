@@ -20,11 +20,15 @@
 
         <!-- Checkstyle -->
         <checkstyle.version>2.17</checkstyle.version>
-        <checkstyle.config.location>conf/checkstyle.xml</checkstyle.config.location>
+        <checkstyle.configuration.location>conf/checkstyle.xml</checkstyle.configuration.location>
 
         <!-- PMD -->
         <pmd.version>3.6</pmd.version>
-        <pmd.ruleset.location>conf/ruleset.xml</pmd.ruleset.location>
+        <pmd.cofiguration.location>conf/ruleset.xml</pmd.cofiguration.location>
+
+        <!-- Find bugs -->
+        <findbugs-maven-plugin.version>3.0.4-SNAPSHOT</findbugs-maven-plugin.version>
+        <findbugs.configuration.location>conf/findbugs.xml</findbugs.configuration.location>
 
         <!-- Log -->
         <slf4j-api.version>1.7.21</slf4j-api.version>
@@ -193,15 +197,32 @@
                     <execution>
                         <goals>
                             <goal>check</goal>
-                            <goal>cpd-check</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
                     <printFailingErrors>true</printFailingErrors>
                     <rulesets>
-                        <ruleset>${pmd.ruleset.location}</ruleset>
+                        <ruleset>${pmd.cofiguration.location}</ruleset>
                     </rulesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>analyze-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <effort>Max</effort>
+                    <includeFilterFile>${findbugs.configuration.location}</includeFilterFile>
                 </configuration>
             </plugin>
             <plugin>
@@ -227,7 +248,7 @@
                         <id>validate</id>
                         <phase>validate</phase>
                         <configuration>
-                            <configLocation>${checkstyle.config.location}</configLocation>
+                            <configLocation>${checkstyle.configuration.location}</configLocation>
                             <encoding>UTF-8</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
