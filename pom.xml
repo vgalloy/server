@@ -24,7 +24,7 @@
 
         <!-- PMD -->
         <pmd.version>3.6</pmd.version>
-        <pmd.cofiguration.location>conf/ruleset.xml</pmd.cofiguration.location>
+        <pmd.configuration.location>conf/ruleset.xml</pmd.configuration.location>
 
         <!-- Find bugs -->
         <findbugs-maven-plugin.version>3.0.4-SNAPSHOT</findbugs-maven-plugin.version>
@@ -195,6 +195,7 @@
                 <version>${pmd.version}</version>
                 <executions>
                     <execution>
+                        <phase>validate</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -203,7 +204,7 @@
                 <configuration>
                     <printFailingErrors>true</printFailingErrors>
                     <rulesets>
-                        <ruleset>${pmd.cofiguration.location}</ruleset>
+                        <ruleset>${pmd.configuration.location}</ruleset>
                     </rulesets>
                 </configuration>
             </plugin>
@@ -222,7 +223,8 @@
                 </executions>
                 <configuration>
                     <effort>Max</effort>
-                    <includeFilterFile>${findbugs.configuration.location}</includeFilterFile>
+                    <threshold>Low</threshold>
+                    <excludeFilterFile>${findbugs.configuration.location}</excludeFilterFile>
                 </configuration>
             </plugin>
             <plugin>

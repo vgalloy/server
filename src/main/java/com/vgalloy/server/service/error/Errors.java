@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class Errors implements Serializable {
 
+    private static final long serialVersionUID = -3099218451837098083L;
+
     private final List<Error> errorList;
 
     /**

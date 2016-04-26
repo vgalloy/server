@@ -2,7 +2,7 @@ package com.vgalloy.server.dao.factory.impl;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import com.mongodb.DB;
@@ -19,25 +19,18 @@ import com.vgalloy.server.dao.factory.CollectionFactory;
 @Component
 public class CollectionFactoryImpl implements CollectionFactory {
 
-    private DB database;
+    private final DB database;
     private final Map<String, DBCollection> collections;
-    @Value("${database.name}")
-    private String databaseName;
-    @Value("${database.url}")
-    private String databaseUrl;
 
     /**
      * Constructor.
+     *
+     * @param databaseName The database name
+     * @param databaseUrl  The database url
      */
-    public CollectionFactoryImpl() {
+    @Autowired
+    public CollectionFactoryImpl(@Value("${database.name}") String databaseName, @Value("${database.url}") String databaseUrl) {
         collections = new HashMap<>();
-    }
-
-    /**
-     * Spring set fields with @value after the constructor. MongoClient have to be create after the constructor.
-     */
-    @PostConstruct
-    public void inti() {
         MongoClient mongoClient = new MongoClient(databaseUrl);
         database = mongoClient.getDB(databaseName);
     }
