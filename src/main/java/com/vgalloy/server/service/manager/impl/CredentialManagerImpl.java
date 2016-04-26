@@ -42,9 +42,9 @@ public class CredentialManagerImpl implements CredentialManager {
      */
     public CredentialManagerImpl() throws IOException {
         jsonFactory = new JacksonFactory();
-        File f = new File("client_secrets.json");
-        if (f.exists()) {
-            clientSecrets = GoogleClientSecrets.load(jsonFactory, new FileReader(f));
+        File file = new File("client_secrets.json");
+        if (file.exists()) {
+            clientSecrets = GoogleClientSecrets.load(jsonFactory, new FileReader(file));
         } else {
             clientSecrets = GoogleClientSecrets.load(jsonFactory, new InputStreamReader(Drive.class.getResourceAsStream("/client_secrets.json")));
         }
