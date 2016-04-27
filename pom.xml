@@ -28,7 +28,7 @@
 
         <!-- Find bugs -->
         <findbugs-maven-plugin.version>3.0.4-SNAPSHOT</findbugs-maven-plugin.version>
-        <findbugs.configuration.location>conf/findbugs.xml</findbugs.configuration.location>
+        <findbugs.exception.location>conf/findbugs-exception-filter.xml</findbugs.exception.location>
 
         <!-- Log -->
         <slf4j-api.version>1.7.21</slf4j-api.version>
@@ -224,7 +224,7 @@
                 <configuration>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
-                    <excludeFilterFile>${findbugs.configuration.location}</excludeFilterFile>
+                    <excludeFilterFile>${findbugs.exception.location}</excludeFilterFile>
                 </configuration>
             </plugin>
             <plugin>
@@ -232,6 +232,9 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>${cobertura.version}</version>
                 <configuration>
+                    <check>
+                        <!--<lineRate>90</lineRate>-->
+                    </check>
                     <formats>
                         <format>html</format>
                         <format>xml</format>
@@ -240,6 +243,14 @@
                         <ignoreTrivial>true</ignoreTrivial>
                     </instrumentation>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>clean</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
