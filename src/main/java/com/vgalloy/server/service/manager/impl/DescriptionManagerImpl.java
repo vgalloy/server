@@ -1,10 +1,8 @@
 package com.vgalloy.server.service.manager.impl;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vgalloy.server.dao.DescriptionDao;
 import com.vgalloy.server.model.entity.Description;
 import com.vgalloy.server.service.manager.DescriptionManager;
 
@@ -15,16 +13,8 @@ import com.vgalloy.server.service.manager.DescriptionManager;
 @Service
 public class DescriptionManagerImpl implements DescriptionManager {
 
-    @Autowired
-    private DescriptionDao descriptionDao;
-
     @Override
     public List<Description> getAllFromWeb() {
         throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Description save(Description description) {
-        return descriptionDao.create(description);
     }
 }

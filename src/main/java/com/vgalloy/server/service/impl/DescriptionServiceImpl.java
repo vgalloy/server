@@ -34,6 +34,6 @@ public class DescriptionServiceImpl implements DescriptionService {
     @Override
     public void refresh() {
         List<Description> descriptions = descriptionManager.getAllFromWeb();
-        descriptions.stream().forEach(descriptionManager::save);
+        descriptions.stream().forEach(descriptionDao::update);
     }
 }
