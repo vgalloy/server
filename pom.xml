@@ -15,7 +15,11 @@
 
         <!-- Maven -->
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+
+        <!-- Sonar -->
         <sonar-maven-plugin.version>3.0.1</sonar-maven-plugin.version>
+
+        <!-- Cobertura -->
         <cobertura.version>2.7</cobertura.version>
 
         <!-- Checkstyle -->
@@ -163,6 +167,7 @@
 
     <build>
         <plugins>
+            <!-- Maven -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -172,6 +177,8 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+
+            <!-- Spring boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -190,16 +197,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${checkstyle.version}</version>
+                <configuration>
+                    <configLocation>${checkstyle.configuration.location}</configLocation>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>validate</id>
                         <phase>validate</phase>
-                        <configuration>
-                            <configLocation>${checkstyle.configuration.location}</configLocation>
-                            <encoding>${project.build.sourceEncoding}</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <failsOnError>true</failsOnError>
-                        </configuration>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -212,6 +218,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>${pmd.version}</version>
+                <configuration>
+                    <printFailingErrors>true</printFailingErrors>
+                    <rulesets>
+                        <ruleset>${pmd.configuration.location}</ruleset>
+                    </rulesets>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -220,12 +232,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <printFailingErrors>true</printFailingErrors>
-                    <rulesets>
-                        <ruleset>${pmd.configuration.location}</ruleset>
-                    </rulesets>
-                </configuration>
             </plugin>
 
             <!-- Findbugs -->
@@ -233,20 +239,19 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>${findbugs-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>analyze-compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
                     <excludeFilterFile>${findbugs.exception.location}</excludeFilterFile>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Sonar -->
