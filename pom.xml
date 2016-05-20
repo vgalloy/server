@@ -34,6 +34,9 @@
         <findbugs-maven-plugin.version>3.0.4-SNAPSHOT</findbugs-maven-plugin.version>
         <findbugs.exception.location>conf/findbugs-exception-filter.xml</findbugs.exception.location>
 
+        <!-- Mojo version checker -->
+        <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
+
         <!-- Log -->
         <slf4j-api.version>1.7.21</slf4j-api.version>
         <logback-classic.version>1.1.7</logback-classic.version>
@@ -254,6 +257,17 @@
                 </executions>
             </plugin>
 
+            <!-- Codehaus version checker -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin.version}</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <outputFile>target/outdated-dependencies.txt</outputFile>
+                </configuration>
+            </plugin>
+
             <!-- Sonar -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -268,7 +282,7 @@
                 <version>${cobertura.version}</version>
                 <configuration>
                     <check>
-                         <totalLineRate>60</totalLineRate>
+                        <totalLineRate>60</totalLineRate>
                     </check>
                     <formats>
                         <format>html</format>
