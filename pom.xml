@@ -24,7 +24,8 @@
 
         <!-- Checkstyle -->
         <checkstyle.version>2.17</checkstyle.version>
-        <checkstyle.configuration.location>conf/checkstyle.xml</checkstyle.configuration.location>
+        <checkstyle.checkstyle.location>conf/checkstyle.xml</checkstyle.checkstyle.location>
+        <checkstyle.suppressions.location>conf/suppressions.xml</checkstyle.suppressions.location>
 
         <!-- PMD -->
         <pmd.version>3.6</pmd.version>
@@ -201,8 +202,9 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${checkstyle.version}</version>
                 <configuration>
-                    <configLocation>${checkstyle.configuration.location}</configLocation>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <configLocation>${checkstyle.checkstyle.location}</configLocation>
+                    <suppressionsLocation>${checkstyle.suppressions.location}</suppressionsLocation>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                 </configuration>
