@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- url : http://pmd.sourceforge.net/pmd-4.3.0/rules/index.html -->
+<ruleset name="Custom ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>
+        This ruleset checks my code for bad stuff
+    </description>
+
+    <!-- We'll use the entire 'strings' ruleset -->
+    <!--<rule ref="rulesets/java/strings.xml"/>-->
+    <rule ref="rulesets/java/basic.xml"/>
+    <rule ref="rulesets/java/braces.xml"/>
+    <rule ref="rulesets/java/clone.xml"/>
+    <rule ref="rulesets/java/codesize.xml"/>
+    <!--<rule ref="rulesets/java/controversial.xml"/>-->
+    <rule ref="rulesets/java/design.xml">
+        <exclude name="AvoidSynchronizedAtMethodLevel"/>
+        <exclude name="UseUtilityClass"/>
+    </rule>
+    <rule ref="rulesets/java/imports.xml"/>
+</ruleset>

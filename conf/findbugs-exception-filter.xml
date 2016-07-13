@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<FindBugsFilter>
+
+    <!-- Exception -->
+    <Match>
+        <Class name="com.vgalloy.server.service.manager.impl.CredentialManagerImpl"/>
+    </Match>
+
+</FindBugsFilter>

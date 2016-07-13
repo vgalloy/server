@@ -35,7 +35,7 @@ import static org.mockito.Matchers.any;
 @SpringApplicationConfiguration(classes = CommonConfiguration.class)
 public class TestServiceUserServiceImpl {
 
-    private static final String ID = "1";
+    private static final String DEFAULT_ID = "1";
     private static final String PASSWORD = "password";
     private static final String USERNAME = "username";
     /**
@@ -50,10 +50,10 @@ public class TestServiceUserServiceImpl {
     private UserServiceSecurityValidator userServiceSecurityValidator;
     @Mock
     private UserDao userDao;
-    private User correctUser = new User(USERNAME, PASSWORD);
-    private User correctUser2 = new User(USERNAME, PASSWORD, SecurityLevel.USER);
-    private User nullUsernameUser = new User(" ", PASSWORD);
-    private User emptyUsernameUser = new User(" ", PASSWORD);
+    private final User correctUser = new User(USERNAME, PASSWORD);
+    private final User correctUser2 = new User(USERNAME, PASSWORD, SecurityLevel.USER);
+    private final User nullUsernameUser = new User(" ", PASSWORD);
+    private final User emptyUsernameUser = new User(" ", PASSWORD);
 
     @Before
     public void init() {
@@ -115,7 +115,7 @@ public class TestServiceUserServiceImpl {
 
     @Test
     public void testDeleteOk() {
-        userService.deleteByUsername(ID);
+        userService.deleteByUsername(DEFAULT_ID);
     }
 
     @Test(expected = ServiceException.class)

@@ -8,6 +8,8 @@ import java.io.Serializable;
  */
 public class Error implements Serializable {
 
+    private static final long serialVersionUID = 8887020886757436701L;
+
     private final String message;
 
     /**

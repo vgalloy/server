@@ -4,6 +4,8 @@ import java.util.Objects;
 import javax.persistence.Transient;
 import org.mongojack.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.vgalloy.server.aspect.security.SecurityLevel;
 import com.vgalloy.server.model.Referable;
 
@@ -50,13 +52,15 @@ public class User implements Referable {
     }
 
     @Override
+    @JsonProperty("_id")
     public String getId() {
         return username;
     }
 
     @Override
+    @JsonProperty("_id")
     public void setId(String id) {
-        this.username = id;
+        username = id;
     }
 
     public String getUsername() {

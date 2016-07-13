@@ -11,7 +11,7 @@ import com.vgalloy.server.model.MonthsOfTheYear;
  */
 public class Calendar {
 
-    private List<Month> months;
+    private final List<Month> months;
 
     /**
      * Constructor with the list of month.

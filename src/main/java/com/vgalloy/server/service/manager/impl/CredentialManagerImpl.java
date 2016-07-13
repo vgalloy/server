@@ -33,7 +33,7 @@ public class CredentialManagerImpl implements CredentialManager {
 
     private Credential credential;
     private GoogleClientSecrets clientSecrets;
-    private JacksonFactory jsonFactory;
+    private final JacksonFactory jsonFactory;
 
     /**
      * Constructor.
@@ -42,16 +42,18 @@ public class CredentialManagerImpl implements CredentialManager {
      */
     public CredentialManagerImpl() throws IOException {
         jsonFactory = new JacksonFactory();
-        File f = new File("client_secrets.json");
-        if (f.exists()) {
-            clientSecrets = GoogleClientSecrets.load(jsonFactory, new FileReader(f));
+        File file = new File("client_secrets.json");
+        if (file.exists()) {
+            clientSecrets = GoogleClientSecrets.load(jsonFactory, new FileReader(file));
         } else {
-            clientSecrets = GoogleClientSecrets.load(jsonFactory, new InputStreamReader(Drive.class.getResourceAsStream("/client_secrets.json")));
+            try (InputStreamReader inputStreamReader = new InputStreamReader(Drive.class.getResourceAsStream("/client_secrets.json"))) {
+                clientSecrets = GoogleClientSecrets.load(jsonFactory, inputStreamReader);
+            }
         }
     }
 
     @Override
-    public Credential getCredential() {
+    public synchronized Credential getCredential() {
         return credential;
     }
 
@@ -62,7 +64,7 @@ public class CredentialManagerImpl implements CredentialManager {
         try {
             response = new GoogleAuthorizationCodeTokenRequest(transport, jsonFactory, clientSecrets.getDetails().getClientId(), clientSecrets.getDetails().getClientSecret(), token, REDIRECT_URI).execute();
         } catch (IOException e) {
-            throw new CredentialException("Impossible de recevoir le token de Google ou le code est erroné", e);
+            throw new CredentialException("Can not receive token from Google or code is incorrect", e);
         }
         // Build a new GoogleCredential instance and return it.
         credential = new Builder()

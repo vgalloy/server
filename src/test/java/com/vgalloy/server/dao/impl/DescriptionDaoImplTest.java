@@ -58,6 +58,13 @@ public class DescriptionDaoImplTest {
         assertEquals(description, descriptionDao.getById(description.getId()));
     }
 
+    @Test
+    public void testUpdateNewDescription() {
+        Description description = new Description("name", "desc");
+        descriptionDao.update(description);
+        assertEquals(description, descriptionDao.getById(description.getId()));
+    }
+
     @Test(expected = DaoException.class)
     public void testUpdateWithNullName() {
         descriptionDao.update(new Description(null, "desc"));

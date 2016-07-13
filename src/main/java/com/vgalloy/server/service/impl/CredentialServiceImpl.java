@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.vgalloy.server.aspect.security.Security;
 import com.vgalloy.server.aspect.security.SecurityLevel;
+import com.vgalloy.server.service.CredentialService;
 import com.vgalloy.server.service.manager.CredentialManager;
 
 /**
@@ -12,7 +13,7 @@ import com.vgalloy.server.service.manager.CredentialManager;
  *         Created by Vincent Galloy on 28/01/16.
  */
 @Service
-public class CredentialServiceImpl implements com.vgalloy.server.service.CredentialService {
+public class CredentialServiceImpl implements CredentialService {
 
     @Autowired
     private CredentialManager credentialManager;
